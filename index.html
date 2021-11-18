@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Processo Ágil: pleshw</title>
+</head>
+
+<body>
+  <div id="abc"></div>
+
+
+  <script type="module" src="build/CSSAttributes.js"></script>
+  <script type="module" src="build/CSSEditor.js"></script>
+  <script type="module">
+    import { CSSAttributes } from './build/CSSAttributes.js';
+    import { CSSEditor } from './build/CSSEditor.js';
+
+    CSSEditor.from(document.body, new CSSAttributes({
+      width: `${ window.innerWidth }px`,
+      height: `${ window.innerHeight }px`,
+      position: 'relative',
+      margin: '0',
+      padding: '0'
+    }))
+    let progress = 0;
+
+    CSSEditor.from(document.getElementById('abc'), new CSSAttributes({
+      width: `50px`,
+      height: `50px`,
+      position: 'absolute',
+      margin: '0',
+      padding: '0',
+      backgroundColor: 'red',
+      gradient: true,
+      gradientRotation: '230deg',
+      transition: 'all .3s',
+      x: `0px`,
+      y: `0px`,
+      isProgressBar: true,
+      progressRotation: '180deg',
+    }))
+
+    window.addEventListener('click', evt => {
+      CSSEditor.from(document.getElementById('abc'), new CSSAttributes({
+        x: `${ evt.clientX - 25 }px`,
+        y: `${ evt.clientY - 25 }px`,
+        isProgressBar: true,
+        progressRotation: '180deg',
+        progress: progress < 100 ? progress += 5 : 100
+      }))
+      console.log(progress)
+    })
+  </script>
+</body>
+
+</html>
