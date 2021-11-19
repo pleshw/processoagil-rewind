@@ -1,3 +1,5 @@
+import { clamp } from './utils.js';
+
 export class CSSAttributes {
   width?: string;
   height?: string;
@@ -6,39 +8,54 @@ export class CSSAttributes {
   padding?: string;
   backgroundColor?: string;
   transition?: string;
+  backgroundImage?: string;
 
-  constructor( props: CSSProps = {} ) {
+  x?: string;
+  y?: string;
+
+  isGradient?: boolean;
+  gradientRotation?: string;
+  gradientStyleText?: string;
+
+  isProgressBar?: boolean;
+  progressRotation?: string;
+  progressColor?: string;
+  progressBackground?: string;
+  progressStyleText?: string;
+  private _progress?: number | undefined;
+
+  constructor( props: CSSCustomProps = {} ) {
     this.width = props.width;
     this.height = props.height;
     this.position = props.position;
     this.margin = props.margin;
     this.padding = props.padding;
     this.backgroundColor = props.backgroundColor;
-    this.left = props.left || props.x;
-    this.top = props.top || props.y;
+    this.left = this.x = props.left || props.x;
+    this.top = this.y = props.top || props.y;
     this.backgroundImage = props.backgroundImage;
     this.transition = props.transition;
 
-
-    if ( props.gradient ) {
-      this.backgroundImage = `linear-gradient(${ props.gradientRotation || '180deg' }, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0))`;
+    this.isGradient = props.isGradient;
+    if ( this.isGradient ) {
+      this.gradientRotation = props.gradientRotation;
+      this.gradientStyleText = `linear-gradient(${ this.gradientRotation || '180deg' }, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0))`;
     }
 
-    if ( props.isProgressBar ) {
-      const progressRotation = `${ props.progressRotation || '90deg' }`;
-      const progressColor = `${ props.progressColor || 'transparent' }`;
-      const progressBackground = `${ props.progressBackground || 'blue' }`;
+    this.isProgressBar = props.isProgressBar;
+    if ( this.isProgressBar ) {
+      this.progressRotation = `${ props.progressRotation || '90deg' }`;
+      this.progressColor = `${ props.progressColor || 'transparent' }`;
+      this.progressBackground = `${ props.progressBackground || 'blue' }`;
 
-      const tmpProgress = props.progress || 0;
-      const progress = `${ ( tmpProgress ).toString() }%`;
-      const remaining = `${ ( 100 - tmpProgress ).toString() }%`;
+      this._progress = props.progress || 0;
+      this.strProgress = `${ ( this._progress ).toString() }%`;
+      this.remaining = `${ ( 100 - this._progress ).toString() }%`;
 
-      const progressGradient = `linear-gradient(${ progressRotation }, ${ progressColor } ${ progress }, ${ progressBackground } 0%, ${ progressBackground } ${ remaining })`;
-
-      this.backgroundImage = this.backgroundImage
-        ? `${ this.backgroundImage },${ progressGradient }`
-        : progressGradient;
+      this.progressStyleText = `linear-gradient(${ this.progressRotation }, ${ this.progressColor } ${ this.strProgress }, ${ this.progressBackground } 0%, ${ this.progressBackground } ${ this.remaining })`;
     }
+
+    this.backgroundImage = `${ this.isGradient ? this.gradientStyleText + ',' : '' }${ this.progressStyleText || '' }`;
   }
 
   *[Symbol.iterator]() {
@@ -47,10 +64,24 @@ export class CSSAttributes {
     }
   }
 
-  [key: string]: string | undefined;
+  public get progress(): number | undefined {
+    return this._progress;
+  }
+  
+  public set progress( value: number | undefined ) {
+    this._progress = clamp( value );
+
+    this.strProgress = `${ ( this._progress ).toString() }%`;
+    this.remaining = `${ ( 100 - this._progress ).toString() }%`;
+
+    this.progressStyleText = `linear-gradient(${ this.progressRotation }, ${ this.progressColor } ${ this.strProgress }, ${ this.progressBackground } 0%, ${ this.progressBackground } ${ this.remaining })`;
+    this.backgroundImage = `${ this.isGradient ? this.gradientStyleText + ',' : '' }${ this.progressStyleText || '' }`;
+  }
+
+  [key: string]: string | number | boolean | undefined;
 };
 
-type CSSProps = {
+type CSSCustomProps = {
   width?: string;
   height?: string;
   position?: string;
@@ -65,12 +96,14 @@ type CSSProps = {
   x?: string;
   y?: string;
 
-  gradient?: boolean;
+  isGradient?: boolean;
   gradientRotation?: string;
+  gradientStyleText?: string;
 
   isProgressBar?: boolean;
   progressRotation?: string;
   progressColor?: string;
   progressBackground?: string;
   progress?: number;
+  progressStyleText?: string;
 }

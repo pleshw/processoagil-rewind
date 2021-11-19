@@ -11,7 +11,7 @@
 <body>
   <div id="abc"></div>
 
-
+  <script type="module" src="build/utils.js"></script>
   <script type="module" src="build/CSSAttributes.js"></script>
   <script type="module" src="build/CSSEditor.js"></script>
   <script type="module">
@@ -26,32 +26,28 @@
       padding: '0'
     }))
     let progress = 0;
-
-    CSSEditor.from(document.getElementById('abc'), new CSSAttributes({
+    const progressDivCss = new CSSAttributes({
       width: `50px`,
       height: `50px`,
       position: 'absolute',
       margin: '0',
       padding: '0',
       backgroundColor: 'red',
-      gradient: true,
+      isGradient: true,
       gradientRotation: '230deg',
       transition: 'all .3s',
       x: `0px`,
       y: `0px`,
       isProgressBar: true,
-      progressRotation: '180deg',
-    }))
+      progressRotation: '90deg',
+      progress: 0
+    });
 
-    window.addEventListener('click', evt => {
-      CSSEditor.from(document.getElementById('abc'), new CSSAttributes({
-        x: `${ evt.clientX - 25 }px`,
-        y: `${ evt.clientY - 25 }px`,
-        isProgressBar: true,
-        progressRotation: '180deg',
-        progress: progress < 100 ? progress += 5 : 100
-      }))
-      console.log(progress)
+    CSSEditor.from(document.getElementById('abc'), progressDivCss)
+
+    window.addEventListener('mousemove', evt => {
+      progressDivCss.progress += 1;
+      CSSEditor.from(document.getElementById('abc'), progressDivCss)
     })
   </script>
 </body>
