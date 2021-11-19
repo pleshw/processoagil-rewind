@@ -47,8 +47,21 @@
 
     CSSEditor.from(document.getElementById('abc'), progressDivCss)
 
+    let aumentando = true;
     window.addEventListener('mousemove', evt => {
-      progressDivCss.progress += 0.5;
+      if (aumentando) {
+        progressDivCss.progress += 1;
+        if (progressDivCss.progress === 100) {
+          aumentando = false;
+        }
+      } else {
+        progressDivCss.progress -= 1;
+        if (progressDivCss.progress === 0) {
+          aumentando = true;
+        }
+      }
+      console.log(progressDivCss.progress)
+
       CSSEditor.from(document.getElementById('abc'), progressDivCss)
     })
 

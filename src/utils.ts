@@ -11,5 +11,5 @@ export function remap( entradaMin: number, entradaMax: number, saidaMin: number,
 }
 
 export function clamp( num: number = 0, min: number = 0, max: number = 100 ): number {
-  return Math.min( Math.max( num, min ), max ) || min;
+  return Math.max( min, Math.min( num, max ) );
 }

@@ -83,7 +83,7 @@ export class CSSAttributes {
         return this._progress;
     }
     set progress(value) {
-        if (value) {
+        if (typeof (value) === 'number') {
             this._progress = clamp(value);
             this.progressRotation = `${this.progressRotation || '90deg'}`;
             this.progressColor = `${this.progressColor || 'transparent'}`;

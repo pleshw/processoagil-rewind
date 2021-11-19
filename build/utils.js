@@ -8,5 +8,5 @@ export function remap(entradaMin, entradaMax, saidaMin, saidaMax, valor) {
     return lerp(saidaMin, saidaMax, inverseLerp(entradaMin, entradaMax, valor));
 }
 export function clamp(num = 0, min = 0, max = 100) {
-    return Math.min(Math.max(num, min), max) || min;
+    return Math.max(min, Math.min(num, max));
 }
