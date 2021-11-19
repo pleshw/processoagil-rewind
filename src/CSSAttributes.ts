@@ -10,14 +10,14 @@ export class CSSAttributes {
   transition?: string;
   backgroundImage?: string;
 
-  x?: string;
-  y?: string;
+  private _x?: string | undefined;
+  private _y?: string | undefined;
 
-  isGradient?: boolean;
-  gradientRotation?: string;
+  private _isGradient?: boolean | undefined;
+  private _gradientRotation?: string | undefined;
   gradientStyleText?: string;
 
-  isProgressBar?: boolean;
+  private _isProgressBar?: boolean | undefined;
   progressRotation?: string;
   progressColor?: string;
   progressBackground?: string;
@@ -31,31 +31,25 @@ export class CSSAttributes {
     this.margin = props.margin;
     this.padding = props.padding;
     this.backgroundColor = props.backgroundColor;
-    this.left = this.x = props.left || props.x;
-    this.top = this.y = props.top || props.y;
+    this.x = props.left || props.x;
+    this.y = props.top || props.y;
     this.backgroundImage = props.backgroundImage;
     this.transition = props.transition;
 
-    this.isGradient = props.isGradient;
-    if ( this.isGradient ) {
+    if ( props.isGradient ) {
       this.gradientRotation = props.gradientRotation;
-      this.gradientStyleText = `linear-gradient(${ this.gradientRotation || '180deg' }, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0))`;
+      this.isGradient = props.isGradient;
     }
 
-    this.isProgressBar = props.isProgressBar;
-    if ( this.isProgressBar ) {
+    if ( props.isProgressBar ) {
       this.progressRotation = `${ props.progressRotation || '90deg' }`;
       this.progressColor = `${ props.progressColor || 'transparent' }`;
       this.progressBackground = `${ props.progressBackground || 'blue' }`;
 
-      this._progress = props.progress || 0;
-      this.strProgress = `${ ( this._progress ).toString() }%`;
-      this.remaining = `${ ( 100 - this._progress ).toString() }%`;
+      this._progress = props.progress;
 
-      this.progressStyleText = `linear-gradient(${ this.progressRotation }, ${ this.progressColor } ${ this.strProgress }, ${ this.progressBackground } 0%, ${ this.progressBackground } ${ this.remaining })`;
+      this.isProgressBar = props.isProgressBar;
     }
-
-    this.backgroundImage = `${ this.isGradient ? this.gradientStyleText + ',' : '' }${ this.progressStyleText || '' }`;
   }
 
   *[Symbol.iterator]() {
@@ -64,21 +58,92 @@ export class CSSAttributes {
     }
   }
 
-  public get progress(): number | undefined {
-    return this._progress;
+  public get x(): string | undefined {
+    return this._x;
   }
-  
-  public set progress( value: number | undefined ) {
-    this._progress = clamp( value );
 
-    this.strProgress = `${ ( this._progress ).toString() }%`;
-    this.remaining = `${ ( 100 - this._progress ).toString() }%`;
+  public set x( value: string | undefined ) {
+    this.left = this._x = value;
+  }
 
-    this.progressStyleText = `linear-gradient(${ this.progressRotation }, ${ this.progressColor } ${ this.strProgress }, ${ this.progressBackground } 0%, ${ this.progressBackground } ${ this.remaining })`;
+  public get y(): string | undefined {
+    return this._y;
+  }
+
+  public set y( value: string | undefined ) {
+    this.top = this._y = value;
+  }
+
+  public get isGradient(): boolean | undefined {
+    return this._isGradient;
+  }
+
+  public set isGradient( value: boolean | undefined ) {
+    this._isGradient = value;
+    if ( this.isGradient ) {
+      this.gradientStyleText = `linear-gradient(${ this.gradientRotation || '180deg' }, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0))`;
+      this.updateBackgroundImage();
+    }
+  }
+
+  public get gradientRotation(): string | undefined {
+    return this._gradientRotation;
+  }
+
+  public set gradientRotation( value: string | undefined ) {
+    this._gradientRotation = value;
+    if ( this.isGradient ) {
+      this.gradientStyleText = `linear-gradient(${ this.gradientRotation || '180deg' }, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0))`;
+      this.updateBackgroundImage();
+    }
+  }
+
+  private updateBackgroundImage(): void {
     this.backgroundImage = `${ this.isGradient ? this.gradientStyleText + ',' : '' }${ this.progressStyleText || '' }`;
   }
 
-  [key: string]: string | number | boolean | undefined;
+  public get isProgressBar(): boolean | undefined {
+    return this._isProgressBar;
+  }
+
+  public set isProgressBar( value: boolean | undefined ) {
+    this._isProgressBar = value;
+    if ( this._isProgressBar ) {
+      this._progress = clamp( this._progress );
+
+      this.progressRotation = `${ this.progressRotation || '90deg' }`;
+      this.progressColor = `${ this.progressColor || 'transparent' }`;
+      this.progressBackground = `${ this.progressBackground || 'blue' }`;
+
+      this.strProgress = `${ ( this._progress ).toString() }%`;
+      this.remaining = `${ ( 100 - this._progress ).toString() }%`;
+
+      this.progressStyleText = `linear-gradient(${ this.progressRotation }, ${ this.progressColor } ${ this.strProgress }, ${ this.progressBackground } 0%, ${ this.progressBackground } ${ this.remaining })`;
+      this.updateBackgroundImage();
+    }
+  }
+
+  public get progress(): number | undefined {
+    return this._progress;
+  }
+
+  public set progress( value: number | undefined ) {
+    if ( value ) {
+      this._progress = clamp( value );
+
+      this.progressRotation = `${ this.progressRotation || '90deg' }`;
+      this.progressColor = `${ this.progressColor || 'transparent' }`;
+      this.progressBackground = `${ this.progressBackground || 'blue' }`;
+
+      this.strProgress = `${ ( this._progress ).toString() }%`;
+      this.remaining = `${ ( 100 - this._progress ).toString() }%`;
+
+      this.progressStyleText = `linear-gradient(${ this.progressRotation }, ${ this.progressColor } ${ this.strProgress }, ${ this.progressBackground } 0%, ${ this.progressBackground } ${ this.remaining })`;
+      this.updateBackgroundImage();
+    }
+  }
+
+  [key: string]: any;
 };
 
 type CSSCustomProps = {
