@@ -1,13 +1,21 @@
-import { CSSAttributes } from '../CSSAttributes';
-import { CSSEditor } from '../CSSEditor';
-class SceneView {
+export class SceneView {
     constructor() {
-        CSSEditor.from(document.body, new CSSAttributes({
-            width: `${window.innerWidth}px`,
-            height: `${window.innerHeight}px`,
-            position: 'relative',
-            margin: '0',
-            padding: '0'
-        }));
+        this.index = 0;
+        this.scenes = document.querySelectorAll('.scene');
+    }
+    scrollToScene(index) {
+        const scene = this.scenes[this.index = index];
+        scene.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest"
+        });
+        return scene;
+    }
+    prev() {
+        return this.scrollToScene(--this.index);
+    }
+    next() {
+        return this.scrollToScene(++this.index);
     }
 }

@@ -1,5 +1,4 @@
-"use strict";
-var ComponentAnimationRenderOrder;
+export var ComponentAnimationRenderOrder;
 (function (ComponentAnimationRenderOrder) {
     ComponentAnimationRenderOrder[ComponentAnimationRenderOrder["Random"] = 0] = "Random";
     ComponentAnimationRenderOrder[ComponentAnimationRenderOrder["Ordered"] = 1] = "Ordered";

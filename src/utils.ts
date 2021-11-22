@@ -1,3 +1,5 @@
+import { CSSAttributes } from './CSSAttributes.js';
+import { CSSEditor } from './CSSEditor.js';
 export function lerp( inicio: number, fim: number, qtd: number ): number {
   return ( 1 - qtd ) * inicio + qtd * fim;
 }
@@ -12,4 +14,42 @@ export function remap( entradaMin: number, entradaMax: number, saidaMin: number,
 
 export function clamp( num: number = 0, min: number = 0, max: number = 100 ): number {
   return Math.max( min, Math.min( num, max ) );
+}
+
+let throttleController: Map<string, boolean> = new Map();
+export function throttle( callback: Function, time: number, id: string ) {
+  if ( throttleController.get( id ) ) return;
+
+  throttleController.set( id, true );
+
+  setTimeout( () => {
+    callback();
+    throttleController.set( id, false );
+  }, time );
+}
+
+let intervalosBarraProgresso: Map<string, number> = new Map();
+export function animacaoBarraProgresso( progressDivCssElement: HTMLElement, progressDivCssAttrs: CSSAttributes, posicaoDestino: number, idAnimacao: string, fpsAnimacao = 60 ) {
+  if ( intervalosBarraProgresso.get( idAnimacao ) ) {
+    clearInterval( intervalosBarraProgresso.get( idAnimacao ) );
+  }
+
+  intervalosBarraProgresso.set( idAnimacao, setInterval( () => {
+    const posicaoAnterior = progressDivCssAttrs.progress;
+    if ( posicaoAnterior === undefined ) return;
+
+    const distancia = Math.abs( posicaoAnterior - posicaoDestino );
+    if ( distancia > 0.1 ) {
+      /// Pegando a posição em que o progresso deve estar no proximo frame
+      progressDivCssAttrs.progress = lerp( posicaoAnterior, posicaoDestino, 0.05 );
+      window.requestAnimationFrame( () => CSSEditor.from( progressDivCssElement, progressDivCssAttrs ) )
+    } else {
+      if ( progressDivCssAttrs !== undefined ) {
+        clearInterval( intervalosBarraProgresso.get( idAnimacao ) );
+        progressDivCssAttrs.progress = +( progressDivCssAttrs.progress?.toPrecision( 2 ) || 0 );
+      }
+
+      window.requestAnimationFrame( () => CSSEditor.from( progressDivCssElement, progressDivCssAttrs ) )
+    }
+  }, 1000 / fpsAnimacao ) )
 }

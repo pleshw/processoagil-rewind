@@ -1,3 +1,4 @@
+import { ComponentAnimationRenderOrder } from '../types';
 import { SceneScaffold } from "./SceneScaffold";
 export class Scene {
     constructor(_id, _components, _scaffold) {

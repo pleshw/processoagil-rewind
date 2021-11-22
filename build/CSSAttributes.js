@@ -7,8 +7,10 @@ export class CSSAttributes {
         this.margin = props.margin;
         this.padding = props.padding;
         this.backgroundColor = props.backgroundColor;
-        this.x = props.left || props.x;
-        this.y = props.top || props.y;
+        this.top = this.y = props.top || props.y;
+        this.right = props.right;
+        this.bottom = props.bottom;
+        this.left = this.x = props.left || props.x;
         this.backgroundImage = props.backgroundImage;
         this.transition = props.transition;
         if (props.isGradient) {
