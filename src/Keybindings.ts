@@ -24,11 +24,11 @@ export class Keybindings {
   static keymap: Map<string, KeyCommand>;
 
   static setKeymap( newMap: Map<string, KeyCommand> ) {
-    Keybindings.keymap = newMap;
+    this.keymap = newMap;
   }
 
 
   static setKey( key: string, command: KeyCommand ) {
-    Keybindings.keymap.set( key, command );
+    this.keymap.set( key, command );
   }
 }

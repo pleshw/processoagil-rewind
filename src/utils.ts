@@ -41,12 +41,12 @@ export function animacaoBarraProgresso( progressDivCssElement: HTMLElement, prog
     const distancia = Math.abs( posicaoAnterior - posicaoDestino );
     if ( distancia > 0.1 ) {
       /// Pegando a posição em que o progresso deve estar no proximo frame
-      progressDivCssAttrs.progress = lerp( posicaoAnterior, posicaoDestino, 0.05 );
+      progressDivCssAttrs.progress = lerp( posicaoAnterior, posicaoDestino, 0.2 );
       window.requestAnimationFrame( () => CSSEditor.from( progressDivCssElement, progressDivCssAttrs ) )
     } else {
       if ( progressDivCssAttrs !== undefined ) {
         clearInterval( intervalosBarraProgresso.get( idAnimacao ) );
-        progressDivCssAttrs.progress = +( progressDivCssAttrs.progress?.toPrecision( 2 ) || 0 );
+        progressDivCssAttrs.progress = +( progressDivCssAttrs.progress?.toPrecision( 3 ) || 0 );
       }
 
       window.requestAnimationFrame( () => CSSEditor.from( progressDivCssElement, progressDivCssAttrs ) )

@@ -7,5 +7,5 @@ body {
 }
 
 section.scene {
-  height: 100vh;
+  height: calc(100vh + 400px);
 }

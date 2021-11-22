@@ -1,11 +1,11 @@
 export class SceneView {
-  public index: number = 0;
-  public scenes: NodeListOf<Element> = document.querySelectorAll( '.scene' );
+  public static index: number = 0;
+  public static scenes: NodeListOf<Element> = document.querySelectorAll( '.scene' );
 
   constructor() {
   }
 
-  scrollToScene( index: number ): Element {
+  static scrollToScene( index: number ): Element {
     const scene = this.scenes[this.index = index];
     scene.scrollIntoView(
       {
@@ -17,11 +17,11 @@ export class SceneView {
     return scene;
   }
 
-  prev(): Element {
+  static prev(): Element {
     return this.scrollToScene( --this.index );
   }
 
-  next(): Element {
+  static next(): Element {
     return this.scrollToScene( ++this.index );
   }
 }
