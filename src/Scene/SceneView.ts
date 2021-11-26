@@ -1,13 +1,21 @@
+import { Scene } from './Scene';
 export class SceneView {
+
   public static index: number = 0;
-  public static scenes: NodeListOf<Element> = document.querySelectorAll( '.scene' );
+  public static scenes: Array<Scene>;
 
   constructor() {
+
   }
 
-  static scrollToScene( index: number ): Element {
+  static scrollToSceneById( id: string ): Scene {
+    const sceneIndex = this.scenes.findIndex( s => s.id === id )
+    return this.scrollToScene( sceneIndex );
+  }
+
+  static scrollToScene( index: number ): Scene {
     const scene = this.scenes[this.index = index];
-    scene.scrollIntoView(
+    scene.scaffold.element.scrollIntoView(
       {
         behavior: "smooth",
         block: "start",
@@ -17,11 +25,11 @@ export class SceneView {
     return scene;
   }
 
-  static prev(): Element {
+  static prev(): Scene {
     return this.scrollToScene( --this.index );
   }
 
-  static next(): Element {
+  static next(): Scene {
     return this.scrollToScene( ++this.index );
   }
 }
