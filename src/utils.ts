@@ -63,8 +63,8 @@ export function smoothScrollTo( pos: number ): number {
       window.scroll( 0, lerp( window.scrollY, pos, 0.08 ) );
     } else if ( distance > 10 ) {
       window.scroll( 0, lerp( window.scrollY, pos, 0.1 ) );
-    } else if ( distance > 3 ) {
-      window.scroll( 0, lerp( window.scrollY, pos, 0.3 ) );
+    } else if ( distance > 4 ) {
+      window.scroll( 0, lerp( window.scrollY, pos, 0.2 ) );
     } else {
       clearInterval( interval );
       window.scroll( 0, pos );
