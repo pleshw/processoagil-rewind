@@ -49,11 +49,18 @@ export function animacaoBarraProgresso(progressDivCssElement, progressDivCssAttr
 export function smoothScrollTo(pos) {
     const interval = setInterval(() => {
         const distance = Math.abs(window.scrollY - pos);
-        if (distance > 1) {
-            window.scroll(0, lerp(window.scrollY, pos, 0.05));
+        if (distance > 20) {
+            window.scroll(0, lerp(window.scrollY, pos, 0.08));
+        }
+        else if (distance > 10) {
+            window.scroll(0, lerp(window.scrollY, pos, 0.1));
+        }
+        else if (distance > 3) {
+            window.scroll(0, lerp(window.scrollY, pos, 0.3));
         }
         else {
             clearInterval(interval);
+            window.scroll(0, pos);
         }
         window.addEventListener('wheel', () => clearInterval(interval));
     }, 1000 / 60);

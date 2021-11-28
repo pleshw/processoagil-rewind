@@ -72,59 +72,63 @@
     import { Scene } from './build/Scene/Scene.js';
     import { SceneView } from './build/Scene/SceneView.js';
     import { throttle, animacaoBarraProgresso } from './build/utils.js';
-    const scrollMagicIndicatorsController = new ScrollMagic.Controller({ addIndicators: true });
 
-    document.querySelectorAll('.scene').forEach((item, index) => {
-      const _tmpSceneScaffold = new SceneScaffold(item);
-      SceneView.scenes.push(new Scene(_tmpSceneScaffold));
+    window.addEventListener('load', () => {
 
-      SceneView.last().scrollMagicScene = new ScrollMagic.Scene({ triggerElement: SceneView.last().scaffold.element, duration: SceneView.last().scaffold.element.clientHeight })
-        .setTween(SceneView.last().scaffold.element, 0.5, { backgroundColor: "red" })
-        .addIndicators() // add indicators (requires plugin)
-        .addTo(scrollMagicIndicatorsController)
-        .on('enter', () => {
-          console.log('Você entrou na cena ' + SceneView.last().id)
-        });
+      const scrollMagicIndicatorsController = new ScrollMagic.Controller({ addIndicators: true });
+
+      document.querySelectorAll('.scene').forEach((item, index) => {
+        const _tmpSceneScaffold = new SceneScaffold(item);
+        SceneView.scenes.push(new Scene(_tmpSceneScaffold));
+
+        SceneView.last().scrollMagicScene = new ScrollMagic.Scene({ triggerElement: SceneView.last().scaffold.element, duration: SceneView.last().scaffold.element.clientHeight })
+          .setTween(SceneView.last().scaffold.element, 0.5, { backgroundColor: "red" })
+          .addIndicators() // add indicators (requires plugin)
+          .addTo(scrollMagicIndicatorsController)
+          .on('enter', () => {
+            console.log('Você entrou na cena ' + SceneView.last().id)
+          });
+      })
+
+      SceneView.createControllers();
+
+      const progressDivCss = new CSSAttributes({
+        width: `100%`,
+        height: `10px`,
+        position: 'fixed',
+        isGradient: true,
+        gradientRotation: '230deg',
+        transition: 'all .3s',
+        x: `0px`,
+        top: `calc(100% - 10px)`,
+        isProgressBar: true,
+        progressRotation: '90deg',
+        progress: 0,
+        progressColor: 'darkblue',
+        progressBackground: 'transparent'
+      });
+
+      document.getElementById('prevScene').addEventListener('click', evt => {
+        SceneView.prev();
+      })
+
+
+      document.getElementById('nextScene').addEventListener('click', evt => {
+        SceneView.next();
+      })
+
+      const progressBar = document.querySelector('.progress');
+
+      CSSEditor.from(progressBar, progressDivCss)
+
+      window.addEventListener('scroll', function () {
+        throttle(() => {
+          const posicaoDestino = (this.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+          animacaoBarraProgresso(progressBar, progressDivCss, posicaoDestino, 'scrollProgress')
+        }, 100, 'scrollProgress')
+      })
+
     })
-
-    SceneView.createControllers();
-
-    const progressDivCss = new CSSAttributes({
-      width: `100%`,
-      height: `10px`,
-      position: 'fixed',
-      isGradient: true,
-      gradientRotation: '230deg',
-      transition: 'all .3s',
-      x: `0px`,
-      top: `calc(100% - 10px)`,
-      isProgressBar: true,
-      progressRotation: '90deg',
-      progress: 0,
-      progressColor: 'darkblue',
-      progressBackground: 'transparent'
-    });
-
-    document.getElementById('prevScene').addEventListener('click', evt => {
-      SceneView.prev();
-    })
-
-
-    document.getElementById('nextScene').addEventListener('click', evt => {
-      SceneView.next();
-    })
-
-    const progressBar = document.querySelector('.progress');
-
-    CSSEditor.from(progressBar, progressDivCss)
-
-    window.addEventListener('scroll', function () {
-      throttle(() => {
-        const posicaoDestino = (this.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        animacaoBarraProgresso(progressBar, progressDivCss, posicaoDestino, 'scrollProgress')
-      }, 100, 'scrollProgress')
-    })
-
   </script>
 </body>
 
