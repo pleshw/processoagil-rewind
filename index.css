@@ -4,8 +4,84 @@ body {
   width: 100vw !important;
   height: 100% !important;
   max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+h5 {
+  margin: 0;
 }
 
 section.scene {
-  height: calc(100vh + 400px);
+  height: 100vh;
+  margin: 0 !important;
+}
+
+.arrow {
+  border: solid #333;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.up.left {
+  transform: rotate(199deg);
+  -webkit-transform: rotate(199deg);
+}
+
+
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.down.right {
+  transform: rotate(19deg);
+  -webkit-transform: rotate(19deg);
+}
+
+
+#sceneControllers {
+  position: fixed;
+  bottom: 15%;
+  right: 4%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 90px;
+}
+
+#sceneControllers span {
+  color: #333;
+  user-select: none !important;
+  display: flex;
+  justify-content: center;
+}
+
+#sceneControllers>span>i.arrow {
+  cursor: pointer;
+}
+
+#sceneControllersCounters {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bolder;
+  font-family: monospace;
+  align-items: center;
 }

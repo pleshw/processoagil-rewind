@@ -1,7 +1,6 @@
 export class SceneScaffold {
-    constructor(sceneId, position, dimensions) {
-        this.element = document.createElement('div');
-        this.element.id = 'scaffold' + sceneId;
+    constructor(scaffoldElement) {
+        this.element = scaffoldElement;
     }
     render(arg0) {
         throw new Error('Method not implemented.');

@@ -1,27 +1,20 @@
-import { ComponentAnimationRenderOrder } from '../types';
-import { SceneComponent } from './ISceneComponent';
-import { SceneScaffold } from "./SceneScaffold";
-import { SceneView } from './SceneView';
-declare const ScrollMagic: any;
-declare const scrollMagicIndicatorsController: any;
+import { ComponentAnimationRenderOrder } from '../types.js';
+import { capitalizeFirstLetter } from '../utils.js';
+import { SceneComponent } from './ISceneComponent.js';
+import { SceneScaffold } from "./SceneScaffold.js";
 
 export abstract class Scene {
+  static idCount: number = 0;
   id: string;
   scaffold: SceneScaffold;
   components: SceneComponent[];
+  scrollMagicScene: any;
 
-  constructor( _id: string, _components: SceneComponent[], _scaffold?: SceneScaffold ) {
-    this.scaffold = _scaffold || new SceneScaffold( _id, { x: 0, y: 0 }, { w: window.innerWidth, h: window.innerHeight } );
-    this.components = _components;
-    this.id = _id;
-
-    new ScrollMagic.Scene( { triggerElement: this.scaffold.element, duration: this.scaffold.element.clientHeight } )
-      .setTween( this.scaffold.element, 0.5, { backgroundColor: "red", width: "-=100" } )
-      .addIndicators() // add indicators (requires plugin)
-      .addTo( scrollMagicIndicatorsController )
-      .on( 'enter', () => {
-        SceneView.scrollToSceneById( this.id )
-      } )
+  constructor( _scaffold: SceneScaffold, _components?: SceneComponent[] ) {
+    this.scaffold = _scaffold;
+    this.id = `scene${ Scene.idCount++ }`;
+    this.scaffold.element.id = 'scaffold' + capitalizeFirstLetter( this.id );
+    this.components = _components || [];
   }
 
   render( renderOrder?: ComponentAnimationRenderOrder ): void {

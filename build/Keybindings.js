@@ -13,9 +13,9 @@ class KeyCommand {
 }
 export class Keybindings {
     static setKeymap(newMap) {
-        Keybindings.keymap = newMap;
+        this.keymap = newMap;
     }
     static setKey(key, command) {
-        Keybindings.keymap.set(key, command);
+        this.keymap.set(key, command);
     }
 }

@@ -46,3 +46,22 @@ export function animacaoBarraProgresso(progressDivCssElement, progressDivCssAttr
         }
     }, 1000 / fpsAnimacao));
 }
+export function smoothScrollTo(pos) {
+    const interval = setInterval(() => {
+        const distance = Math.abs(window.scrollY - pos);
+        if (distance > 1) {
+            window.scroll(0, lerp(window.scrollY, pos, 0.05));
+        }
+        else {
+            clearInterval(interval);
+        }
+        window.addEventListener('wheel', () => clearInterval(interval));
+    }, 1000 / 60);
+    return interval;
+}
+export function capitalizeFirstLetter(str) {
+    if (typeof str !== 'string') {
+        return '';
+    }
+    return str.charAt(0).toUpperCase() + str.substring(1);
+}

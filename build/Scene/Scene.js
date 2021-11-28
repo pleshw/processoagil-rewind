@@ -1,10 +1,11 @@
-import { ComponentAnimationRenderOrder } from '../types';
-import { SceneScaffold } from "./SceneScaffold";
+import { ComponentAnimationRenderOrder } from '../types.js';
+import { capitalizeFirstLetter } from '../utils.js';
 export class Scene {
-    constructor(_id, _components, _scaffold) {
-        this.scaffold = _scaffold || new SceneScaffold(_id, { x: 0, y: 0 }, { w: window.innerWidth, h: window.innerHeight });
-        this.components = _components;
-        this.id = _id;
+    constructor(_scaffold, _components) {
+        this.scaffold = _scaffold;
+        this.id = `scene${Scene.idCount++}`;
+        this.scaffold.element.id = 'scaffold' + capitalizeFirstLetter(this.id);
+        this.components = _components || [];
     }
     render(renderOrder) {
         for (const component of this.components) {
@@ -13,3 +14,4 @@ export class Scene {
         this.scaffold.render(renderOrder || ComponentAnimationRenderOrder.Sync);
     }
 }
+Scene.idCount = 0;
