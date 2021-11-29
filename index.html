@@ -7,10 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Processo Ágil: pleshw</title>
   <link rel="stylesheet" href="index.css">
+
+  <link rel="stylesheet" href="vortext.css">
 </head>
 
 <body>
+
   <main>
+
     <section class="scene text-white bg-dark">
       <h5>Cena 1</h5>
       <div class="content">
@@ -30,9 +34,44 @@
     </section>
     <section class="scene text-white bg-danger">
       <h5>Cena 3</h5>
+      <div class="content">
+        <div class="pen">
+          <div class="stage">
+            <div class="vortext">
+              <div class="vortextRibbon">Barcelona. Paris. London. Berlin. Stockholm.</div>
+            </div>
+            <div class="vortext">
+              <div class="vortextRibbon">Barcelona. Paris. London. Berlin. Stockholm.</div>
+            </div>
+            <div class="vortext">
+              <div class="vortextRibbon">Barcelona. Paris. London. Berlin. Stockholm.</div>
+            </div>
+            <div class="vortext">
+              <div class="vortextRibbon">Barcelona. Paris. London. Berlin. Stockholm.</div>
+            </div>
+            <div class="vortext">
+              <div class="vortextRibbon">Barcelona. Paris. London. Berlin. Stockholm.</div>
+            </div>
+            <div class="vortext">
+              <div class="vortextRibbon">Cairo. Nairobi. Johannesburg. Tel Aviv. Dubai.</div>
+            </div>
+            <div class="vortext">
+              <div class="vortextRibbon">Mumbai. Bangkok. Singapore. Hanoi. Jakarta.</div>
+            </div>
+            <div class="vortext">
+              <div class="vortextRibbon">Shanghai. Taipei. Tokyo. Melbourne. Auckland.</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="scene text-white bg-info">
       <h5>Cena 4</h5>
+      <div class="content">
+        <div class="background-content">
+          <h1 class="spotlight" data-text="DESTAQUE">DESTAQUE</h1>
+        </div>
+      </div>
     </section>
     <section class="scene text-white bg-warning">
       <h5>Cena 5</h5>
@@ -49,6 +88,7 @@
     <section class="scene text-white bg-primary">
       <h5>Cena 9</h5>
     </section>
+
     <section class="scene text-white bg-primary">
       <h5>Cena 10</h5>
       <div class="content">
@@ -56,7 +96,6 @@
           <h1 class="spotlight" data-text="DESTAQUE">DESTAQUE</h1>
         </div>
       </div>
-
     </section>
     <section class="scene text-white bg-primary">
       <h5>Cena 11</h5>
@@ -78,7 +117,6 @@
   <script defer src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.velocity.js"></script>
   <script defer src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
 
-
   <script type="module" src="build/utils.js"></script>
   <script type="module" src="build/CSSAttributes.js"></script>
   <script type="module" src="build/CSSEditor.js"></script>
@@ -92,7 +130,7 @@
 
     window.addEventListener('load', () => {
 
-      const scrollMagicIndicatorsController = new ScrollMagic.Controller({ addIndicators: true });
+      const scrollMagicIndicatorsController = new ScrollMagic.Controller();
 
       document.querySelectorAll('.scene').forEach((item, index) => {
         const _tmpSceneScaffold = new SceneScaffold(item);
@@ -151,7 +189,15 @@
         }, 100, 'scrollProgress')
       });
 
+
       SceneView.scrollToScene(0);
+
+
+      SceneView.get(2).animationCallback = () => {
+        setVortextStyles();
+        renderVortext();
+        setTimeout(animateVortext);
+      }
 
       SceneView.get(1).animationCallback = () => {
         var diasEl = document.querySelector('.dias-economizados');
@@ -197,6 +243,8 @@
 
     })
   </script>
+
+  <script defer src="vortext.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,119 @@
+body {
+  background: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.pen {
+  display: flex;
+  flex-direction: column;
+  min-height: 30vh;
+  width: 100% !important;
+  background-color: black;
+}
+
+.stage::before, .stage::after {
+  content: '';
+  width: 15%;
+  background-image: linear-gradient(to right, transparentize(#000, 0.1), transparentize(#000, 1));
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  z-index: 1;
+}
+
+.stage::after {
+  left: auto;
+  right: 17%;
+  background-image: linear-gradient(to left, transparentize(#000, 0), transparentize(#000, 1));
+}
+
+.stage {
+  margin: auto;
+  padding: 1px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  perspective-origin: center;
+  transform-style: preserve-3d;
+  transform: skewY(-6deg);
+
+}
+
+.vortext~.vortext {
+  margin-top: 0px;
+}
+
+.vortext {
+  position: relative;
+  text-align: center;
+  transform-style: preserve-3d;
+}
+
+.vortext::before {
+  content: 'A';
+  font-size: 80px;
+  color: transparent;
+  pointer-events: none;
+}
+
+.vortext:first-child~* {
+  margin-top: -30px;
+}
+
+.vortextRibbon {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  bottom: 0;
+  width: calc(3.1415 * 100%);
+  transform-style: preserve-3d;
+  transform-origin: center;
+}
+
+.transitionEnabled {
+  transition: transform linear 240s;
+}
+
+.letterWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 100%;
+  width: auto;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.letter {
+  display: inline-block;
+  color: #fff;
+  font-size: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.letter>span {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transform: translateZ(500px);
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 80px;
+  font-weight: 800;
+  text-transform: uppercase;
+  position: relative;
+  backface-visibility: hidden;
+}

@@ -163,11 +163,11 @@ section.scene {
 /* Cena 10 */
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap');
 
-.scene:nth-of-type(10) {
+.scene:nth-of-type(4) {
   background-color: #171717 !important;
 }
 
-.scene:nth-of-type(10) .background-content {
+.scene:nth-of-type(4) .background-content {
   user-select: none;
   z-index: 1 !important;
   height: 100% !important;
@@ -177,7 +177,7 @@ section.scene {
   justify-content: flex-start;
 }
 
-.scene:nth-of-type(10) h1 {
+.scene:nth-of-type(4) h1 {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
   font-size: 10rem;
@@ -195,7 +195,7 @@ section.scene {
   color: #000;
 }
 
-.scene:nth-of-type(10) h1:before {
+.scene:nth-of-type(4) h1:before {
   content: attr(data-text);
   position: absolute;
   background: linear-gradient(#f70000, #f89200, #f8f501, #038f00, #0168f8, #a200f7);
