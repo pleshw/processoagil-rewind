@@ -151,6 +151,8 @@
         }, 100, 'scrollProgress')
       });
 
+      SceneView.scrollToScene(0);
+
       SceneView.get(1).animationCallback = () => {
         var diasEl = document.querySelector('.dias-economizados');
         var horasEl = document.querySelector('.horas-economizados');

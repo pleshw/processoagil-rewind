@@ -22,7 +22,7 @@ export class SceneView {
       .querySelector( '.content' );
 
     if ( closedSceneContent ) {
-      closedSceneContent.style.display = 'none';
+      closedSceneContent.classList.remove( 'show' );
     }
 
     /// Pegando cena nova e instanciando o novo index
@@ -32,7 +32,7 @@ export class SceneView {
     throttle( () => {
       clearInterval( this.currScrollInterval );
       if ( openSceneContent ) {
-        openSceneContent.style.display = 'flex';
+        openSceneContent.classList.add( 'show' );
       }
       this.currScrollInterval = smoothScrollTo( scene.scaffold.element.offsetTop );
       this.updateControllers();

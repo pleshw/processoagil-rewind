@@ -26,6 +26,11 @@ section.scene {
 .content {
   height: 100% !important;
   width: 100% !important;
+  display: none;
+}
+
+.content.show {
+  display: flex !important;
 }
 
 .arrow {
@@ -104,7 +109,6 @@ section.scene {
 
 /* Cena 1 */
 .scene:nth-of-type(1) {
-  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
@@ -129,7 +133,6 @@ section.scene {
 }
 
 .scene:nth-of-type(2) .content {
-  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -137,12 +140,12 @@ section.scene {
 }
 
 .scene:nth-of-type(2) h1 {
-  font-size: 7rem;
+  font-size: 6rem;
   animation: FadeIn 1s;
   opacity: 1;
   margin: 0;
   color: darkblue;
-  font-family: monospace;
+  font-family: 'Teko', sans-serif;
   user-select: none;
 }
 
@@ -151,7 +154,7 @@ section.scene {
   width: 50%;
   max-width: 50%;
   height: 100%;
-  animation: BorderCena2 1.5s ease-in;
+  animation: BorderCena2 7s ease-in;
   display: flex;
   flex-direction: column;
   justify-content: center;
