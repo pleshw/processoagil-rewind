@@ -13,9 +13,20 @@
   <main>
     <section class="scene text-white bg-dark">
       <h5>Cena 1</h5>
+      <div class="content">
+        <h1>Projeto Boom</h1>
+      </div>
     </section>
     <section class="scene text-white bg-success">
       <h5>Cena 2</h5>
+      <div class="content">
+        <div class="tempo-economizado">
+          <h1 class="dias-economizados"></h1>
+          <h1 class="horas-economizados"></h1>
+          <h1 class="minutos-economizados"></h1>
+          <h1 class="segundos-economizados"></h1>
+        </div>
+      </div>
     </section>
     <section class="scene text-white bg-danger">
       <h5>Cena 3</h5>
@@ -40,6 +51,12 @@
     </section>
     <section class="scene text-white bg-primary">
       <h5>Cena 10</h5>
+      <div class="content">
+        <div class="background-content">
+          <h1 class="spotlight" data-text="DESTAQUE">DESTAQUE</h1>
+        </div>
+      </div>
+
     </section>
     <section class="scene text-white bg-primary">
       <h5>Cena 11</h5>
@@ -71,7 +88,7 @@
     import { SceneScaffold } from './build/Scene/SceneScaffold.js';
     import { Scene } from './build/Scene/Scene.js';
     import { SceneView } from './build/Scene/SceneView.js';
-    import { throttle, animacaoBarraProgresso } from './build/utils.js';
+    import { throttle, zeroBefore, animacaoBarraProgresso } from './build/utils.js';
 
     window.addEventListener('load', () => {
 
@@ -79,14 +96,20 @@
 
       document.querySelectorAll('.scene').forEach((item, index) => {
         const _tmpSceneScaffold = new SceneScaffold(item);
-        SceneView.scenes.push(new Scene(_tmpSceneScaffold));
+        const _tmpScene = new Scene(_tmpSceneScaffold);
+        SceneView.scenes.push(_tmpScene);
 
-        SceneView.last().scrollMagicScene = new ScrollMagic.Scene({ triggerElement: SceneView.last().scaffold.element, duration: SceneView.last().scaffold.element.clientHeight })
-          .setTween(SceneView.last().scaffold.element, 0.5, { backgroundColor: "red" })
-          .addIndicators() // add indicators (requires plugin)
+        const scrollMagicSceneConfig = {
+          triggerElement: SceneView.last().scaffold.element,
+          duration: SceneView.last().scaffold.element.clientHeight,
+          triggerHook: .5
+        }
+
+        SceneView.last().scrollMagicScene = new ScrollMagic.Scene(scrollMagicSceneConfig)
           .addTo(scrollMagicIndicatorsController)
           .on('enter', () => {
             console.log('Você entrou na cena ' + SceneView.last().id)
+            _tmpScene.render();
           });
       })
 
@@ -126,7 +149,49 @@
           const posicaoDestino = (this.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
           animacaoBarraProgresso(progressBar, progressDivCss, posicaoDestino, 'scrollProgress')
         }, 100, 'scrollProgress')
-      })
+      });
+
+      SceneView.get(1).animationCallback = () => {
+        var diasEl = document.querySelector('.dias-economizados');
+        var horasEl = document.querySelector('.horas-economizados');
+        var minutosEl = document.querySelector('.minutos-economizados');
+        var segundosEl = document.querySelector('.segundos-economizados');
+
+        var customerTime = {
+          saved: 0
+        }
+
+        anime({
+          targets: customerTime,
+          saved: 100000,
+          round: 1,
+          delay: 1000,
+          duration: 7500,
+          easing: 'easeInOutExpo',
+          update: function () {
+            const strDate1DayOver = new Date(customerTime.saved * 1000)
+              .toISOString()
+              .substr(9, 10)
+              .replace('T', ':');
+
+            const strDateSplitted = strDate1DayOver.split(':')
+            let dias = +strDateSplitted[0] - 1;
+            let horas = +strDateSplitted[1];
+            let minutos = +strDateSplitted[2];
+            let segundos = +strDateSplitted[3];
+
+            let textoDias = dias > 0 ? `${ zeroBefore(dias) } ${ dias > 1 ? 'dias' : 'dia' }` : '';
+            let textoHoras = textoDias || horas > 0 ? `${ zeroBefore(horas) } horas` : '';
+            let textoMinutos = textoHoras || minutos > 0 ? `${ zeroBefore(minutos) } minutos` : '';
+            let textoSegundos = textoMinutos || segundos > 0 ? `${ zeroBefore(segundos) } segundos` : '';
+
+            diasEl.innerHTML = `${ textoDias }`;
+            horasEl.innerHTML = `${ textoHoras }`;
+            minutosEl.innerHTML = `${ textoMinutos }`;
+            segundosEl.innerHTML = `${ textoSegundos }`;
+          }
+        });
+      }
 
     })
   </script>

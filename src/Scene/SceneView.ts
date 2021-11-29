@@ -15,11 +15,26 @@ export class SceneView {
     if ( index >= this.scenes.length ) return this.scrollToScene( this.scenes.length - 1 );
     if ( index < 0 ) return this.scrollToScene( 0 );
 
+    /// Escondendo cena antiga
+    const closedSceneContent = <HTMLElement | null>this.scenes[this.index]
+      .scaffold
+      .element
+      .querySelector( '.content' );
+
+    if ( closedSceneContent ) {
+      closedSceneContent.style.display = 'none';
+    }
+
+    /// Pegando cena nova e instanciando o novo index
     const scene = this.scenes[this.index = index];
+    const openSceneContent = <HTMLElement | null>scene.scaffold.element.querySelector( '.content' );
 
     throttle( () => {
       clearInterval( this.currScrollInterval );
-      this.currScrollInterval = smoothScrollTo( scene.scaffold.element.offsetTop )
+      if ( openSceneContent ) {
+        openSceneContent.style.display = 'flex';
+      }
+      this.currScrollInterval = smoothScrollTo( scene.scaffold.element.offsetTop );
       this.updateControllers();
     }, 300, 'scrollToSceneThrottle' );
 
@@ -28,12 +43,18 @@ export class SceneView {
 
   static prev(): Scene {
     if ( ( this.index - 1 ) < 0 ) return this.scrollToScene( 0 );
-    return this.scrollToScene( --this.index );
+    return this.scrollToScene( this.index - 1 );
   }
 
   static next(): Scene {
     if ( ( this.index + 1 ) > this.scenes.length ) return this.scrollToScene( this.scenes.length - 1 );
-    return this.scrollToScene( ++this.index );
+    return this.scrollToScene( this.index + 1 );
+  }
+
+  static get( index: number ): Scene {
+    if ( index < 0 ) return this.scenes[0];
+    if ( index > this.scenes.length - 1 ) return this.scenes[this.scenes.length - 1];
+    return this.scenes[index];
   }
 
   static first(): Scene {

@@ -9,9 +9,22 @@ export class SceneView {
             return this.scrollToScene(this.scenes.length - 1);
         if (index < 0)
             return this.scrollToScene(0);
+        /// Escondendo cena antiga
+        const closedSceneContent = this.scenes[this.index]
+            .scaffold
+            .element
+            .querySelector('.content');
+        if (closedSceneContent) {
+            closedSceneContent.style.display = 'none';
+        }
+        /// Pegando cena nova e instanciando o novo index
         const scene = this.scenes[this.index = index];
+        const openSceneContent = scene.scaffold.element.querySelector('.content');
         throttle(() => {
             clearInterval(this.currScrollInterval);
+            if (openSceneContent) {
+                openSceneContent.style.display = 'flex';
+            }
             this.currScrollInterval = smoothScrollTo(scene.scaffold.element.offsetTop);
             this.updateControllers();
         }, 300, 'scrollToSceneThrottle');
@@ -20,12 +33,19 @@ export class SceneView {
     static prev() {
         if ((this.index - 1) < 0)
             return this.scrollToScene(0);
-        return this.scrollToScene(--this.index);
+        return this.scrollToScene(this.index - 1);
     }
     static next() {
         if ((this.index + 1) > this.scenes.length)
             return this.scrollToScene(this.scenes.length - 1);
-        return this.scrollToScene(++this.index);
+        return this.scrollToScene(this.index + 1);
+    }
+    static get(index) {
+        if (index < 0)
+            return this.scenes[0];
+        if (index > this.scenes.length - 1)
+            return this.scenes[this.scenes.length - 1];
+        return this.scenes[index];
     }
     static first() {
         return this.scenes[0];

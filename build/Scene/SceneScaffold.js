@@ -5,7 +5,4 @@ export class SceneScaffold {
     render(arg0) {
         throw new Error('Method not implemented.');
     }
-    add(component) {
-        throw new Error('Method not implemented.');
-    }
 }
