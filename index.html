@@ -15,14 +15,21 @@
 
   <main>
 
-    <section class="scene text-white bg-dark">
+    <section class="scene">
       <h5>Cena 1</h5>
       <div class="content">
         <h1>Projeto Boom</h1>
       </div>
     </section>
-    <section class="scene text-white bg-success">
-      <h5>Cena 2</h5>
+    <section class="scene">
+      <h5>Cena 1</h5>
+      <div class="content">
+        <h1>Sabemos Como seu tempo é importante e deve ser valorizado...</h1>
+
+      </div>
+    </section>
+    <section class="scene">
+      <h5>Cena 3</h5>
       <div class="content">
         <div class="tempo-economizado">
           <h1 class="dias-economizados"></h1>
@@ -30,9 +37,15 @@
           <h1 class="minutos-economizados"></h1>
           <h1 class="segundos-economizados"></h1>
         </div>
+        <div class="w-50 h-100 flex-center">
+          <div class="w-50 flex-center flex-col h-100">
+            <h2>Esse é o tempo que você economizou por utilizar nosso sistema. </h2>
+          </div>
+
+        </div>
       </div>
     </section>
-    <section class="scene text-white bg-danger">
+    <section class="scene">
       <h5>Cena 3</h5>
       <div class="content">
         <div class="pen">
@@ -65,7 +78,7 @@
         </div>
       </div>
     </section>
-    <section class="scene text-white bg-info">
+    <section class="scene">
       <h5>Cena 4</h5>
       <div class="content">
         <div class="background-content">
@@ -73,23 +86,23 @@
         </div>
       </div>
     </section>
-    <section class="scene text-white bg-warning">
+    <section class="scene">
       <h5>Cena 5</h5>
     </section>
-    <section class="scene text-white bg-primary">
+    <section class="scene">
       <h5>Cena 6</h5>
     </section>
-    <section class="scene text-white bg-primary">
+    <section class="scene">
       <h5>Cena 7</h5>
     </section>
-    <section class="scene text-white bg-primary">
+    <section class="scene">
       <h5>Cena 8</h5>
     </section>
-    <section class="scene text-white bg-primary">
+    <section class="scene">
       <h5>Cena 9</h5>
     </section>
 
-    <section class="scene text-white bg-primary">
+    <section class="scene">
       <h5>Cena 10</h5>
       <div class="content">
         <div class="background-content">
@@ -97,7 +110,7 @@
         </div>
       </div>
     </section>
-    <section class="scene text-white bg-primary">
+    <section class="scene">
       <h5>Cena 11</h5>
     </section>
 
@@ -182,24 +195,35 @@
 
       CSSEditor.from(progressBar, progressDivCss)
 
-      window.addEventListener('scroll', function () {
+      window.addEventListener('scroll', function (evt) {
         throttle(() => {
           const posicaoDestino = (this.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-          animacaoBarraProgresso(progressBar, progressDivCss, posicaoDestino, 'scrollProgress')
+          animacaoBarraProgresso(progressBar, progressDivCss, posicaoDestino, 'scrollProgress');
         }, 100, 'scrollProgress')
       });
 
+      let ticking = false;
+      window.addEventListener('wheel', function (evt) {
+        throttle(() => {
+          window.requestAnimationFrame(() => {
+            if (Math.sign(evt.deltaY) > 0) {
+              SceneView.next();
+            } else {
+              SceneView.prev();
+            }
+          })
+        }, 500, 'wheelNextScene')
+      });
 
       SceneView.scrollToScene(0);
 
-
-      SceneView.get(2).animationCallback = () => {
+      SceneView.get(3).animationCallback = () => {
         setVortextStyles();
         renderVortext();
         setTimeout(animateVortext);
       }
 
-      SceneView.get(1).animationCallback = () => {
+      SceneView.get(2).animationCallback = () => {
         var diasEl = document.querySelector('.dias-economizados');
         var horasEl = document.querySelector('.horas-economizados');
         var minutosEl = document.querySelector('.minutos-economizados');

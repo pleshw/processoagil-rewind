@@ -1,5 +1,6 @@
 * {
   position: relative;
+  font-family: Poppins, Helvetica, sans-serif;
 }
 
 body {
@@ -70,6 +71,19 @@ section.scene {
   -webkit-transform: rotate(19deg);
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
 
 #sceneControllers {
   position: fixed;
@@ -87,6 +101,7 @@ section.scene {
   user-select: none !important;
   display: flex;
   justify-content: center;
+  filter: brightness(4.5);
 }
 
 #sceneControllers>span>i.arrow {
@@ -106,6 +121,14 @@ section.scene {
   animation-play-state: paused;
 }
 
+.w-50 {
+  width: 50%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
 
 /* Cena 1 */
 .scene:nth-of-type(1) {
@@ -117,14 +140,14 @@ section.scene {
 
 .scene:nth-of-type(1) h1 {
   font-size: 10rem;
-  animation: FadeIn 2s;
+  animation: RotateIn 1s;
   opacity: 1;
-  perspective: 200px;
+  perspective: 400px;
   margin: 0;
 }
 
 /* Cena 2 */
-.scene:nth-of-type(2) {
+.scene:nth-of-type(3) {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -132,16 +155,16 @@ section.scene {
   background-color: white !important;
 }
 
-.scene:nth-of-type(2) .content {
+.scene:nth-of-type(3) .content {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   background-color: white !important;
 }
 
-.scene:nth-of-type(2) h1 {
+.scene:nth-of-type(3) h1 {
   font-size: 6rem;
-  animation: FadeIn 1s;
+  animation: RotateIn 1s;
   opacity: 1;
   margin: 0;
   color: darkblue;
@@ -163,11 +186,11 @@ section.scene {
 /* Cena 10 */
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap');
 
-.scene:nth-of-type(4) {
+.scene:nth-of-type(5) {
   background-color: #171717 !important;
 }
 
-.scene:nth-of-type(4) .background-content {
+.scene:nth-of-type(5) .background-content {
   user-select: none;
   z-index: 1 !important;
   height: 100% !important;
@@ -177,7 +200,7 @@ section.scene {
   justify-content: flex-start;
 }
 
-.scene:nth-of-type(4) h1 {
+.scene:nth-of-type(5) h1 {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
   font-size: 10rem;
@@ -195,7 +218,7 @@ section.scene {
   color: #000;
 }
 
-.scene:nth-of-type(4) h1:before {
+.scene:nth-of-type(5) h1:before {
   content: attr(data-text);
   position: absolute;
   background: linear-gradient(#f70000, #f89200, #f8f501, #038f00, #0168f8, #a200f7);
@@ -210,15 +233,13 @@ section.scene {
 }
 
 
-@keyframes FadeIn {
+@keyframes RotateIn {
   0% {
-    opacity: 0;
-    transform: translateY(100px);
+    transform: rotate3d(-1, 0, -0.05, 1.442rad);
   }
 
   100% {
-    opacity: 1;
-    transform: translateY(0px);
+    transform: rotate3d(0);
   }
 }
 
