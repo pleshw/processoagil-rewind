@@ -1,4 +1,3 @@
-import { smoothScrollTo, throttle } from '../utils.js';
 export class SceneView {
     static scrollToSceneById(id) {
         const sceneIndex = this.scenes.findIndex(s => s.id === id);
@@ -10,25 +9,9 @@ export class SceneView {
         if (index < 0)
             return this.scrollToScene(0);
         /// Escondendo cena antiga
-        const closedSceneContent = this.scenes[this.index]
-            .scaffold
-            .element
-            .querySelector('.content');
-        if (closedSceneContent) {
-            closedSceneContent.classList.remove('show');
-        }
-        /// Pegando cena nova e instanciando o novo index
-        const scene = this.scenes[this.index = index];
-        const openSceneContent = scene.scaffold.element.querySelector('.content');
-        throttle(() => {
-            clearInterval(this.currScrollInterval);
-            if (openSceneContent) {
-                openSceneContent.classList.add('show');
-            }
-            this.currScrollInterval = smoothScrollTo(scene.scaffold.element.offsetTop);
-            this.updateControllers();
-        }, 300, 'scrollToSceneThrottle');
-        return scene;
+        this.scenes[this.index].hideContent();
+        /// Pegando cena nova > instanciando novo index > mostrando conteúdo da nova cena
+        return this.scenes[this.index = index].showContent();
     }
     static prev() {
         if ((this.index - 1) < 0)

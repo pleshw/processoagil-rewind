@@ -17,6 +17,9 @@
 
     <section class="scene">
       <h5>Cena 1</h5>
+      <div class="intro">
+
+      </div>
       <div class="content">
         <h1>Projeto Boom</h1>
       </div>
@@ -148,20 +151,12 @@
       document.querySelectorAll('.scene').forEach((item, index) => {
         const _tmpSceneScaffold = new SceneScaffold(item);
         const _tmpScene = new Scene(_tmpSceneScaffold);
-        SceneView.scenes.push(_tmpScene);
+        SceneView.addScene(_tmpScene, scrollMagicIndicatorsController);
 
-        const scrollMagicSceneConfig = {
-          triggerElement: SceneView.last().scaffold.element,
-          duration: SceneView.last().scaffold.element.clientHeight,
-          triggerHook: .5
-        }
 
-        SceneView.last().scrollMagicScene = new ScrollMagic.Scene(scrollMagicSceneConfig)
-          .addTo(scrollMagicIndicatorsController)
-          .on('enter', () => {
-            console.log('Você entrou na cena ' + SceneView.last().id)
-            _tmpScene.render();
-          });
+
+
+
       })
 
       SceneView.createControllers();
@@ -212,7 +207,7 @@
               SceneView.prev();
             }
           })
-        }, 500, 'wheelNextScene')
+        }, 1500, 'wheelNextScene')
       });
 
       SceneView.scrollToScene(0);
@@ -224,14 +219,27 @@
       }
 
       SceneView.get(2).animationCallback = () => {
-        var diasEl = document.querySelector('.dias-economizados');
-        var horasEl = document.querySelector('.horas-economizados');
-        var minutosEl = document.querySelector('.minutos-economizados');
-        var segundosEl = document.querySelector('.segundos-economizados');
-
         var customerTime = {
           saved: 0
-        }
+        };
+
+        const strDateOneDayAfter = new Date(customerTime.saved * 1000)
+          .toISOString()
+          .substr(9, 10)
+          .replace('T', ':');
+
+        const divTempoEconomizado = document.createElement('div');
+        divTempoEconomizado.classList.add('tempo-economizado');
+        this.scene.content.insertAdjacentElement('afterbegin', divTempoEconomizado);
+
+        const h1Dias = document.createElement('h1');
+        h1Dias.classList.add('dias-economizados');
+        const h1Horas = document.createElement('h1');
+        h1Horas.classList.add('horas-economizados');
+        const h1Minutos = document.createElement('h1');
+        h1Minutos.classList.add('minutos-economizados');
+        const h1Segundos = document.createElement('h1');
+        h1Segundos.classList.add('segundos-economizados');
 
         anime({
           targets: customerTime,
@@ -241,26 +249,44 @@
           duration: 7500,
           easing: 'easeInOutExpo',
           update: function () {
-            const strDate1DayOver = new Date(customerTime.saved * 1000)
-              .toISOString()
-              .substr(9, 10)
-              .replace('T', ':');
+            const strDateSplitted = strDateOneDayAfter.split(':')
+            const dias = +strDateSplitted[0] - 1;
+            const horas = +strDateSplitted[1];
+            const minutos = +strDateSplitted[2];
+            const segundos = +strDateSplitted[3];
 
-            const strDateSplitted = strDate1DayOver.split(':')
-            let dias = +strDateSplitted[0] - 1;
-            let horas = +strDateSplitted[1];
-            let minutos = +strDateSplitted[2];
-            let segundos = +strDateSplitted[3];
+            const textoDias = dias > 0 ? `${ zeroBefore(dias) } ${ dias > 1 ? 'dias' : 'dia' }` : '';
+            const textoHoras = textoDias || horas > 0 ? `${ zeroBefore(horas) } horas` : '';
+            const textoMinutos = textoHoras || minutos > 0 ? `${ zeroBefore(minutos) } minutos` : '';
+            const textoSegundos = textoMinutos || segundos > 0 ? `${ zeroBefore(segundos) } segundos` : '';
 
-            let textoDias = dias > 0 ? `${ zeroBefore(dias) } ${ dias > 1 ? 'dias' : 'dia' }` : '';
-            let textoHoras = textoDias || horas > 0 ? `${ zeroBefore(horas) } horas` : '';
-            let textoMinutos = textoHoras || minutos > 0 ? `${ zeroBefore(minutos) } minutos` : '';
-            let textoSegundos = textoMinutos || segundos > 0 ? `${ zeroBefore(segundos) } segundos` : '';
+            if (textoDias) {
+              if (divTempoEconomizado.querySelector('.dias-economizados')) {
+                divTempoEconomizado.insertAdjacentElement('afterbegin', h1Dias);
+              }
+              h1Dias.innerHTML = textoDias;
+            }
 
-            diasEl.innerHTML = `${ textoDias }`;
-            horasEl.innerHTML = `${ textoHoras }`;
-            minutosEl.innerHTML = `${ textoMinutos }`;
-            segundosEl.innerHTML = `${ textoSegundos }`;
+            if (textoHoras) {
+              if (divTempoEconomizado.querySelector('.horas-economizados')) {
+                divTempoEconomizado.insertAdjacentElement('afterbegin', h1Horas);
+              }
+              h1Horas.innerHTML = textoHoras;
+            }
+
+            if (textoMinutos) {
+              if (divTempoEconomizado.querySelector('.minutos-economizados')) {
+                divTempoEconomizado.insertAdjacentElement('afterbegin', h1Minutos);
+              }
+              h1Minutos.innerHTML = textoMinutos;
+            }
+
+            if (textoSegundos) {
+              if (divTempoEconomizado.querySelector('.segundos-economizados')) {
+                divTempoEconomizado.insertAdjacentElement('afterbegin', h1Segundos);
+              }
+              h1Segundos.innerHTML = textoSegundos;
+            }
           }
         });
       }

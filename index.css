@@ -24,10 +24,18 @@ section.scene {
   margin: 0 !important;
 }
 
-.content {
+.content, .intro {
   height: 100% !important;
   width: 100% !important;
   display: none;
+}
+
+.intro {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: red;
 }
 
 .content.show {
