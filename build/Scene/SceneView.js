@@ -1,7 +1,7 @@
 export class SceneView {
     static scrollToSceneById(id) {
         const sceneIndex = this.scenes.findIndex(s => s.id === id);
-        return this.scrollToScene(sceneIndex);
+        this.scrollToScene(sceneIndex);
     }
     static scrollToScene(index) {
         if (index >= this.scenes.length)
@@ -9,19 +9,21 @@ export class SceneView {
         if (index < 0)
             return this.scrollToScene(0);
         /// Escondendo cena antiga
-        this.scenes[this.index].hideContent();
+        this.scenes[this.index].hide();
         /// Pegando cena nova > instanciando novo index > mostrando conteúdo da nova cena
-        return this.scenes[this.index = index].showContent();
+        const currentScene = this.scenes[this.index = index];
+        currentScene.scroll();
+        currentScene.render();
     }
     static prev() {
         if ((this.index - 1) < 0)
             return this.scrollToScene(0);
-        return this.scrollToScene(this.index - 1);
+        this.scrollToScene(this.index - 1);
     }
     static next() {
         if ((this.index + 1) > this.scenes.length)
             return this.scrollToScene(this.scenes.length - 1);
-        return this.scrollToScene(this.index + 1);
+        this.scrollToScene(this.index + 1);
     }
     static get(index) {
         if (index < 0)
@@ -56,7 +58,30 @@ export class SceneView {
       <span id="nextScene"><i class="arrow down"></i></span>
     </div>`);
     }
+    static addScene(scene, scrollMagicController) {
+        this.scenes.push(scene);
+        const currScene = SceneView.last();
+        const scrollMagicSceneInConfig = {
+            triggerElement: currScene.scaffold.element,
+            duration: currScene.scaffold.element.clientHeight,
+            triggerHook: 1
+        };
+        this.last().scrollMagicScene = new ScrollMagic.Scene(scrollMagicSceneInConfig)
+            .addTo(scrollMagicController)
+            .on('enter', () => {
+            console.log('Você entrou na cena ' + this.last().id);
+        });
+        const scrollMagicSceneOutConfig = {
+            triggerElement: currScene.scaffold.element,
+            duration: currScene.scaffold.element.clientHeight,
+            triggerHook: 0
+        };
+        currScene.scrollMagicScene = new ScrollMagic.Scene(scrollMagicSceneOutConfig)
+            .addTo(scrollMagicController)
+            .on('enter', () => {
+            console.log('Você saiu da cena ' + currScene.id);
+        });
+    }
 }
 SceneView.index = 0;
 SceneView.scenes = [];
-SceneView.currScrollInterval = 0;

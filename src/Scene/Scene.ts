@@ -1,8 +1,6 @@
 import { capitalizeFirstLetter, smoothScrollTo, throttle } from '../utils.js';
-import { SceneAnimations } from './SceneAnimations.js';
 import { SceneScaffold } from "./SceneScaffold.js";
 import { SceneView } from './SceneView.js';
-import { DefaultSceneAnimation } from './SceneAnimationKit.js';
 
 export abstract class Scene {
   static idCount: number = 0;
@@ -13,40 +11,23 @@ export abstract class Scene {
   components: HTMLElement[] = [];
   scrollMagicScene: any;
 
-  intro: HTMLElement | null = null;
-  content: HTMLElement | null = null;
-
-  sceneAnimations: SceneAnimations;
+  intro: HTMLElement;
+  content: HTMLElement;
 
   constructor( _scaffold: SceneScaffold ) {
     this.scaffold = _scaffold;
     this.id = `scene${ Scene.idCount++ }`;
     this.scaffold.element.id = 'scaffold' + capitalizeFirstLetter( this.id );
-    this.intro = this.scaffold.element.querySelector( '.intro' );
-    this.content = this.scaffold.element.querySelector( '.content' );
-    this.sceneAnimations = new DefaultSceneAnimation( this );
+    this.intro = this.scaffold.element.querySelector( '.intro' )!;
+    this.content = this.scaffold.element.querySelector( '.content' )!;
   }
 
-  showIntro(): Scene {
-    this.sceneAnimations.scrollIn().then( () => {
-      this.sceneAnimations.intro().then( this.hideIntro )
-    } );
-    return this;
-  }
-
-  hideIntro(): Scene {
-    if ( this.intro ) {
-      this.intro.classList.remove( 'show' );
-    }
-    return this;
-  }
-
-  showContent(): Scene {
+  scroll(): Scene {
     throttle( () => {
       clearInterval( Scene.currScrollInterval );
-      if ( this.content ) {
-        this.content.classList.add( 'show' );
-      }
+      this.intro.classList.add( 'show' );
+      this.content.classList.add( 'show' );
+
       Scene.currScrollInterval = smoothScrollTo( this.scaffold.element.offsetTop );
       SceneView.updateControllers();
     }, 1000, 'scrollToSceneThrottle' );
@@ -54,10 +35,6 @@ export abstract class Scene {
     return this;
   }
 
-  hideContent(): Scene {
-    if ( this.content ) {
-      this.content.classList.remove( 'show' );
-    }
-    return this;
-  }
+  abstract render(): void;
+  abstract hide(): void;
 }

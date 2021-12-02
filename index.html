@@ -21,7 +21,28 @@
 
       </div>
       <div class="content">
-        <h1>Projeto Boom</h1>
+        <div class="absolute-0 w-100 h-100 flex-row flex-start">
+          <img id="logoScene1" class="" src="assets/raio.png" alt="">
+        </div>
+
+        <div class="absolute-0 w-100 h-100 flex-col flex-center">
+          <div id="introTextContainer" class="flex-center w-100">
+            <h1 id="introText1">Muita coisa rolou em 2021</h1>
+            <h1 id="introText2">Trouxemos um presente e blablabla</h1>
+            <h1 id="introText">Texto aquecendo para ver a retrospectiva</h1>
+          </div>
+          <div id="ocorrenciasCounterContainer">
+            <span id="numMovimentacoesScene1Text">Esse é o número de movimentações que os processos do seu escritório
+              tiveram esse ano</span>
+            <h4 id="numMovContainer">
+              <span id="numMovimentacoesScene1">0</span>
+            </h4>
+          </div>
+
+        </div>
+        <div class="absolute-0 w-100 h-100 flex-col flex-center">
+          <button id="verMaisButton">Ver mais</button>
+        </div>
       </div>
     </section>
     <section class="scene">
@@ -121,8 +142,7 @@
   </main>
 
   <!-- JavaScript Bundle with Popper -->
-  <script defer src="build/anime.min.js"></script>
-  <script defer src="build/typed.min.js"></script>
+  <script defer src="lib/anime.min.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://unpkg.com/topojson@3"></script>
   <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -141,6 +161,7 @@
     import { CSSEditor } from './build/CSSEditor.js';
     import { SceneScaffold } from './build/Scene/SceneScaffold.js';
     import { Scene } from './build/Scene/Scene.js';
+    import { Scene1 } from './build/Components/Scene1.js';
     import { SceneView } from './build/Scene/SceneView.js';
     import { throttle, zeroBefore, animacaoBarraProgresso } from './build/utils.js';
 
@@ -148,16 +169,9 @@
 
       const scrollMagicIndicatorsController = new ScrollMagic.Controller();
 
-      document.querySelectorAll('.scene').forEach((item, index) => {
-        const _tmpSceneScaffold = new SceneScaffold(item);
-        const _tmpScene = new Scene(_tmpSceneScaffold);
-        SceneView.addScene(_tmpScene, scrollMagicIndicatorsController);
+      const scaffolds = document.querySelectorAll('.scene');
 
-
-
-
-
-      })
+      SceneView.addScene(new Scene1(new SceneScaffold(scaffolds[0]), scrollMagicIndicatorsController));
 
       SceneView.createControllers();
 
@@ -181,6 +195,9 @@
         SceneView.prev();
       })
 
+      document.getElementById('verMaisButton').addEventListener('click', evt => {
+        SceneView.next();
+      })
 
       document.getElementById('nextScene').addEventListener('click', evt => {
         SceneView.next();
