@@ -11,6 +11,7 @@ export class Scene1 extends Scene {
         this.movCounterContainer = document.getElementById('numMovContainer');
         this.movCounterText = document.getElementById('numMovimentacoesScene1Text');
         this.movCounter = document.getElementById('numMovimentacoesScene1');
+        this.sceneControls = document.getElementById('sceneControllers');
         this.numOcorrencias = {
             ocorrencias: 0
         };
@@ -19,6 +20,7 @@ export class Scene1 extends Scene {
     render() {
         if (!this.usuarioJaViu)
             this.animateIntroText();
+        this.usuarioJaViu = true;
     }
     animateIntroText() {
         let timeline = anime.timeline({
@@ -64,6 +66,7 @@ export class Scene1 extends Scene {
                 easing: 'linear'
             },
             complete: () => {
+                this.animateControls();
                 this.animateLogo();
                 this.animateOcorrencias();
                 this.animateVerMais();
@@ -142,6 +145,17 @@ export class Scene1 extends Scene {
             opacity: {
                 value: 1,
                 duration: 500,
+                easing: 'linear'
+            }
+        });
+    }
+    animateControls() {
+        anime({
+            targets: this.sceneControls,
+            delay: 800,
+            translateX: {
+                value: '-7vw',
+                duration: 300,
                 easing: 'linear'
             }
         });

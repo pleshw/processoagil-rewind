@@ -40,8 +40,12 @@ export class SceneView {
     }
     static updateControllers() {
         const currSceneCounter = document.getElementById('currSceneCounter');
+        const totalSceneCounter = document.getElementById('totalSceneCounter');
         if (currSceneCounter) {
             currSceneCounter.innerHTML = (this.index + 1).toString();
+        }
+        if (totalSceneCounter) {
+            totalSceneCounter.innerHTML = this.scenes.length.toString();
         }
     }
     static createControllers() {

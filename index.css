@@ -104,16 +104,141 @@ section.scene {
   flex-direction: column;
 }
 
+#imgRaioScene2 {
+  align-self: center;
+  bottom: 100px;
+  left: 3%;
+  opacity: 0;
+}
+
+
 #sceneControllers {
   position: fixed;
   bottom: 15%;
-  right: 4%;
+  right: -6vw;
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 90px;
   z-index: 100;
 }
+
+#funcionarioMes {
+  top: 30px;
+  margin: 0;
+  position: absolute;
+  font-size: 2em;
+}
+
+#funcionarioMesDescricao {
+  top: 90px;
+  margin: 0;
+  position: absolute;
+  font-size: 1em;
+  font-weight: lighter;
+}
+
+
+
+.foto-funcionario {
+  margin: 0;
+  height: 150px;
+  max-width: 200px;
+}
+
+.span-colocacao {
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.foto-colocacao {
+  margin: 0;
+  height: 120px;
+  top: -150px;
+  max-width: 200px;
+  position: absolute;
+  width: 100%;
+}
+
+#prediosContainerScene2 {
+  position: absolute;
+  height: 100vh;
+  width: 73vw;
+  bottom: 30px;
+  justify-self: center;
+  overflow: hidden;
+  left: 15vw;
+  border-bottom: 2px solid black;
+}
+
+
+#divPredioPublicacoes, #divPredioAndamentos, #divPredioExpedientes {
+  border-right: 42px solid black;
+  border-top: 3px solid black;
+  border-left: 2px solid black;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 4px;
+
+  font-weight: bolder;
+  overflow: visible;
+  width: 38%;
+  border-bottom: 2px solid black;
+  position: absolute;
+  bottom: -10px;
+}
+
+#divPredioPublicacoes {
+  color: #111;
+  z-index: 60;
+  border-right: 22px solid black;
+  left: 0;
+  width: 33%;
+  height: 0%;
+  background-color: rgb(174, 208, 178);
+}
+
+#divPredioAndamentos {
+  z-index: 60;
+  left: 30%;
+  height: 0%;
+  background-color: rgb(208, 175, 174);
+}
+
+#divPredioExpedientes {
+  z-index: 80;
+  left: 65%;
+  height: 0%;
+  background-color: rgb(208, 177, 136);
+}
+
+
+#fotoFuncionario1, #fotoFuncionario2, #fotoFuncionario3 {
+  opacity: 0;
+  top: -75px;
+  border-radius: 22px;
+}
+
+#fotoFuncionario2 {
+  border: 7px outset silver;
+  filter: brightness(1.15);
+}
+
+#fotoFuncionario1 {
+  border: 7px outset gold;
+  filter: brightness(1.2);
+}
+
+#fotoFuncionario3 {
+  border: 7px outset burlywood;
+  filter: brightness(1.15);
+}
+
+
+
 
 #ocorrenciasCounterContainer {
   width: 100%;
@@ -257,6 +382,8 @@ section.scene {
   background-color: #171717 !important;
 }
 
+
+
 .scene:nth-of-type(5) .background-content {
   user-select: none;
   z-index: 1 !important;
@@ -269,11 +396,17 @@ section.scene {
 
 #logoScene1 {
   opacity: 0;
-  top: 100px;
-  left: 20px;
+  top: 75px;
+  left: 35px;
+  position: fixed;
   max-height: 200px;
+  max-width: 140px;
 }
 
+.texto-funcionario1, .texto-funcionario2, .texto-funcionario3 {
+  opacity: 0;
+  top: 19px;
+}
 
 .absolute-0 {
   position: absolute;

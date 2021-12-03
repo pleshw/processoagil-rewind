@@ -5,172 +5,193 @@ declare const anime: any;
 
 export class Scene2 extends Scene {
   usuarioJaViu: boolean = false;
-
-  logo: HTMLElement = document.getElementById( 'logoScene1' )!;
   predioPublicacoes: HTMLElement = document.getElementById( 'predioPublicacoes' )!;
   predioAndamentos: HTMLElement = document.getElementById( 'predioAndamentos' )!;
   predioExpedientes: HTMLElement = document.getElementById( 'predioExpedientes' )!;
+
+  fotoFuncionario1: HTMLElement = document.getElementById( 'fotoFuncionario1' )!;
+  fotoFuncionario2: HTMLElement = document.getElementById( 'fotoFuncionario2' )!;
+  fotoFuncionario3: HTMLElement = document.getElementById( 'fotoFuncionario3' )!;
 
   numPublicacoes: HTMLElement = document.getElementById( 'numPublicacoes' )!;
   numAndamentos: HTMLElement = document.getElementById( 'numAndamentos' )!;
   numExpedientes: HTMLElement = document.getElementById( 'numExpedientes' )!;
 
-  objPubAndExp: { publicacoes: number, andamentos: number, expedientes: number } = {
+  divPredioPublicacoes: HTMLElement = document.getElementById( 'divPredioPublicacoes' )!;
+  divPredioAndamentos: HTMLElement = document.getElementById( 'divPredioAndamentos' )!;
+  divPredioExpedientes: HTMLElement = document.getElementById( 'divPredioExpedientes' )!;
+
+  currentPubAndExp: { publicacoes: number, andamentos: number, expedientes: number } = {
+    publicacoes: 0,
+    andamentos: 0,
+    expedientes: 0,
+  };
+
+  totalPubAndExp: { publicacoes: number, andamentos: number, expedientes: number } = {
     publicacoes: 0,
     andamentos: 0,
     expedientes: 0,
   };
   constructor( scaffold: SceneScaffold, numPublicacoes: number, numAndamentos: number, numExpedientes: number ) {
     super( scaffold );
-    this.objPubAndExp.publicacoes = numPublicacoes;
-    this.objPubAndExp.andamentos = numAndamentos;
-    this.objPubAndExp.expedientes = numExpedientes;
+    this.currentPubAndExp.publicacoes = numPublicacoes;
+    this.currentPubAndExp.andamentos = numAndamentos;
+    this.currentPubAndExp.expedientes = numExpedientes;
   }
 
   render(): void {
     if ( !this.usuarioJaViu )
-      this.animateIntroText();
+      this.animatePodio();
+    this.usuarioJaViu = true;
   }
 
-  animateIntroText() {
 
+  animatePodio(): void {
     let timeline = anime.timeline( {
       easing: 'easeOutExpo',
     } );
 
+
     timeline
       .add( {
-        targets: this.introText1,
-        opacity: {
-          value: 1,
-          duration: 300,
-          easing: 'linear'
-        },
-      } ).add( {
-        targets: this.introText1,
-        opacity: {
-          value: 0,
-          duration: 300,
-          easing: 'linear'
-        },
-      }, "+=3500" )
+        targets: this.divPredioPublicacoes,
+        delay: 4000,
+        easing: 'easeInOutSine',
+        duration: 3000,
+        translateX: this.shakeAnimation(),
+      } )
       .add( {
-        targets: this.introText2,
-        opacity: {
-          value: 1,
-          duration: 300,
-          easing: 'linear'
-        },
-      }, "+=1000" )
+        targets: this.divPredioPublicacoes,
+        height: {
+          value: '19%',
+          duration: 1900,
+        }
+      } )
       .add( {
-        targets: this.introText2,
-        opacity: {
-          value: 0,
-          duration: 300,
-          easing: 'linear'
-        },
-      }, "+=3500" )
-      .add( {
-        targets: this.introText,
+        targets: this.fotoFuncionario3,
         opacity: {
           value: 1,
           duration: 100,
           easing: 'linear'
         },
-        complete: () => {
-          this.animateLogo();
-          this.animateOcorrencias();
-          this.animateVerMais();
+        translateY: {
+          value: 50,
+          duration: 200,
+          easing: 'linear'
+        },
+        begin: () => {
+          anime( {
+            targets: '.texto-funcionario3',
+            opacity: {
+              value: 1,
+              duration: 200,
+              easing: 'linear'
+            },
+            translateY: {
+              value: -50,
+              duration: 200,
+              easing: 'linear'
+            }
+          } )
         }
-      }, "+=1000" );
-  }
-
-
-  animateOcorrencias(): void {
-    let timeline = anime.timeline( {
-      easing: 'easeOutExpo',
-    } );
-
-    anime( {
-      targets: this.movCounterText,
-      delay: 500,
-      opacity: {
-        value: 1,
-        duration: 300,
-        easing: 'linear'
-      },
-      translateY: {
-        value: -103,
-        duration: 400,
-        easing: 'linear'
-      }
-    } )
-
-    timeline
+      } )
       .add( {
-        targets: this.movCounterContainer,
-        delay: 1000,
+        targets: this.divPredioExpedientes,
+        easing: 'easeInOutSine',
+        duration: 3000,
+        translateX: this.shakeAnimation(),
+      } )
+      .add( {
+        targets: this.divPredioExpedientes,
+        height: {
+          value: '27%',
+          duration: 2200,
+        }
+      }, "+=500" )
+      .add( {
+        targets: this.fotoFuncionario2,
+        opacity: {
+          value: 1,
+          duration: 100,
+          easing: 'linear'
+        },
+        translateY: {
+          value: 50,
+          duration: 400,
+          easing: 'linear'
+        },
+        begin: () => {
+          anime( {
+            targets: '.texto-funcionario2',
+            opacity: {
+              value: 1,
+              duration: 200,
+              easing: 'linear'
+            },
+            translateY: {
+              value: -50,
+              duration: 200,
+              easing: 'linear'
+            }
+          } )
+        }
+      } )
+      .add( {
+        targets: this.divPredioAndamentos,
+        easing: 'easeInOutSine',
+        duration: 3000,
+        translateX: this.shakeAnimation(),
+      } )
+      .add( {
+        targets: this.divPredioAndamentos,
+        delay: 500,
+        height: {
+          value: '34%',
+          duration: 2200,
+        }
+      }, "+=900" )
+      .add( {
+        targets: this.fotoFuncionario1,
         opacity: {
           value: 1,
           duration: 300,
           easing: 'linear'
         },
         translateY: {
-          value: -150,
-          duration: 400,
+          value: 50,
+          duration: 100,
           easing: 'linear'
+        },
+        begin: () => {
+          anime( {
+            targets: '.texto-funcionario1',
+            opacity: {
+              value: 1,
+              duration: 200,
+              easing: 'linear'
+            },
+            translateY: {
+              value: -50,
+              duration: 200,
+              easing: 'linear'
+            }
+          } )
         }
       } )
-      .add( {
-        targets: this.numOcorrencias,
-        ocorrencias: 100000,
-        round: 1,
-        duration: 7000,
-        update: () => {
-          this.movCounter.innerHTML = this.numOcorrencias.ocorrencias.toString();
-          this.movCounter.style.scale = `${ this.numOcorrencias.ocorrencias / 1000 }px`;
-        }
-      } );
-
   }
-
-  animateVerMais() {
-    anime( {
-      targets: this.verMaisButton,
-      delay: 2500,
-      translateY: {
-        value: -250,
-        duration: 300,
-        easing: 'linear'
-      },
-      opacity: {
-        value: 1,
-        duration: 500,
-        easing: 'linear'
-      }
-    } );
-  }
-
-  animateLogo() {
-    anime( {
-      targets: this.logo,
-      delay: 1500,
-      translateY: {
-        value: -50,
-        duration: 300,
-        easing: 'linear'
-      },
-      opacity: {
-        value: 1,
-        duration: 500,
-        easing: 'linear'
-      }
-    } );
-  }
-
 
   hide(): void {
 
   }
 
+
+  shakeAnimation(): any[] {
+    const vMax = 5;
+    return [
+      { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 },
+      {
+        value: 0
+      }
+    ]
+  }
 }

@@ -16,13 +16,12 @@
   <main>
 
     <section class="scene">
-      <h5>Cena 1</h5>
       <div class="intro">
 
       </div>
       <div class="content">
         <div class="absolute-0 w-100 h-100 flex-row flex-start">
-          <img id="logoScene1" class="" src="assets/raio.png" alt="">
+          <img id="logoScene1" class="" src="assets/logo.png" alt="">
         </div>
 
         <div class="absolute-0 w-100 h-100 flex-col flex-center">
@@ -32,7 +31,7 @@
             <h1 id="introText">Texto aquecendo para ver a retrospectiva</h1>
           </div>
           <div id="ocorrenciasCounterContainer">
-            <span id="numMovimentacoesScene1Text">Esse é o número de movimentações que os processos do seu escritório
+            <span id="numMovimentacoesScene1Text">Esse é o número de movimentações que os seus processos
               tiveram esse ano</span>
             <h4 id="numMovContainer">
               <span id="numMovimentacoesScene1">0</span>
@@ -45,15 +44,48 @@
         </div>
       </div>
     </section>
+
     <section class="scene">
-      <h5>Cena 1</h5>
+      <div class="intro">
+
+      </div>
+      <div class="content">
+        <div class="w-100 h-100 flex-center flex-row">
+          <h1 id="funcionarioMes">Funcionário do Ano</h1>
+          <h2 id="funcionarioMesDescricao">Um prêmio pra galera que mais acessou nosso sistema esse ano!</h2>
+        </div>
+        <div id="prediosContainerScene2" class="flex-row flex-center">
+          <div id="divPredioPublicacoes">
+            <div class="foto-colocacao flex-center flex-col">
+              <span class="span-colocacao texto-funcionario3">3º lugar</span>
+              <img id="fotoFuncionario3" class="foto-funcionario" src="assets/pikachu-3.jfif" alt="">
+            </div>
+            <span id="nomeFuncionario3" class="texto-funcionario3">Ciro Gomes</span>
+          </div>
+          <div id="divPredioAndamentos">
+            <div class="foto-colocacao flex-center flex-col">
+              <span class="span-colocacao texto-funcionario1">1º lugar</span>
+              <img id="fotoFuncionario1" class="foto-funcionario spotlight" src="assets/pikachu-1.jpg" alt="">
+            </div>
+            <span id="nomeFuncionario1" class="texto-funcionario1">Jair Messias Bolsonaro Neles</span>
+          </div>
+          <div id="divPredioExpedientes">
+            <div class="foto-colocacao flex-center flex-col">
+              <span class="span-colocacao texto-funcionario2">2º lugar</span>
+              <img id="fotoFuncionario2" class="foto-funcionario" src="assets/pikachu-2.jpg" alt="">
+            </div>
+            <span id="nomeFuncionario2" class="texto-funcionario2">Senhor Lula PT da Silva</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="scene">
       <div class="content">
         <h1>Sabemos Como seu tempo é importante e deve ser valorizado...</h1>
 
       </div>
     </section>
     <section class="scene">
-      <h5>Cena 3</h5>
       <div class="content">
         <div class="tempo-economizado">
           <h1 class="dias-economizados"></h1>
@@ -70,7 +102,6 @@
       </div>
     </section>
     <section class="scene">
-      <h5>Cena 3</h5>
       <div class="content">
         <div class="pen">
           <div class="stage">
@@ -162,6 +193,7 @@
     import { SceneScaffold } from './build/Scene/SceneScaffold.js';
     import { Scene } from './build/Scene/Scene.js';
     import { Scene1 } from './build/Components/Scene1.js';
+    import { Scene2 } from './build/Components/Scene2.js';
     import { SceneView } from './build/Scene/SceneView.js';
     import { throttle, zeroBefore, animacaoBarraProgresso } from './build/utils.js';
 
@@ -171,9 +203,14 @@
 
       const scaffolds = document.querySelectorAll('.scene');
 
-      SceneView.addScene(new Scene1(new SceneScaffold(scaffolds[0]), scrollMagicIndicatorsController));
 
       SceneView.createControllers();
+
+      SceneView.addScene(new Scene1(new SceneScaffold(scaffolds[0]), scrollMagicIndicatorsController));
+
+      SceneView.addScene(new Scene2(new SceneScaffold(scaffolds[1]), scrollMagicIndicatorsController));
+
+      SceneView.updateControllers();
 
       const progressDivCss = new CSSAttributes({
         width: `100%`,
