@@ -23,7 +23,7 @@
         </div>
 
         <div class="absolute-0 w-100 h-100 flex-col flex-center">
-          <div id="introTextContainer" class="flex-center w-100">
+          <div id="introTextContainer" class="flex-center w-100 introTextContainer">
             <h1 id="introText1">Muita coisa rolou em 2021</h1>
             <h1 id="introText2">Trouxemos um presente e blablabla</h1>
             <h1 id="introText">Texto aquecendo para ver a retrospectiva</h1>
@@ -50,7 +50,7 @@
       <div class="content">
         <div class="w-100 h-100 flex-center flex-row">
           <h1 id="funcionarioMes">Funcionário do Ano</h1>
-          <h2 id="funcionarioMesDescricao">Um lugarzinho reservado pra {sinonimo de saudar} galera que mais acessou
+          <h2 id="funcionarioMesDescricao">Um lugarzinho reservado pra destacar a galera que mais acessou
             nosso sistema esse ano!</h2>
         </div>
         <div id="prediosContainerScene2" class="flex-row flex-center">
@@ -79,37 +79,60 @@
       </div>
     </section>
     <section class="scene">
-      <div class="content">
-        <h1>Sabemos Como seu tempo é importante e deve ser valorizado...</h1>
-
-      </div>
-    </section>
-    <section class="scene">
-      <div class="content">
-        <div class="tempo-economizado">
-          <h1 class="dias-economizados"></h1>
-          <h1 class="horas-economizados"></h1>
-          <h1 class="minutos-economizados"></h1>
-          <h1 class="segundos-economizados"></h1>
-        </div>
-        <div class="w-50 h-100 flex-center">
-          <div class="w-50 flex-center flex-col h-100">
-            <h2>Esse é o tempo que você economizou por utilizar nosso sistema. </h2>
+      <div class="content justify-between align-center">
+        <div id="tempoEconomizado" class="flex-col justify-between">
+          <h2 style="margin: 1.6em 0px;">Esse é o tempo que você economizou esse ano por usar nosso sistema
+          </h2>
+          <div style="height: 23em;">
+            <h1 id="mesesEconomizados"></h1>
+            <h1 id="diasEconomizados"></h1>
+            <h1 id="horasEconomizados"></h1>
+            <h1 id="minutosEconomizados"></h1>
+            <h1 id="segundosEconomizados"></h1>
           </div>
-
+        </div>
+        <div id="containerEstimativas" class="h-100 flex-center">
+          <div class="w-100 flex-center flex-col h-100">
+            <div id="introTextContainerScene3" class="flex-center flex-col justify-around w-100 h-100">
+              <h2 id="introTextScene3d">Nesse tempo você conseguiria tranquilamente</h2>
+              <div id="estimativasTempo" class="flex-row w-100 justify-around">
+                <div>
+                  <p class="text-muted">
+                    Trabalhar sem parar por mais
+                    <span id="tempoParaDiasTrabalho">2</span>
+                    dias
+                  </p>
+                  <img src="assets/trabalho.gif" alt="">
+                </div>
+                <div>
+                  <p class="text-muted">
+                    Assistir
+                    <span id="tempoParaFilme">2</span>
+                    filmes bem demorados
+                  </p>
+                  <img src="assets/filme.gif" alt="">
+                </div>
+                <div>
+                  <p class="text-muted">
+                    Ouvir
+                    <span id="tempoParaMusica">2</span>
+                    musicas
+                  </p>
+                  <img src="assets/musica.gif" alt="">
+                </div>
+                <div>
+                  <p class="text-muted">
+                    Jogar
+                    <span id="tempoParaFutebol">2</span>
+                    partidas de futebol
+                  </p>
+                  <img src="assets/futebol.gif" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-    <section class="scene">
-      <h5>Cena 10</h5>
-      <div class="content">
-        <div class="background-content">
-          <h1 class="spotlight" data-text="DESTAQUE">DESTAQUE</h1>
-        </div>
-      </div>
-    </section>
-    <section class="scene">
-      <h5>Cena 11</h5>
     </section>
 
     <div class="progress"></div>
@@ -136,7 +159,8 @@
     import { SceneScaffold } from './build/Scene/SceneScaffold.js';
     import { Scene } from './build/Scene/Scene.js';
     import { Scene1 } from './build/Components/Scene1.js';
-    import { Scene2 } from './build/Components/Scene2.js';
+    import { Scene10 } from './build/Components/Scene10.js';
+    import { Scene3 } from './build/Components/Scene3.js';
     import { SceneView } from './build/Scene/SceneView.js';
     import { throttle, zeroBefore, animacaoBarraProgresso } from './build/utils.js';
 
@@ -151,7 +175,9 @@
 
       SceneView.addScene(new Scene1(new SceneScaffold(scaffolds[0]), scrollMagicIndicatorsController));
 
-      SceneView.addScene(new Scene2(new SceneScaffold(scaffolds[1]), scrollMagicIndicatorsController));
+      SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[1]), scrollMagicIndicatorsController));
+
+      SceneView.addScene(new Scene3(new SceneScaffold(scaffolds[2]), 1.62e+8), scrollMagicIndicatorsController);
 
       SceneView.updateControllers();
 
@@ -204,89 +230,11 @@
               SceneView.prev();
             }
           })
-        }, 1500, 'wheelNextScene')
+        }, 500, 'wheelNextScene')
       });
 
       SceneView.scrollToScene(0);
 
-      SceneView.get(3).animationCallback = () => {
-        setVortextStyles();
-        renderVortext();
-        setTimeout(animateVortext);
-      }
-
-      SceneView.get(2).animationCallback = () => {
-        var customerTime = {
-          saved: 0
-        };
-
-        const strDateOneDayAfter = new Date(customerTime.saved * 1000)
-          .toISOString()
-          .substr(9, 10)
-          .replace('T', ':');
-
-        const divTempoEconomizado = document.createElement('div');
-        divTempoEconomizado.classList.add('tempo-economizado');
-        this.scene.content.insertAdjacentElement('afterbegin', divTempoEconomizado);
-
-        const h1Dias = document.createElement('h1');
-        h1Dias.classList.add('dias-economizados');
-        const h1Horas = document.createElement('h1');
-        h1Horas.classList.add('horas-economizados');
-        const h1Minutos = document.createElement('h1');
-        h1Minutos.classList.add('minutos-economizados');
-        const h1Segundos = document.createElement('h1');
-        h1Segundos.classList.add('segundos-economizados');
-
-        anime({
-          targets: customerTime,
-          saved: 100000,
-          round: 1,
-          delay: 1000,
-          duration: 7500,
-          easing: 'easeInOutExpo',
-          update: function () {
-            const strDateSplitted = strDateOneDayAfter.split(':')
-            const dias = +strDateSplitted[0] - 1;
-            const horas = +strDateSplitted[1];
-            const minutos = +strDateSplitted[2];
-            const segundos = +strDateSplitted[3];
-
-            const textoDias = dias > 0 ? `${ zeroBefore(dias) } ${ dias > 1 ? 'dias' : 'dia' }` : '';
-            const textoHoras = textoDias || horas > 0 ? `${ zeroBefore(horas) } horas` : '';
-            const textoMinutos = textoHoras || minutos > 0 ? `${ zeroBefore(minutos) } minutos` : '';
-            const textoSegundos = textoMinutos || segundos > 0 ? `${ zeroBefore(segundos) } segundos` : '';
-
-            if (textoDias) {
-              if (divTempoEconomizado.querySelector('.dias-economizados')) {
-                divTempoEconomizado.insertAdjacentElement('afterbegin', h1Dias);
-              }
-              h1Dias.innerHTML = textoDias;
-            }
-
-            if (textoHoras) {
-              if (divTempoEconomizado.querySelector('.horas-economizados')) {
-                divTempoEconomizado.insertAdjacentElement('afterbegin', h1Horas);
-              }
-              h1Horas.innerHTML = textoHoras;
-            }
-
-            if (textoMinutos) {
-              if (divTempoEconomizado.querySelector('.minutos-economizados')) {
-                divTempoEconomizado.insertAdjacentElement('afterbegin', h1Minutos);
-              }
-              h1Minutos.innerHTML = textoMinutos;
-            }
-
-            if (textoSegundos) {
-              if (divTempoEconomizado.querySelector('.segundos-economizados')) {
-                divTempoEconomizado.insertAdjacentElement('afterbegin', h1Segundos);
-              }
-              h1Segundos.innerHTML = textoSegundos;
-            }
-          }
-        });
-      }
 
     })
   </script>

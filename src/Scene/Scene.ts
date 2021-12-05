@@ -25,12 +25,11 @@ export abstract class Scene {
   scroll(): Scene {
     throttle( () => {
       clearInterval( Scene.currScrollInterval );
-      this.intro.classList.add( 'show' );
       this.content.classList.add( 'show' );
 
       Scene.currScrollInterval = smoothScrollTo( this.scaffold.element.offsetTop );
       SceneView.updateControllers();
-    }, 1000, 'scrollToSceneThrottle' );
+    }, 100, 'scrollToSceneThrottle' );
 
     return this;
   }

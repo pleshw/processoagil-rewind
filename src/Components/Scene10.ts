@@ -3,7 +3,7 @@ import { SceneScaffold } from '../Scene/SceneScaffold.js';
 
 declare const anime: any;
 
-export class Scene2 extends Scene {
+export class Scene10 extends Scene {
   usuarioJaViu: boolean = false;
   predioPublicacoes: HTMLElement = document.getElementById( 'predioPublicacoes' )!;
   predioAndamentos: HTMLElement = document.getElementById( 'predioAndamentos' )!;
@@ -55,7 +55,7 @@ export class Scene2 extends Scene {
     timeline
       .add( {
         targets: this.divPredioPublicacoes,
-        delay: 4000,
+        delay: 2000,
         easing: 'easeInOutSine',
         duration: 3000,
         translateX: this.shakeAnimation(),
@@ -71,12 +71,12 @@ export class Scene2 extends Scene {
         targets: this.fotoFuncionario3,
         opacity: {
           value: 1,
-          duration: 100,
+          duration: 300,
           easing: 'linear'
         },
         translateY: {
           value: 50,
-          duration: 200,
+          duration: 50,
           easing: 'linear'
         },
         begin: () => {
@@ -84,12 +84,12 @@ export class Scene2 extends Scene {
             targets: '.texto-funcionario3',
             opacity: {
               value: 1,
-              duration: 200,
+              duration: 300,
               easing: 'linear'
             },
             translateY: {
               value: -50,
-              duration: 200,
+              duration: 50,
               easing: 'linear'
             }
           } )
@@ -112,12 +112,12 @@ export class Scene2 extends Scene {
         targets: this.fotoFuncionario2,
         opacity: {
           value: 1,
-          duration: 100,
+          duration: 300,
           easing: 'linear'
         },
         translateY: {
           value: 50,
-          duration: 400,
+          duration: 50,
           easing: 'linear'
         },
         begin: () => {
@@ -125,12 +125,12 @@ export class Scene2 extends Scene {
             targets: '.texto-funcionario2',
             opacity: {
               value: 1,
-              duration: 200,
+              duration: 300,
               easing: 'linear'
             },
             translateY: {
               value: -50,
-              duration: 200,
+              duration: 50,
               easing: 'linear'
             }
           } )
@@ -139,7 +139,7 @@ export class Scene2 extends Scene {
       .add( {
         targets: this.divPredioAndamentos,
         easing: 'easeInOutSine',
-        duration: 3000,
+        duration: 5000,
         translateX: this.shakeAnimation(),
       } )
       .add( {
@@ -159,7 +159,7 @@ export class Scene2 extends Scene {
         },
         translateY: {
           value: 50,
-          duration: 100,
+          duration: 50,
           easing: 'linear'
         },
         begin: () => {
@@ -167,12 +167,12 @@ export class Scene2 extends Scene {
             targets: '.texto-funcionario1',
             opacity: {
               value: 1,
-              duration: 200,
+              duration: 300,
               easing: 'linear'
             },
             translateY: {
               value: -50,
-              duration: 200,
+              duration: 50,
               easing: 'linear'
             }
           } )
@@ -186,9 +186,9 @@ export class Scene2 extends Scene {
 
 
   shakeAnimation(): any[] {
-    const vMax = 5;
+    const vMax = 1;
     return [
-      { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 },
+      { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 }, { value: vMax * -1, }, { value: vMax, }, { value: vMax / -2, }, { value: vMax / 2 },
       {
         value: 0
       }

@@ -1,5 +1,5 @@
 import { Scene } from '../Scene/Scene.js';
-export class Scene2 extends Scene {
+export class Scene10 extends Scene {
     constructor(scaffold, numPublicacoes, numAndamentos, numExpedientes) {
         super(scaffold);
         this.usuarioJaViu = false;
@@ -57,12 +57,12 @@ export class Scene2 extends Scene {
             targets: this.fotoFuncionario3,
             opacity: {
                 value: 1,
-                duration: 100,
+                duration: 300,
                 easing: 'linear'
             },
             translateY: {
                 value: 50,
-                duration: 200,
+                duration: 50,
                 easing: 'linear'
             },
             begin: () => {
@@ -70,7 +70,7 @@ export class Scene2 extends Scene {
                     targets: '.texto-funcionario3',
                     opacity: {
                         value: 1,
-                        duration: 200,
+                        duration: 300,
                         easing: 'linear'
                     },
                     translateY: {
@@ -98,12 +98,12 @@ export class Scene2 extends Scene {
             targets: this.fotoFuncionario2,
             opacity: {
                 value: 1,
-                duration: 100,
+                duration: 300,
                 easing: 'linear'
             },
             translateY: {
                 value: 50,
-                duration: 400,
+                duration: 50,
                 easing: 'linear'
             },
             begin: () => {
@@ -111,7 +111,7 @@ export class Scene2 extends Scene {
                     targets: '.texto-funcionario2',
                     opacity: {
                         value: 1,
-                        duration: 200,
+                        duration: 300,
                         easing: 'linear'
                     },
                     translateY: {
@@ -125,7 +125,7 @@ export class Scene2 extends Scene {
             .add({
             targets: this.divPredioAndamentos,
             easing: 'easeInOutSine',
-            duration: 3000,
+            duration: 5000,
             translateX: this.shakeAnimation(),
         })
             .add({
@@ -145,7 +145,7 @@ export class Scene2 extends Scene {
             },
             translateY: {
                 value: 50,
-                duration: 100,
+                duration: 50,
                 easing: 'linear'
             },
             begin: () => {
@@ -153,7 +153,7 @@ export class Scene2 extends Scene {
                     targets: '.texto-funcionario1',
                     opacity: {
                         value: 1,
-                        duration: 200,
+                        duration: 300,
                         easing: 'linear'
                     },
                     translateY: {

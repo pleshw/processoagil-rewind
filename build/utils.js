@@ -75,3 +75,12 @@ export function capitalizeFirstLetter(str) {
 export function zeroBefore(n) {
     return n.toString().padStart(2, '0');
 }
+export function millisecondsToMinutes(ms) {
+    return ms / 60000;
+}
+export function millisecondsToHours(ms) {
+    return ms / 3.6e+6;
+}
+export function millisecondsToDays(ms) {
+    return ms / 8.64e+7;
+}
