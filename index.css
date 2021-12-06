@@ -522,6 +522,46 @@ section.scene {
   animation-direction: alternate;
 } */
 
+h1.spotlight {
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  font-size: 12rem;
+  top: -185px;
+  left: -335px;
+  text-align: center;
+  display: -webkit-flex;
+  display: none;
+  -webkit-align-items: center;
+  align-items: flex-end;
+  -webkit-justify-content: center;
+  justify-content: center;
+  margin: 0;
+  min-height: calc(100vh - 16px);
+  background: white;
+  position: relative;
+  animation: TranslateIn 1s ease-in-out;
+  transform: rotate(27deg) skew(35deg,
+      5deg);
+  background: #171717;
+  color: #000;
+}
+
+h1.spotlight:before {
+  content: attr(data-text);
+  position: absolute;
+  background: linear-gradient(-120deg, #ba0c2f, #ffcd00, #c9c9c9);
+  filter: brightness(1.9);
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 100% 90%;
+  bottom: 0.15em;
+  line-height: 0.9;
+  clip-path: ellipse(120px 120px at -2.54% -9.25%);
+  animation: swing 5s infinite;
+  animation-direction: alternate;
+}
+
+
 
 @keyframes RotateIn {
   0% {
@@ -532,6 +572,25 @@ section.scene {
     transform: rotate3d(0);
   }
 }
+
+@keyframes TranslateIn {
+  0% {
+    transform: translateX(-500px) rotate(27deg) skew(35deg,
+        5deg);
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(0) rotate(27deg) skew(35deg,
+        5deg);
+    opacity: 1;
+  }
+}
+
 
 @keyframes swing {
   0% {

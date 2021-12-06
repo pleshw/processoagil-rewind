@@ -35,7 +35,7 @@ export class Scene3 extends Scene {
             saved: this.timeSavedInMs,
             round: 1,
             delay: 1500,
-            duration: 10000,
+            duration: 20000,
             easing: 'easeInOutExpo',
             complete: () => {
                 document.getElementById('tempoEconomizado').style.width = '35em';

@@ -5,6 +5,7 @@ declare const anime: any;
 
 export class Scene2 extends Scene {
   usuarioJaViu: boolean = false;
+
   divQtdPublicacoes: HTMLElement = document.getElementById( 'qtdPublicacoes' )!;
   divQtdAndamentos: HTMLElement = document.getElementById( 'qtdAndamentos' )!;
   divQtdExpedientes: HTMLElement = document.getElementById( 'qtdExpedientes' )!;
@@ -65,6 +66,9 @@ export class Scene2 extends Scene {
         ],
         opacity: [{ value: 1, duration: 300, easing: 'linear' }],
         easing: 'easeOutElastic(1, .8)',
+        begin: () => {
+          this.scaffold.element.style.backgroundColor = '#212529';
+        },
         complete: () => {
           this.divQtdPublicacoes.style.color = 'white';
         }
@@ -107,6 +111,10 @@ export class Scene2 extends Scene {
         ],
         opacity: [{ value: 1, duration: 300, easing: 'linear' }],
         easing: 'easeOutElastic(1, .8)',
+        begin: () => {
+          this.scaffold.element.style.backgroundColor = '#dc3545';
+
+        },
         complete: () => {
           this.divQtdAndamentos.style.color = 'white';
         }
@@ -149,8 +157,12 @@ export class Scene2 extends Scene {
         ],
         opacity: [{ value: 1, duration: 300, easing: 'linear' }],
         easing: 'easeOutElastic(1, .8)',
+        begin: () => {
+          this.scaffold.element.style.backgroundColor = '#0d6efd';
+        },
         complete: () => {
           this.divQtdExpedientes.style.color = 'white';
+          this.scaffold.element.style.backgroundColor = '#ffc107';
         }
       } )
   }

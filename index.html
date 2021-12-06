@@ -137,22 +137,10 @@
       </div>
     </section>
 
-    <section class="scene">
+    <section class="scene" style="background: #171717;">
       <div class="content flex-col flex-center">
-        <h1 id="listaVipTitulo">Lista VIP</h1>
-        <h2 id="listaVipDescricao">Os clientes com mais processos distribuidos esse ano.</h2>
-        <div id="clientesVipContainer" class="flex-col justify-around align-center grid">
-          <div class="cliente-vip"></div>
-          <div class="cliente-vip"></div>
-          <div class="cliente-vip"></div>
-          <div class="cliente-vip"></div>
-          <div class="cliente-vip"></div>
-          <div class="cliente-vip"></div>
-          <div class="cliente-vip"></div>
-          <div class="cliente-vip"></div>
-          <div class="cliente-vip"></div>
-          <div class="cliente-vip"></div>
-        </div>
+        <h1 data-text="PIKACHU" class="spotlight">
+          PIKACHU</h1>
       </div>
     </section>
 
@@ -212,6 +200,8 @@
       </div>
     </section>
 
+
+
     <div class="progress" style="border-radius: 0 !important;"></div>
   </main>
 
@@ -238,6 +228,7 @@
     import { Scene1 } from './build/Components/Scene1.js';
     import { Scene2 } from './build/Components/Scene2.js';
     import { Scene3 } from './build/Components/Scene3.js';
+    import { Scene8 } from './build/Components/Scene8.js';
     import { Scene9 } from './build/Components/Scene9.js';
     import { Scene10 } from './build/Components/Scene10.js';
 
@@ -259,9 +250,11 @@
 
       SceneView.addScene(new Scene3(new SceneScaffold(scaffolds[2]), 1.22e+9), scrollMagicIndicatorsController);
 
-      SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[3])), scrollMagicIndicatorsController);
+      SceneView.addScene(new Scene8(new SceneScaffold(scaffolds[3])), scrollMagicIndicatorsController);
 
-      SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[4]), scrollMagicIndicatorsController));
+      SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[4])), scrollMagicIndicatorsController);
+
+      SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[5]), scrollMagicIndicatorsController));
 
       SceneView.updateControllers();
 
