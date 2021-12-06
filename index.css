@@ -4,10 +4,8 @@
   user-select: none;
   -webkit-user-drag: none;
   box-sizing: border-box;
-}
-
-.text-muted {
-  color: #6c757d !important;
+  font-feature-settings: "tnum"1, "ss03"1;
+  -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -25,16 +23,55 @@ body {
   overflow: hidden !important;
 }
 
-h5 {
-  margin: 0;
+.divPubAndExp {
+  border-radius: 50%;
+  pointer-events: none;
   position: absolute;
-  top: 0;
-  left: 0;
+  width: 48px;
+  height: 48px;
+  margin: 1px;
+  background-color: currentColor;
+  font-size: 14px;
+  overflow: hidden;
+  color: transparent;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#qtdPublicacoes {
+  opacity: 0;
+  left: 14vw;
+  bottom: 60%;
+  background: #4C061D;
+  font-weight: bold;
+  border-radius: 9px;
+}
+
+#qtdAndamentos {
+  opacity: 0;
+  bottom: 33%;
+  right: 2vw;
+  background: #D17A22;
+  font-weight: bold;
+  border-radius: 9px;
+}
+
+#qtdExpedientes {
+  opacity: 0;
+  left: 2vw;
+  bottom: 6%;
+  background: #B4C292;
+  font-weight: bold;
+  border-radius: 9px;
 }
 
 section.scene {
   height: 100vh;
   margin: 0 !important;
+  overflow: hidden;
 }
 
 .content, .intro {
@@ -115,6 +152,7 @@ section.scene {
 }
 
 .flex-col {
+  display: flex;
   flex-direction: column;
 }
 
@@ -137,14 +175,14 @@ section.scene {
   z-index: 100;
 }
 
-#funcionarioMes {
+#funcionarioMes, #listaVipTitulo {
   top: 30px;
   margin: 0;
   position: absolute;
   font-size: 2em;
 }
 
-#funcionarioMesDescricao {
+#funcionarioMesDescricao, #listaVipDescricao {
   top: 90px;
   margin: 0;
   position: absolute;
@@ -206,7 +244,6 @@ section.scene {
 }
 
 #divPredioPublicacoes {
-  color: #111;
   z-index: 60;
   border-right: 22px solid black;
   left: 2%;
@@ -389,28 +426,14 @@ section.scene {
 
 #estimativasTempo {
   height: 70%;
+  padding: 0 10%;
 }
 
-#estimativasTempo>div {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  align-items: center;
-  height: 25%;
+#estimativasTempo>.card {
+  height: 33%;
+  width: 40%;
 }
 
-
-#estimativasTempo img {
-  border-radius: 34px;
-}
-
-
-
-#tempoParaDiasTrabalho, #tempoParaFilme, #tempoParaMusica, #tempoParaFutebol {
-  color: darkblue;
-  font-weight: bold;
-}
 
 .justify-around {
   justify-content: space-around;
@@ -426,14 +449,14 @@ section.scene {
 }
 
 #tempoEconomizado h1 {
+  display: none;
   justify-content: flex-end;
   text-align: right;
   width: 100%;
-  font-size: 5rem;
-  animation: RotateIn 1s;
+  font-size: 4rem;
+  animation: RotateIn 1.2s;
   opacity: 1;
   margin: 0;
-  color: darkblue;
   font-family: 'Teko', sans-serif;
   user-select: none;
 }
@@ -441,20 +464,27 @@ section.scene {
 /* Cena 10 */
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap');
 
-.scene:nth-of-type(5) {
-  background-color: #171717 !important;
+.align-start {
+  align-items: flex-start;
+}
+
+#clientesVipContainer {
+  height: 80vh;
+  padding-top: 2em;
+  width: 55%;
+  bottom: 5%;
+  position: absolute;
 }
 
 
 
-.scene:nth-of-type(5) .background-content {
-  user-select: none;
-  z-index: 1 !important;
-  height: 100% !important;
-  width: 100% !important;
-  position: absolute;
-  display: flex;
-  justify-content: flex-start;
+
+.cliente-vip {
+  height: 17%;
+  width: 48%;
+  left: -240px;
+  background-color: red;
+  opacity: 0;
 }
 
 #logoScene1 {
@@ -477,24 +507,7 @@ section.scene {
   top: 0;
 }
 
-.scene:nth-of-type(5) h1 {
-  font-family: 'Teko', sans-serif;
-  text-transform: uppercase;
-  font-size: 10rem;
-  text-align: center;
-  font-weight: bolder;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  margin: 0;
-  min-height: calc(100vh - 16px);
-  position: relative;
-  color: #000;
-}
-
+/* 
 .scene:nth-of-type(5) h1:before {
   content: attr(data-text);
   position: absolute;
@@ -507,12 +520,12 @@ section.scene {
   clip-path: ellipse(120px 120px at -2.54% -9.25%);
   animation: swingBeta 8s infinite;
   animation-direction: alternate;
-}
+} */
 
 
 @keyframes RotateIn {
   0% {
-    transform: rotate3d(-1, 0, -0.05, 1.442rad);
+    transform: rotate3d(-1, 0, -0.05, 46deg);
   }
 
   100% {

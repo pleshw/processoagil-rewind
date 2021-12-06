@@ -55,14 +55,14 @@ export class Scene3 extends Scene {
       targets: this.customerTime,
       saved: this.timeSavedInMs,
       round: 1,
-      delay: 1000,
-      duration: 2000,
+      delay: 1500,
+      duration: 10000,
       easing: 'easeInOutExpo',
       complete: () => {
         document.getElementById( 'tempoEconomizado' )!.style.width = '35em';
         document.getElementById( 'introTextContainerScene3' )!.style.left = '0';
 
-        document.getElementById( 'tempoParaDiasTrabalho' )!.innerHTML = Math.round( this.timeSaved.hours / 8 ).toString();
+        document.getElementById( 'tempoParaDiasTrabalho' )!.innerHTML = Math.round( this.timeSaved.hours / 500 ).toString();
         document.getElementById( 'tempoParaFilme' )!.innerHTML = Math.round( this.timeSaved.hours / 2 ).toString();
         document.getElementById( 'tempoParaMusica' )!.innerHTML = Math.round( this.timeSaved.minutes / 3 ).toString();
         document.getElementById( 'tempoParaFutebol' )!.innerHTML = Math.round( this.timeSaved.minutes / 90 ).toString();
@@ -81,11 +81,11 @@ export class Scene3 extends Scene {
         const minutos = +strDateSplitted[3];
         const segundos = +strDateSplitted[4];
 
-        const textoMeses = meses > 0 ? `${ zeroBefore( meses ) } mes` : '';
-        const textoDias = textoMeses || dias > 0 ? `${ zeroBefore( dias ) } dia` : '';
-        const textoHoras = textoDias || horas > 0 ? `${ zeroBefore( horas ) } hora` : '';
-        const textoMinutos = textoHoras || minutos > 0 ? `${ zeroBefore( minutos ) } minuto` : '';
-        const textoSegundos = textoMinutos || segundos > 0 ? `${ zeroBefore( segundos ) } segundo` : '';
+        const textoMeses = meses > 0 ? `${ zeroBefore( meses ) } mes${ ( meses > 1 || meses === 0 ) ? 'es' : '' }` : '';
+        const textoDias = textoMeses || dias > 0 ? `${ zeroBefore( dias ) } dia${ ( dias > 1 || dias === 0 ) ? 's' : '' }` : '';
+        const textoHoras = textoDias || horas > 0 ? `${ zeroBefore( horas ) } hora${ ( horas > 1 || horas === 0 ) ? 's' : '' }` : '';
+        const textoMinutos = textoHoras || minutos > 0 ? `${ zeroBefore( minutos ) } minuto${ ( minutos > 1 || minutos === 0 ) ? 's' : '' }` : '';
+        const textoSegundos = textoMinutos || segundos > 0 ? `${ zeroBefore( segundos ) } segundo${ ( segundos > 1 || segundos === 0 ) ? 's' : '' }` : '';
 
 
         if ( textoMeses ) {

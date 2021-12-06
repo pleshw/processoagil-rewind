@@ -100,7 +100,7 @@ export class Scene1 extends Scene {
         easing: 'linear'
       },
       translateY: {
-        value: -103,
+        value: -130,
         duration: 400,
         easing: 'linear'
       }

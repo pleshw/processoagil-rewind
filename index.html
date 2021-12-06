@@ -5,7 +5,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Processo Ágil: pleshw</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <title>Processo Ágil</title>
   <link rel="stylesheet" href="index.css">
 </head>
 
@@ -43,7 +46,137 @@
       </div>
     </section>
 
+
     <section class="scene">
+      <div class="content justify-between align-center">
+        <div id="qtdPublicacoes" class="card bg-primary mb-3 divPubAndExp">
+          <div class="card-header">Publicações</div>
+          <div class="card-body">
+            <h5 class="card-title">Esse ano seus processos tiveram <span>40</span> Publicações</h5>
+            <p class="card-text">Texto aleatório qualquer coisa etc
+            </p>
+          </div>
+        </div>
+        <div id="qtdAndamentos" class="card bg-dark mb-3 divPubAndExp">
+          <div class="card-header">Andamentos</div>
+          <div class="card-body">
+            <h5 class="card-title">Esse ano seus processos tiveram <span>55</span> Andamentos</h5>
+            <p class="card-text">Texto aleatório qualquer coisa etc
+            </p>
+          </div>
+        </div>
+        <div id="qtdExpedientes" class="card bg-danger mb-3 divPubAndExp">
+          <div class="card-header">Expedientes</div>
+          <div class="card-body">
+            <h5 class="card-title">Esse ano seus processos tiveram <span>19</span> Expedientes</h5>
+            <p class="card-text">Texto aleatório qualquer coisa etc
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene">
+      <div class="content justify-between align-center">
+        <div id="tempoEconomizado" class="flex-col justify-between">
+          <h3 class="m-3">Esse é o tempo que você economizou esse ano por usar nosso sistema
+          </h3>
+          <div style="height: 23em;" class="text-primary">
+            <h1 id="mesesEconomizados"></h1>
+            <h1 id="diasEconomizados"></h1>
+            <h1 id="horasEconomizados"></h1>
+            <h1 id="minutosEconomizados"></h1>
+            <h1 id="segundosEconomizados"></h1>
+          </div>
+        </div>
+        <div id="containerEstimativas" class="h-100 flex-center">
+          <div class="w-100 flex-center flex-col h-100">
+            <div id="introTextContainerScene3" class="flex-center flex-col justify-around w-100 h-100">
+              <h2 id="introTextScene3d">Nesse tempo você conseguiria</h2>
+              <div id="estimativasTempo" class="flex-row w-100 justify-around">
+                <div class="card bg-dark text-white">
+                  <img src="assets/trabalho.gif" class="card-img" alt="...">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title">Aprender
+                      <span id="tempoParaDiasTrabalho"></span>
+                      novo(s) idioma(s)
+                    </h5>
+                  </div>
+                </div>
+                <div class="card bg-dark text-white">
+                  <img src="assets/filme.gif" class="card-img" alt="...">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title">Assistir
+                      <span id="tempoParaFilme">2</span>
+                      filmes bem demorados
+                    </h5>
+                  </div>
+                </div>
+                <div class="card bg-dark text-white">
+                  <img src="assets/musica.gif" class="card-img" alt="...">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title">Ouvir
+                      <span id="tempoParaMusica">2</span>
+                      musicas
+                    </h5>
+                  </div>
+                </div>
+                <div class="card bg-dark text-white">
+                  <img src="assets/futebol.gif" class="card-img" alt="...">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title">Jogar
+                      <span id="tempoParaFutebol">2</span>
+                      partidas de futebol
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene">
+      <div class="content flex-col flex-center">
+        <h1 id="listaVipTitulo">Lista VIP</h1>
+        <h2 id="listaVipDescricao">Os clientes com mais processos distribuidos esse ano.</h2>
+        <div id="clientesVipContainer" class="flex-col justify-around align-center grid">
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene">
+      <div class="content flex-col flex-center">
+        <h1 id="listaVipTitulo">Lista VIP</h1>
+        <h2 id="listaVipDescricao">Os clientes com mais processos distribuidos esse ano.</h2>
+        <div id="clientesVipContainer" class="flex-col justify-around align-center grid">
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+          <div class="cliente-vip"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="scene ">
       <div class="intro">
 
       </div>
@@ -59,83 +192,27 @@
               <span class="span-colocacao texto-funcionario3">3º lugar</span>
               <img id="fotoFuncionario3" class="foto-funcionario" src="assets/pikachu-3.jfif" alt="">
             </div>
-            <span id="nomeFuncionario3" class="texto-funcionario3">Ciro Gomes</span>
+            <span id="nomeFuncionario3" class="texto-funcionario3">Pikachu Sonolento Cansado</span>
           </div>
           <div id="divPredioAndamentos">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario1">1º lugar</span>
               <img id="fotoFuncionario1" class="foto-funcionario spotlight" src="assets/pikachu-1.jpg" alt="">
             </div>
-            <span id="nomeFuncionario1" class="texto-funcionario1">Jair Messias Bolsonaro Neles</span>
+            <span id="nomeFuncionario1" class="texto-funcionario1">Pikachu Inacio Lula da Silva</span>
           </div>
           <div id="divPredioExpedientes">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario2">2º lugar</span>
               <img id="fotoFuncionario2" class="foto-funcionario" src="assets/pikachu-2.jpg" alt="">
             </div>
-            <span id="nomeFuncionario2" class="texto-funcionario2">Senhor Lula PT da Silva</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="scene">
-      <div class="content justify-between align-center">
-        <div id="tempoEconomizado" class="flex-col justify-between">
-          <h2 style="margin: 1.6em 0px;">Esse é o tempo que você economizou esse ano por usar nosso sistema
-          </h2>
-          <div style="height: 23em;">
-            <h1 id="mesesEconomizados"></h1>
-            <h1 id="diasEconomizados"></h1>
-            <h1 id="horasEconomizados"></h1>
-            <h1 id="minutosEconomizados"></h1>
-            <h1 id="segundosEconomizados"></h1>
-          </div>
-        </div>
-        <div id="containerEstimativas" class="h-100 flex-center">
-          <div class="w-100 flex-center flex-col h-100">
-            <div id="introTextContainerScene3" class="flex-center flex-col justify-around w-100 h-100">
-              <h2 id="introTextScene3d">Nesse tempo você conseguiria tranquilamente</h2>
-              <div id="estimativasTempo" class="flex-row w-100 justify-around">
-                <div>
-                  <p class="text-muted">
-                    Trabalhar sem parar por mais
-                    <span id="tempoParaDiasTrabalho">2</span>
-                    dias
-                  </p>
-                  <img src="assets/trabalho.gif" alt="">
-                </div>
-                <div>
-                  <p class="text-muted">
-                    Assistir
-                    <span id="tempoParaFilme">2</span>
-                    filmes bem demorados
-                  </p>
-                  <img src="assets/filme.gif" alt="">
-                </div>
-                <div>
-                  <p class="text-muted">
-                    Ouvir
-                    <span id="tempoParaMusica">2</span>
-                    musicas
-                  </p>
-                  <img src="assets/musica.gif" alt="">
-                </div>
-                <div>
-                  <p class="text-muted">
-                    Jogar
-                    <span id="tempoParaFutebol">2</span>
-                    partidas de futebol
-                  </p>
-                  <img src="assets/futebol.gif" alt="">
-                </div>
-              </div>
-            </div>
+            <span id="nomeFuncionario2" class="texto-funcionario2">Senhor Pikachu Pokemon</span>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="progress"></div>
+    <div class="progress" style="border-radius: 0 !important;"></div>
   </main>
 
   <!-- JavaScript Bundle with Popper -->
@@ -159,8 +236,11 @@
     import { SceneScaffold } from './build/Scene/SceneScaffold.js';
     import { Scene } from './build/Scene/Scene.js';
     import { Scene1 } from './build/Components/Scene1.js';
-    import { Scene10 } from './build/Components/Scene10.js';
+    import { Scene2 } from './build/Components/Scene2.js';
     import { Scene3 } from './build/Components/Scene3.js';
+    import { Scene9 } from './build/Components/Scene9.js';
+    import { Scene10 } from './build/Components/Scene10.js';
+
     import { SceneView } from './build/Scene/SceneView.js';
     import { throttle, zeroBefore, animacaoBarraProgresso } from './build/utils.js';
 
@@ -175,9 +255,13 @@
 
       SceneView.addScene(new Scene1(new SceneScaffold(scaffolds[0]), scrollMagicIndicatorsController));
 
-      SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[1]), scrollMagicIndicatorsController));
+      SceneView.addScene(new Scene2(new SceneScaffold(scaffolds[1])), scrollMagicIndicatorsController);
 
-      SceneView.addScene(new Scene3(new SceneScaffold(scaffolds[2]), 1.62e+8), scrollMagicIndicatorsController);
+      SceneView.addScene(new Scene3(new SceneScaffold(scaffolds[2]), 1.22e+9), scrollMagicIndicatorsController);
+
+      SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[3])), scrollMagicIndicatorsController);
+
+      SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[4]), scrollMagicIndicatorsController));
 
       SceneView.updateControllers();
 
