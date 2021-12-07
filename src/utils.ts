@@ -91,6 +91,11 @@ export function zeroBefore( n: number ) {
   return n.toString().padStart( 2, '0' );
 }
 
+
+export function minutesToMilliseconds( ms: number ) {
+  return ms * 60000;
+}
+
 export function millisecondsToMinutes( ms: number ) {
   return ms / 60000;
 }

@@ -17,16 +17,20 @@ export class Scene2 extends Scene {
 
   render(): void {
     if ( !this.usuarioJaViu )
-      this.animatePodio();
+      this.animatePubAndExp();
     this.usuarioJaViu = true;
   }
 
 
-  animatePodio(): void {
+  animatePubAndExp(): void {
+    anime.suspendWhenDocumentHidden = false;
     let timeline = anime.timeline( {
       easing: 'easeOutExpo',
     } );
 
+    this.divQtdPublicacoes.style.display = 'flex';
+    this.divQtdAndamentos.style.display = 'flex';
+    this.divQtdExpedientes.style.display = 'flex';
 
     timeline
       .add( {
@@ -35,14 +39,7 @@ export class Scene2 extends Scene {
           { value: 800, duration: 1000, delay: 500 },
           { value: 0, duration: 1000, delay: 500 }
         ],
-        width: [
-          { value: 48, duration: 3000, delay: 500 },
-          { value: '35vw', duration: 500, delay: 0 }
-        ],
-        height: [
-          { value: 48, duration: 3000, delay: 500 },
-          { value: '23%', duration: 500, delay: 0 }
-        ],
+        ...this.windowDimensions(),
         borderRadius: [
           { value: '50%', duration: 2000, delay: 500 },
           { value: '9px', duration: 500, delay: 0 },
@@ -66,9 +63,6 @@ export class Scene2 extends Scene {
         ],
         opacity: [{ value: 1, duration: 300, easing: 'linear' }],
         easing: 'easeOutElastic(1, .8)',
-        begin: () => {
-          this.scaffold.element.style.backgroundColor = '#212529';
-        },
         complete: () => {
           this.divQtdPublicacoes.style.color = 'white';
         }
@@ -79,14 +73,7 @@ export class Scene2 extends Scene {
           { value: -800, duration: 1000, delay: 500 },
           { value: 0, duration: 1000, delay: 500 }
         ],
-        width: [
-          { value: 48, duration: 3000, delay: 500 },
-          { value: '35vw', duration: 500, delay: 0 }
-        ],
-        height: [
-          { value: 48, duration: 3000, delay: 500 },
-          { value: '23%', duration: 500, delay: 0 }
-        ],
+        ...this.windowDimensions(),
         borderRadius: [
           { value: '50%', duration: 2000, delay: 500 },
           { value: '9px', duration: 500, delay: 0 },
@@ -111,10 +98,6 @@ export class Scene2 extends Scene {
         ],
         opacity: [{ value: 1, duration: 300, easing: 'linear' }],
         easing: 'easeOutElastic(1, .8)',
-        begin: () => {
-          this.scaffold.element.style.backgroundColor = '#dc3545';
-
-        },
         complete: () => {
           this.divQtdAndamentos.style.color = 'white';
         }
@@ -125,14 +108,7 @@ export class Scene2 extends Scene {
           { value: 800, duration: 1000, delay: 500 },
           { value: 0, duration: 1000, delay: 500 }
         ],
-        width: [
-          { value: 48, duration: 3000, delay: 500 },
-          { value: '35vw', duration: 500, delay: 0 }
-        ],
-        height: [
-          { value: 48, duration: 3000, delay: 500 },
-          { value: '23%', duration: 500, delay: 0 }
-        ],
+        ...this.windowDimensions(),
         borderRadius: [
           { value: '50%', duration: 2000, delay: 500 },
           { value: '9px', duration: 500, delay: 0 },
@@ -157,14 +133,23 @@ export class Scene2 extends Scene {
         ],
         opacity: [{ value: 1, duration: 300, easing: 'linear' }],
         easing: 'easeOutElastic(1, .8)',
-        begin: () => {
-          this.scaffold.element.style.backgroundColor = '#0d6efd';
-        },
         complete: () => {
           this.divQtdExpedientes.style.color = 'white';
-          this.scaffold.element.style.backgroundColor = '#ffc107';
         }
       } )
+  }
+
+  windowDimensions() {
+    return {
+      width: [
+        { value: 48, duration: 3000, delay: 500 },
+        { value: '15vw', duration: 500, delay: 0 }
+      ],
+      height: [
+        { value: 48, duration: 3000, delay: 500 },
+        { value: '25%', duration: 500, delay: 0 }
+      ]
+    }
   }
 
   hide(): void {

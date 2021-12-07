@@ -56,9 +56,9 @@ export class Scene3 extends Scene {
       saved: this.timeSavedInMs,
       round: 1,
       delay: 1500,
-      duration: 20000,
+      duration: 10000,
       easing: 'easeInOutExpo',
-      complete: () => {
+      begin: () => {
         document.getElementById( 'tempoEconomizado' )!.style.width = '35em';
         document.getElementById( 'introTextContainerScene3' )!.style.left = '0';
 
@@ -81,11 +81,11 @@ export class Scene3 extends Scene {
         const minutos = +strDateSplitted[3];
         const segundos = +strDateSplitted[4];
 
-        const textoMeses = meses > 0 ? `Mes${ ( meses > 1 || meses === 0 ) ? 'es' : '' }: ${ zeroBefore( meses ) }` : '';
-        const textoDias = textoMeses || dias > 0 ? `Dia${ ( dias > 1 || dias === 0 ) ? 's' : '' }: ${ zeroBefore( dias ) }` : '';
-        const textoHoras = textoDias || horas > 0 ? `Hora${ ( horas > 1 || horas === 0 ) ? 's' : '' }: ${ zeroBefore( horas ) }` : '';
-        const textoMinutos = textoHoras || minutos > 0 ? `Minuto${ ( minutos > 1 || minutos === 0 ) ? 's' : '' }: ${ zeroBefore( minutos ) }` : '';
-        const textoSegundos = textoMinutos || segundos > 0 ? `Segundo${ ( segundos > 1 || segundos === 0 ) ? 's' : '' }: ${ zeroBefore( segundos ) }` : '';
+        const textoMeses = meses > 0 ? `Meses: ${ zeroBefore( meses ) }` : '';
+        const textoDias = textoMeses || dias > 0 ? `Dias: ${ zeroBefore( dias ) }` : '';
+        const textoHoras = textoDias || horas > 0 ? `Horas: ${ zeroBefore( horas ) }` : '';
+        const textoMinutos = textoHoras || minutos > 0 ? `Minutos: ${ zeroBefore( minutos ) }` : '';
+        const textoSegundos = textoMinutos || segundos > 0 ? `Segundos: ${ zeroBefore( segundos ) }` : '';
 
 
         if ( textoMeses ) {

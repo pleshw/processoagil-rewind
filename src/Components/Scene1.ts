@@ -1,12 +1,16 @@
 import { Scene } from '../Scene/Scene.js';
 import { SceneScaffold } from '../Scene/SceneScaffold.js';
+import { clamp } from '../utils.js';
 
+declare const $: any;
+declare const fitText: any;
 declare const anime: any;
 
 export class Scene1 extends Scene {
   usuarioJaViu: boolean = false;
 
   logo: HTMLElement = document.getElementById( 'logoScene1' )!;
+  introTextContainer: HTMLElement = document.getElementById( 'introTextContainer' )!;
   introText1: HTMLElement = document.getElementById( 'introText1' )!;
   introText2: HTMLElement = document.getElementById( 'introText2' )!;
   introText: HTMLElement = document.getElementById( 'introText' )!;
@@ -20,9 +24,11 @@ export class Scene1 extends Scene {
     ocorrencias: 0
   };
 
+  totalOcorrencias: number;
+
   constructor( scaffold: SceneScaffold, numOcorrencias: number ) {
     super( scaffold );
-    this.numOcorrencias.ocorrencias = numOcorrencias;
+    this.totalOcorrencias = numOcorrencias;
   }
 
   render(): void {
@@ -52,7 +58,7 @@ export class Scene1 extends Scene {
           duration: 300,
           easing: 'linear'
         },
-      }, "+=3500" )
+      }, "+=0.2300" )
       .add( {
         targets: this.introText2,
         opacity: {
@@ -60,7 +66,7 @@ export class Scene1 extends Scene {
           duration: 300,
           easing: 'linear'
         },
-      }, "+=1000" )
+      }, "+=0.1000" )
       .add( {
         targets: this.introText2,
         opacity: {
@@ -68,7 +74,7 @@ export class Scene1 extends Scene {
           duration: 300,
           easing: 'linear'
         },
-      }, "+=3500" )
+      }, "+=0.3500" )
       .add( {
         targets: this.introText,
         opacity: {
@@ -79,10 +85,15 @@ export class Scene1 extends Scene {
         complete: () => {
           this.animateControls();
           this.animateLogo();
-          this.animateOcorrencias();
+
           this.animateVerMais();
+          setTimeout( () => {
+            $( this.introTextContainer ).fadeOut( () => {
+              this.animateOcorrencias();
+            } );
+          }, 100 );
         }
-      }, "+=1000" );
+      }, "+=0.1000" );
   }
 
 
@@ -99,11 +110,6 @@ export class Scene1 extends Scene {
         duration: 300,
         easing: 'linear'
       },
-      translateY: {
-        value: -130,
-        duration: 400,
-        easing: 'linear'
-      }
     } )
 
     timeline
@@ -114,21 +120,20 @@ export class Scene1 extends Scene {
           value: 1,
           duration: 300,
           easing: 'linear'
-        },
-        translateY: {
-          value: -150,
-          duration: 400,
-          easing: 'linear'
         }
       } )
       .add( {
         targets: this.numOcorrencias,
-        ocorrencias: 100000,
+        ocorrencias: () => this.totalOcorrencias,
         round: 1,
-        duration: 7000,
+        duration: 8000,
+        easing: 'linear',
         update: () => {
-          this.movCounter.innerHTML = this.numOcorrencias.ocorrencias.toString();
-          this.movCounter.style.scale = `${ this.numOcorrencias.ocorrencias / 1000 }px`;
+          this.movCounterContainer.innerHTML = this.numOcorrencias.ocorrencias.toString();
+          const scaleFactor = this.numOcorrencias.ocorrencias / this.totalOcorrencias;
+
+          this.movCounterContainer.style.transform = `scale(${ clamp( scaleFactor, 0.1, 1 ) })`;
+          fitText( this.movCounterContainer, clamp( 1 - scaleFactor, 0.4, 1 ) );
         }
       } );
 
@@ -171,7 +176,7 @@ export class Scene1 extends Scene {
   animateControls() {
     anime( {
       targets: this.sceneControls,
-      delay: 800,
+      delay: 0,
       translateX: {
         value: '-7vw',
         duration: 300,

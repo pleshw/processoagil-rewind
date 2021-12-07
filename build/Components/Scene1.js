@@ -1,9 +1,11 @@
 import { Scene } from '../Scene/Scene.js';
+import { clamp } from '../utils.js';
 export class Scene1 extends Scene {
     constructor(scaffold, numOcorrencias) {
         super(scaffold);
         this.usuarioJaViu = false;
         this.logo = document.getElementById('logoScene1');
+        this.introTextContainer = document.getElementById('introTextContainer');
         this.introText1 = document.getElementById('introText1');
         this.introText2 = document.getElementById('introText2');
         this.introText = document.getElementById('introText');
@@ -15,7 +17,7 @@ export class Scene1 extends Scene {
         this.numOcorrencias = {
             ocorrencias: 0
         };
-        this.numOcorrencias.ocorrencias = numOcorrencias;
+        this.totalOcorrencias = numOcorrencias;
     }
     render() {
         if (!this.usuarioJaViu)
@@ -41,7 +43,7 @@ export class Scene1 extends Scene {
                 duration: 300,
                 easing: 'linear'
             },
-        }, "+=3500")
+        }, "+=0.2300")
             .add({
             targets: this.introText2,
             opacity: {
@@ -49,7 +51,7 @@ export class Scene1 extends Scene {
                 duration: 300,
                 easing: 'linear'
             },
-        }, "+=1000")
+        }, "+=0.1000")
             .add({
             targets: this.introText2,
             opacity: {
@@ -57,7 +59,7 @@ export class Scene1 extends Scene {
                 duration: 300,
                 easing: 'linear'
             },
-        }, "+=3500")
+        }, "+=0.3500")
             .add({
             targets: this.introText,
             opacity: {
@@ -68,10 +70,14 @@ export class Scene1 extends Scene {
             complete: () => {
                 this.animateControls();
                 this.animateLogo();
-                this.animateOcorrencias();
                 this.animateVerMais();
+                setTimeout(() => {
+                    $(this.introTextContainer).fadeOut(() => {
+                        this.animateOcorrencias();
+                    });
+                }, 100);
             }
-        }, "+=1000");
+        }, "+=0.1000");
     }
     animateOcorrencias() {
         let timeline = anime.timeline({
@@ -85,11 +91,6 @@ export class Scene1 extends Scene {
                 duration: 300,
                 easing: 'linear'
             },
-            translateY: {
-                value: -130,
-                duration: 400,
-                easing: 'linear'
-            }
         });
         timeline
             .add({
@@ -99,21 +100,19 @@ export class Scene1 extends Scene {
                 value: 1,
                 duration: 300,
                 easing: 'linear'
-            },
-            translateY: {
-                value: -150,
-                duration: 400,
-                easing: 'linear'
             }
         })
             .add({
             targets: this.numOcorrencias,
-            ocorrencias: 100000,
+            ocorrencias: () => this.totalOcorrencias,
             round: 1,
-            duration: 7000,
+            duration: 8000,
+            easing: 'linear',
             update: () => {
-                this.movCounter.innerHTML = this.numOcorrencias.ocorrencias.toString();
-                this.movCounter.style.scale = `${this.numOcorrencias.ocorrencias / 1000}px`;
+                this.movCounterContainer.innerHTML = this.numOcorrencias.ocorrencias.toString();
+                const scaleFactor = this.numOcorrencias.ocorrencias / this.totalOcorrencias;
+                this.movCounterContainer.style.transform = `scale(${clamp(scaleFactor, 0.1, 1)})`;
+                fitText(this.movCounterContainer, clamp(1 - scaleFactor, 0.4, 1));
             }
         });
     }
@@ -152,7 +151,7 @@ export class Scene1 extends Scene {
     animateControls() {
         anime({
             targets: this.sceneControls,
-            delay: 800,
+            delay: 0,
             translateX: {
                 value: '-7vw',
                 duration: 300,

@@ -36,6 +36,27 @@ body {
   color: transparent;
 }
 
+.divPubAndExp:nth-of-type(1) {
+  animation: floating1 5s infinite;
+  -webkit-animation-delay: 3s;
+  animation-delay: 3s;
+  display: none;
+}
+
+.divPubAndExp:nth-of-type(2) {
+  animation: floating1 5s infinite;
+  -webkit-animation-delay: 7s;
+  animation-delay: 7s;
+  display: none;
+}
+
+.divPubAndExp:nth-of-type(3) {
+  animation: floating1 5s infinite;
+  -webkit-animation-delay: 11s;
+  animation-delay: 11s;
+  display: none;
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -44,28 +65,39 @@ body {
 #qtdPublicacoes {
   opacity: 0;
   left: 14vw;
-  bottom: 60%;
-  background: #4C061D;
+  bottom: 50%;
   font-weight: bold;
   border-radius: 9px;
 }
 
 #qtdAndamentos {
   opacity: 0;
-  bottom: 33%;
-  right: 2vw;
-  background: #D17A22;
+  bottom: 17%;
+  right: 11vw;
+  background-color: #20c997;
   font-weight: bold;
   border-radius: 9px;
 }
 
+
 #qtdExpedientes {
   opacity: 0;
-  left: 2vw;
-  bottom: 6%;
-  background: #B4C292;
+  left: 45vw;
+  bottom: 34%;
   font-weight: bold;
   border-radius: 9px;
+}
+
+
+#tituloCenaPubAndExp {
+  position: absolute;
+  opacity: 1;
+  top: 3%;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  align-self: center;
 }
 
 section.scene {
@@ -172,7 +204,7 @@ section.scene {
   justify-content: center;
   flex-direction: column;
   width: 90px;
-  z-index: 100;
+  z-index: 999;
 }
 
 #funcionarioMes, #listaVipTitulo {
@@ -180,7 +212,11 @@ section.scene {
   margin: 0;
   position: absolute;
   font-size: 2em;
+  filter: brightness(5);
+  font-weight: bold;
 }
+
+
 
 #funcionarioMesDescricao, #listaVipDescricao {
   top: 90px;
@@ -293,13 +329,27 @@ section.scene {
 
 #ocorrenciasCounterContainer {
   width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
+  padding-top: 5vh;
 }
 
 #numMovContainer {
-  top: 200px;
   opacity: 0;
-  width: 100%;
+  width: 100% !important;
+  top: 30px;
+  margin: 0 !important;
+  color: blue;
+  font-weight: bolder;
+  height: 100% !important;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 #numMovimentacoesScene1 {
@@ -309,9 +359,8 @@ section.scene {
 }
 
 #numMovimentacoesScene1Text {
-  position: absolute;
   opacity: 0;
-  top: 150px;
+  top: 40px;
   width: 100% !important;
   left: 0;
 }
@@ -404,7 +453,6 @@ section.scene {
 /* Cena 3 */
 
 #tempoEconomizado {
-  border-right: 1px solid darkblue;
   width: 100%;
   transition: all 0.3s;
   max-width: 100%;
@@ -432,8 +480,40 @@ section.scene {
 #estimativasTempo>.card {
   height: 90%;
   width: 90%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
+
+#estimativasTempo .card-title {}
+
+.card-title span {
+  font-size: 2rem !important;
+}
+
+@keyframes floating1 {
+  from {
+    transform: translateX(0px) translateY(0px);
+  }
+
+  25% {
+    transform: translateX(0px) translateY(15px);
+  }
+
+  50% {
+    transform: translateX(0px) translateY(0px);
+  }
+
+  75% {
+    transform: translateX(0px) translateY(15px);
+  }
+
+  to {
+    transform: translateX(0px) translateY(0px);
+  }
+}
 
 .justify-around {
   justify-content: space-around;
@@ -457,7 +537,7 @@ section.scene {
   animation: RotateIn 1.2s;
   opacity: 1;
   margin: 0;
-  font-family: 'Teko', sans-serif;
+  font-weight: lighter;
   user-select: none;
 }
 
@@ -473,6 +553,7 @@ section.scene {
   padding-top: 2em;
   width: 55%;
   bottom: 5%;
+  left: 0;
   position: absolute;
 }
 
@@ -522,7 +603,7 @@ section.scene {
   animation-direction: alternate;
 } */
 
-h1.spotlight {
+h1.spotlight, span.spotlight {
   font-family: 'Teko', sans-serif;
   text-transform: uppercase;
   font-size: 12rem;
@@ -546,30 +627,42 @@ h1.spotlight {
   color: #000;
 }
 
-h1.spotlight:before {
+
+
+h1.spotlight:before, .spotlight:before {
   content: attr(data-text);
   position: absolute;
-  background: linear-gradient(-120deg, #ba0c2f, #ffcd00, #c9c9c9);
+  background: #509988;
+  font-size: 5em;
   filter: brightness(1.9);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   background-size: 100% 90%;
-  bottom: 0.15em;
+  animation: gradientAnim 8s ease infinite;
   line-height: 0.9;
-  clip-path: ellipse(120px 120px at -2.54% -9.25%);
-  animation: swing 5s infinite;
   animation-direction: alternate;
+}
+
+.spotlight.up:before {
+  top: -2em;
+}
+
+.spotlight.down:before {
+  bottom: -1em;
 }
 
 
 
 @keyframes RotateIn {
   0% {
-    transform: rotate3d(-1, 0, -0.05, 46deg);
+    transform: rotate3d(-1, 0, -0.05, 15deg);
+    opacity: 0;
   }
 
   100% {
     transform: rotate3d(0);
+    opacity: 1;
   }
 }
 

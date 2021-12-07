@@ -9,149 +9,101 @@ export class Scene2 extends Scene {
     }
     render() {
         if (!this.usuarioJaViu)
-            this.animatePodio();
+            this.animatePubAndExp();
         this.usuarioJaViu = true;
     }
-    animatePodio() {
+    animatePubAndExp() {
+        anime.suspendWhenDocumentHidden = false;
         let timeline = anime.timeline({
             easing: 'easeOutExpo',
         });
+        this.divQtdPublicacoes.style.display = 'flex';
+        this.divQtdAndamentos.style.display = 'flex';
+        this.divQtdExpedientes.style.display = 'flex';
         timeline
-            .add({
-            targets: this.divQtdPublicacoes,
-            translateX: [
+            .add(Object.assign(Object.assign({ targets: this.divQtdPublicacoes, translateX: [
                 { value: 800, duration: 1000, delay: 500 },
                 { value: 0, duration: 1000, delay: 500 }
-            ],
-            width: [
-                { value: 48, duration: 3000, delay: 500 },
-                { value: '35vw', duration: 500, delay: 0 }
-            ],
-            height: [
-                { value: 48, duration: 3000, delay: 500 },
-                { value: '23%', duration: 500, delay: 0 }
-            ],
-            borderRadius: [
+            ] }, this.windowDimensions()), { borderRadius: [
                 { value: '50%', duration: 2000, delay: 500 },
                 { value: '9px', duration: 500, delay: 0 },
-            ],
-            translateY: [
+            ], translateY: [
                 { value: 900, duration: 500 },
                 { value: 0, duration: 500, delay: 1000 }
-            ],
-            scaleX: [
+            ], scaleX: [
                 { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
                 { value: 1, duration: 900 },
                 { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
                 { value: 1, duration: 900 }
-            ],
-            scaleY: [
+            ], scaleY: [
                 { value: [1.75, 1], duration: 500 },
                 { value: 2, duration: 50, delay: 1000, easing: 'easeOutExpo' },
                 { value: 1, duration: 450 },
                 { value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
                 { value: 1, duration: 450 }
-            ],
-            opacity: [{ value: 1, duration: 300, easing: 'linear' }],
-            easing: 'easeOutElastic(1, .8)',
-            begin: () => {
-                this.scaffold.element.style.backgroundColor = '#212529';
-            },
-            complete: () => {
+            ], opacity: [{ value: 1, duration: 300, easing: 'linear' }], easing: 'easeOutElastic(1, .8)', complete: () => {
                 this.divQtdPublicacoes.style.color = 'white';
-            }
-        })
-            .add({
-            targets: this.divQtdAndamentos,
-            translateX: [
+            } }))
+            .add(Object.assign(Object.assign({ targets: this.divQtdAndamentos, translateX: [
                 { value: -800, duration: 1000, delay: 500 },
                 { value: 0, duration: 1000, delay: 500 }
-            ],
-            width: [
-                { value: 48, duration: 3000, delay: 500 },
-                { value: '35vw', duration: 500, delay: 0 }
-            ],
-            height: [
-                { value: 48, duration: 3000, delay: 500 },
-                { value: '23%', duration: 500, delay: 0 }
-            ],
-            borderRadius: [
+            ] }, this.windowDimensions()), { borderRadius: [
                 { value: '50%', duration: 2000, delay: 500 },
                 { value: '9px', duration: 500, delay: 0 },
-            ],
-            translateY: [
+            ], translateY: [
                 { value: 900, duration: 500 },
                 { value: 40, duration: 500, delay: 1000 },
                 { value: 0, duration: 500, delay: 1000 }
-            ],
-            scaleX: [
+            ], scaleX: [
                 { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
                 { value: 1, duration: 900 },
                 { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
                 { value: 1, duration: 900 }
-            ],
-            scaleY: [
+            ], scaleY: [
                 { value: [1, 1], duration: 500 },
                 { value: 1, duration: 50, delay: 1000, easing: 'easeOutExpo' },
                 { value: 1, duration: 450 },
                 { value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
                 { value: 1, duration: 450 }
-            ],
-            opacity: [{ value: 1, duration: 300, easing: 'linear' }],
-            easing: 'easeOutElastic(1, .8)',
-            begin: () => {
-                this.scaffold.element.style.backgroundColor = '#dc3545';
-            },
-            complete: () => {
+            ], opacity: [{ value: 1, duration: 300, easing: 'linear' }], easing: 'easeOutElastic(1, .8)', complete: () => {
                 this.divQtdAndamentos.style.color = 'white';
-            }
-        })
-            .add({
-            targets: this.divQtdExpedientes,
-            translateX: [
+            } }))
+            .add(Object.assign(Object.assign({ targets: this.divQtdExpedientes, translateX: [
                 { value: 800, duration: 1000, delay: 500 },
                 { value: 0, duration: 1000, delay: 500 }
-            ],
-            width: [
-                { value: 48, duration: 3000, delay: 500 },
-                { value: '35vw', duration: 500, delay: 0 }
-            ],
-            height: [
-                { value: 48, duration: 3000, delay: 500 },
-                { value: '23%', duration: 500, delay: 0 }
-            ],
-            borderRadius: [
+            ] }, this.windowDimensions()), { borderRadius: [
                 { value: '50%', duration: 2000, delay: 500 },
                 { value: '9px', duration: 500, delay: 0 },
-            ],
-            translateY: [
+            ], translateY: [
                 { value: 900, duration: 500 },
                 { value: 40, duration: 500, delay: 1000 },
                 { value: 0, duration: 500, delay: 1000 }
-            ],
-            scaleX: [
+            ], scaleX: [
                 { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
                 { value: 1, duration: 900 },
                 { value: 4, duration: 100, delay: 500, easing: 'easeOutExpo' },
                 { value: 1, duration: 900 }
-            ],
-            scaleY: [
+            ], scaleY: [
                 { value: [1, 1], duration: 500 },
                 { value: 1, duration: 50, delay: 1000, easing: 'easeOutExpo' },
                 { value: 1, duration: 450 },
                 { value: 1.75, duration: 50, delay: 1000, easing: 'easeOutExpo' },
                 { value: 1, duration: 450 }
-            ],
-            opacity: [{ value: 1, duration: 300, easing: 'linear' }],
-            easing: 'easeOutElastic(1, .8)',
-            begin: () => {
-                this.scaffold.element.style.backgroundColor = '#0d6efd';
-            },
-            complete: () => {
+            ], opacity: [{ value: 1, duration: 300, easing: 'linear' }], easing: 'easeOutElastic(1, .8)', complete: () => {
                 this.divQtdExpedientes.style.color = 'white';
-                this.scaffold.element.style.backgroundColor = '#ffc107';
-            }
-        });
+            } }));
+    }
+    windowDimensions() {
+        return {
+            width: [
+                { value: 48, duration: 3000, delay: 500 },
+                { value: '15vw', duration: 500, delay: 0 }
+            ],
+            height: [
+                { value: 48, duration: 3000, delay: 500 },
+                { value: '25%', duration: 500, delay: 0 }
+            ]
+        };
     }
     hide() {
     }

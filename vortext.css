@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+}
+
+.pen {
+  padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  transform: skew(19deg,
+      350deg);
+}
+
+.stage {
+  margin: auto;
+  padding: 1px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  perspective-origin: center;
+  transform-style: preserve-3d;
+}
+
+.stage::after {
+  left: auto;
+  right: 17%;
+  background-image: linear-gradient(to left, black, rgba(0, 0, 0, 0));
+}
+
+.vortext~.vortext {
+  margin-top: 0px;
+}
+
+.vortext {
+  position: relative;
+  text-align: center;
+  transform-style: preserve-3d;
+}
+
+.vortext::before {
+  content: "A";
+  font-size: 140px;
+  color: transparent;
+  pointer-events: none;
+}
+
+.vortext:first-child~* {
+  margin-top: -30px;
+}
+
+.vortextRibbon {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  bottom: 0;
+  width: 314.15%;
+  transform-style: preserve-3d;
+  transform-origin: center;
+}
+
+.vortextRibbon::after {
+  content: attr(data-text);
+  position: absolute;
+  font-size: 15rem;
+  color: transparent;
+  background: linear-gradient(-45deg, #6f4032, #6f1f3e, #193038, #509988);
+  filter: brightness(1.9);
+  color: transparent;
+  background-size: 400% 400%;
+  bottom: 0.15em;
+  line-height: 0.9;
+  animation-direction: alternate;
+  animation: gradientAnim 8s ease infinite;
+}
+
+
+
+
+
+@keyframes gradientAnim {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+.transitionEnabled {
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1.5) 10s;
+}
+
+.letterWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 100%;
+  width: auto;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.letter {
+  display: inline-block;
+  color: #fff;
+  font-size: 0;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.letter>span {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transform: translateZ(625px);
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-size: 160px;
+  font-weight: 800;
+  text-transform: uppercase;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
