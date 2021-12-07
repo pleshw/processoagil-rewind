@@ -430,8 +430,8 @@ section.scene {
 }
 
 #estimativasTempo>.card {
-  height: 33%;
-  width: 40%;
+  height: 90%;
+  width: 90%;
 }
 
 
@@ -571,6 +571,13 @@ h1.spotlight:before {
   100% {
     transform: rotate3d(0);
   }
+}
+
+#introTextScene3d {
+  margin-top: 0;
+  margin-bottom: -5.5rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 @keyframes TranslateIn {

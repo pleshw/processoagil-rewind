@@ -47,6 +47,11 @@ export function animacaoBarraProgresso(progressDivCssElement, progressDivCssAttr
     }, 1000 / fpsAnimacao));
 }
 export function smoothScrollTo(pos) {
+    window.scrollTo({
+        top: pos,
+        behavior: 'smooth',
+    });
+    return 0;
     const interval = setInterval(() => {
         const distance = Math.abs(window.scrollY - pos);
         if (distance > 20) {

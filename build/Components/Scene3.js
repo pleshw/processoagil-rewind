@@ -57,11 +57,11 @@ export class Scene3 extends Scene {
                 const horas = +strDateSplitted[2];
                 const minutos = +strDateSplitted[3];
                 const segundos = +strDateSplitted[4];
-                const textoMeses = meses > 0 ? `${zeroBefore(meses)} mes${(meses > 1 || meses === 0) ? 'es' : ''}` : '';
-                const textoDias = textoMeses || dias > 0 ? `${zeroBefore(dias)} dia${(dias > 1 || dias === 0) ? 's' : ''}` : '';
-                const textoHoras = textoDias || horas > 0 ? `${zeroBefore(horas)} hora${(horas > 1 || horas === 0) ? 's' : ''}` : '';
-                const textoMinutos = textoHoras || minutos > 0 ? `${zeroBefore(minutos)} minuto${(minutos > 1 || minutos === 0) ? 's' : ''}` : '';
-                const textoSegundos = textoMinutos || segundos > 0 ? `${zeroBefore(segundos)} segundo${(segundos > 1 || segundos === 0) ? 's' : ''}` : '';
+                const textoMeses = meses > 0 ? `Mes${(meses > 1 || meses === 0) ? 'es' : ''}: ${zeroBefore(meses)}` : '';
+                const textoDias = textoMeses || dias > 0 ? `Dia${(dias > 1 || dias === 0) ? 's' : ''}: ${zeroBefore(dias)}` : '';
+                const textoHoras = textoDias || horas > 0 ? `hora${(horas > 1 || horas === 0) ? 's' : ''}: ${zeroBefore(horas)}` : '';
+                const textoMinutos = textoHoras || minutos > 0 ? `Minuto${(minutos > 1 || minutos === 0) ? 's' : ''}: ${zeroBefore(minutos)}` : '';
+                const textoSegundos = textoMinutos || segundos > 0 ? `Segundo${(segundos > 1 || segundos === 0) ? 's' : ''}: ${zeroBefore(segundos)}` : '';
                 if (textoMeses) {
                     this.mesesEconomizados.style.display = 'flex';
                     this.mesesEconomizados.innerHTML = `${textoMeses}`;
