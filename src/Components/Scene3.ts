@@ -7,6 +7,7 @@ declare const anime: any;
 export class Scene3 extends Scene {
   usuarioJaViu: boolean = false;
 
+  anosEconomizados: HTMLElement = document.getElementById( 'anosEconomizados' )!;
   mesesEconomizados: HTMLElement = document.getElementById( 'mesesEconomizados' )!;
   diasEconomizados: HTMLElement = document.getElementById( 'diasEconomizados' )!;
   horasEconomizados: HTMLElement = document.getElementById( 'horasEconomizados' )!;
@@ -70,23 +71,30 @@ export class Scene3 extends Scene {
       update: () => {
         const strDateSplitted = new Date( this.customerTime.saved )
           .toISOString()
-          .substr( 5, 14 )
-          .replace( 'T', ':' )
-          .replace( '-', ':' )
+          .substr( 0, 19 )
+          .replaceAll( 'T', ':' )
+          .replaceAll( '-', ':' )
           .split( ':' );
 
-        const meses = +strDateSplitted[0] - 1;
-        const dias = +strDateSplitted[1] - 1;
-        const horas = +strDateSplitted[2];
-        const minutos = +strDateSplitted[3];
-        const segundos = +strDateSplitted[4];
+        const anos = +strDateSplitted[0] - 1970;
+        const meses = +strDateSplitted[1] - 1;
+        const dias = +strDateSplitted[2] - 1;
+        const horas = +strDateSplitted[3];
+        const minutos = +strDateSplitted[4];
+        const segundos = +strDateSplitted[5];
 
-        const textoMeses = meses > 0 ? `Meses: ${ zeroBefore( meses ) }` : '';
+        const textoAnos = meses > 0 ? `Anos: ${ zeroBefore( anos ) }` : '';
+        const textoMeses = textoAnos || meses > 0 ? `Meses: ${ zeroBefore( meses ) }` : '';
         const textoDias = textoMeses || dias > 0 ? `Dias: ${ zeroBefore( dias ) }` : '';
         const textoHoras = textoDias || horas > 0 ? `Horas: ${ zeroBefore( horas ) }` : '';
         const textoMinutos = textoHoras || minutos > 0 ? `Minutos: ${ zeroBefore( minutos ) }` : '';
         const textoSegundos = textoMinutos || segundos > 0 ? `Segundos: ${ zeroBefore( segundos ) }` : '';
 
+
+        if ( textoAnos ) {
+          this.anosEconomizados.style.display = 'flex';
+          this.anosEconomizados.innerHTML = `${ textoAnos }`;
+        }
 
         if ( textoMeses ) {
           this.mesesEconomizados.style.display = 'flex';

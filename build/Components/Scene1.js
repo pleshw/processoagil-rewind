@@ -36,6 +36,9 @@ export class Scene1 extends Scene {
                 duration: 300,
                 easing: 'linear'
             },
+            begin: () => {
+                this.introText1.style.display = 'flex';
+            }
         }).add({
             targets: this.introText1,
             opacity: {
@@ -43,7 +46,7 @@ export class Scene1 extends Scene {
                 duration: 300,
                 easing: 'linear'
             },
-        }, "+=0.2300")
+        }, "+=2000")
             .add({
             targets: this.introText2,
             opacity: {
@@ -51,7 +54,10 @@ export class Scene1 extends Scene {
                 duration: 300,
                 easing: 'linear'
             },
-        }, "+=0.1000")
+            begin: () => {
+                this.introText2.style.display = 'flex';
+            }
+        }, "+=2000")
             .add({
             targets: this.introText2,
             opacity: {
@@ -59,13 +65,16 @@ export class Scene1 extends Scene {
                 duration: 300,
                 easing: 'linear'
             },
-        }, "+=0.3500")
+        }, "+=2500")
             .add({
             targets: this.introText,
             opacity: {
                 value: 1,
                 duration: 100,
                 easing: 'linear'
+            },
+            begin: () => {
+                this.introText.style.display = 'flex';
             },
             complete: () => {
                 this.animateControls();
@@ -77,7 +86,7 @@ export class Scene1 extends Scene {
                     });
                 }, 100);
             }
-        }, "+=0.1000");
+        }, "+=2000");
     }
     animateOcorrencias() {
         let timeline = anime.timeline({

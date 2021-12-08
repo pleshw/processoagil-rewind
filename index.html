@@ -18,9 +18,6 @@
   <main>
 
     <section class="scene">
-      <div class="intro">
-
-      </div>
       <div class="content">
         <div class="absolute-0 w-100 h-100 flex-row flex-start">
           <img id="logoScene1" class="" src="assets/logo.png" alt="">
@@ -58,19 +55,19 @@
         <div id="qtdPublicacoes" class="card bg-primary mb-3 divPubAndExp">
           <div class="card-header">Publicações</div>
           <div class="card-body p-0 flex-center">
-            <h5 class="card-title"><span>40</span></h5>
+            <h5 class="card-title"><span id="spanTotalPublicacoes"></span></h5>
           </div>
         </div>
-        <div id="qtdAndamentos" class="card border-1 border-white mb-3 divPubAndExp">
+        <div id="qtdAndamentos" class="card mb-3 divPubAndExp">
           <div class="card-header">Andamentos</div>
           <div class="card-body p-0 flex-center">
-            <h5 class="card-title"><span>55</span></h5>
+            <h5 class="card-title"><span id="spanTotalAndamentos"></span></h5>
           </div>
         </div>
         <div id="qtdExpedientes" class="card bg-danger mb-3 divPubAndExp">
           <div class="card-header">Expedientes</div>
           <div class="card-body p-0 flex-center">
-            <h5 class="card-title"><span>19</span></h5>
+            <h5 class="card-title"><span id="spanTotalExpedientes"></span></h5>
           </div>
         </div>
       </div>
@@ -82,6 +79,7 @@
           <h3 class="m-3">Esse é o tempo que você economizou esse ano por usar nosso sistema
           </h3>
           <div style="height: 23em;" class="text-primary">
+            <h1 id="anosEconomizados"></h1>
             <h1 id="mesesEconomizados"></h1>
             <h1 id="diasEconomizados"></h1>
             <h1 id="horasEconomizados"></h1>
@@ -107,7 +105,7 @@
                   <img src="assets/filme.gif" class="card-img" alt="...">
                   <div class="card-img-overlay">
                     <h5 class="card-title">Dá pra assistir
-                      <span id="tempoParaFilme">2</span>
+                      <span id="tempoParaFilme"></span>
                       filmes bem demorados
                     </h5>
                   </div>
@@ -116,7 +114,7 @@
                   <img src="assets/musica.gif" class="card-img" alt="...">
                   <div class="card-img-overlay">
                     <h5 class="card-title">Que tal ouvir
-                      <span id="tempoParaMusica">2</span>
+                      <span id="tempoParaMusica"></span>
                       musicas
                     </h5>
                   </div>
@@ -125,7 +123,7 @@
                   <img src="assets/futebol.gif" class="card-img" alt="...">
                   <div class="card-img-overlay">
                     <h5 class="card-title">Dava para jogar
-                      <span id="tempoParaFutebol">2</span>
+                      <span id="tempoParaFutebol"></span>
                       partidas de futebol
                     </h5>
                   </div>
@@ -137,17 +135,24 @@
       </div>
     </section>
 
-    <section class="scene bg-black">
+    <section class="scene bg-black bg-gradient">
       <div class="content flex-col flex-center">
         <h1 id="listaVipTitulo" class="text-light">Clientes VIP</h1>
+        <div id="listaVipInfoValor" class="text-white"><span id="listaVipNomeValor"></span> é o seu clientecom maior
+          valor da causa de processos.
+        </div>
+        <div id="listaVipInfoProcessos" class="text-white"><span id="listaVipNomeProcessos"></span> é o seu cliente com
+          maior numero de processos
+          distribuidos.</div>
+
         <div id="clientesVipContainer" class="flex-col justify-around align-center grid">
           <div class="pen">
             <div class="stage">
               <div class="vortext">
-                <div data-text="Francisco" class="vortextRibbon down">Francisco</div>
+                <div data-text="" id="listaVipValor" class="vortextRibbon down"></div>
               </div>
               <div class="vortext">
-                <div data-text="Irene" class="vortextRibbon spotlight up">Irene</div>
+                <div data-text="" id="listaVipProcessos" class="vortextRibbon spotlight up"></div>
               </div>
             </div>
           </div>
@@ -169,21 +174,21 @@
           </h2>
         </div>
         <div id="prediosContainerScene2" class="flex-row flex-center">
-          <div id="divPredioPublicacoes">
+          <div id="divPredioPublicacoes" class="bg-success">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario3">3º lugar</span>
               <img id="fotoFuncionario3" class="foto-funcionario" src="assets/pikachu-3.jfif" alt="">
             </div>
             <span id="nomeFuncionario3" class="texto-funcionario3">Pikachu Sonolento Cansado</span>
           </div>
-          <div id="divPredioAndamentos">
+          <div id="divPredioAndamentos" class="bg-warning">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario1">1º lugar</span>
               <img id="fotoFuncionario1" class="foto-funcionario spotlight" src="assets/pikachu-1.jpg" alt="">
             </div>
             <span id="nomeFuncionario1" class="texto-funcionario1">Pikachu Inacio Lula da Silva</span>
           </div>
-          <div id="divPredioExpedientes">
+          <div id="divPredioExpedientes" class="bg-danger">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario2">2º lugar</span>
               <img id="fotoFuncionario2" class="foto-funcionario" src="assets/pikachu-2.jpg" alt="">
@@ -237,20 +242,46 @@
 
       const scaffolds = document.querySelectorAll('.scene');
 
+      const userData = fetchUserData();
+      console.log(userData)
 
       SceneView.createControllers();
 
-      SceneView.addScene(new Scene1(new SceneScaffold(scaffolds[0]), minutesToMilliseconds(6372000)), scrollMagicIndicatorsController);
+      SceneView.addScene(new Scene1(new SceneScaffold(scaffolds[0]), userData.totalPub + userData.totalAnd + userData.totalExp), scrollMagicIndicatorsController);
 
+      /// Cena 2
+      document.getElementById('spanTotalPublicacoes').innerHTML = userData.totalPub;
+      document.getElementById('spanTotalAndamentos').innerHTML = userData.totalAnd;
+      document.getElementById('spanTotalExpedientes').innerHTML = userData.totalExp;
       SceneView.addScene(new Scene2(new SceneScaffold(scaffolds[1])), scrollMagicIndicatorsController);
 
-      SceneView.addScene(new Scene3(new SceneScaffold(scaffolds[2]), 1.22e+9), scrollMagicIndicatorsController);
+      SceneView.addScene(new Scene3(new SceneScaffold(scaffolds[2]), minutesToMilliseconds(userData.tempoEconomizado)), scrollMagicIndicatorsController);
+
+
+      /// Cena 9
+      const nomeMaiorCausa = userData.clienteComMaiorCausa;
+      let maiorCausaSplit = nomeMaiorCausa.split(' ').slice(0, 2);
+      let maiorCausa3D = maiorCausaSplit.filter(Boolean).join(" ");
+
+      document.getElementById('listaVipValor').innerHTML = maiorCausa3D;
+      document.getElementById('listaVipValor').setAttribute('data-text', nomeMaiorCausa);
+      document.getElementById('listaVipNomeValor').innerHTML = nomeMaiorCausa;
+
+      const nomeMaisProcessos = userData.clientesComMaisProcessos.sort(c => c.total).reverse()[0].nome;
+      let maisProcessosSplit = nomeMaisProcessos.split(' ').slice(0, 2);;
+      let maisProcessos3D = maisProcessosSplit.filter(Boolean).join(" ");
+
+      document.getElementById('listaVipProcessos').innerHTML = maisProcessos3D;
+      document.getElementById('listaVipProcessos').setAttribute('data-text', nomeMaisProcessos);
+      document.getElementById('listaVipNomeProcessos').innerHTML = nomeMaisProcessos;
 
       SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[3])), scrollMagicIndicatorsController);
+
 
       SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[4]), scrollMagicIndicatorsController));
 
       SceneView.updateControllers();
+
 
       const progressDivCss = new CSSAttributes({
         width: `100%`,
@@ -313,8 +344,27 @@
       animate();
       setInterval(() => {
         animate();
-      }, 10000);
+      }, 12000);
     })
+
+
+    function fetchUserData() {
+      return {
+        "usuarioRaiz": "567af06d-d133-46c0-afa1-04815fb7a9c5",
+        "totalPub": 1471,
+        "totalOc": 40742,
+        "totalAnd": 39271,
+        "totalExp": 0,
+        "tempoEconomizado": 6372000,
+        "distribuido2021": 109, "crescimento2021": 5,
+        "totalProcessosGeral": 1833,
+        "processosPorEstado": [{ "total": 5 }, { "estado": "Ceará", "total": 1 }, { "estado": "Maranhão", "total": 1 }, { "estado": "Paraíba", "total": 18 }, { "estado": "Piauí", "total": 1 }, { "estado": "Rio Grande do Norte", "total": 81 }, { "estado": "Sergipe", "total": 2 }],
+        "lifeTime": 46,
+        "clientesComMaisProcessos": [{ "cliente": "a8eaabd7-a355-4c58-a865-599f327f86e5", "nome": "PLANO URBANISMO LTDA", "total": 586 }, { "cliente": "9689afb9-6266-44c5-aa6c-5001c123247f", "nome": "Stephanie Brandão Soares", "total": 377 }, { "cliente": "a55eeeef-3c04-46cf-beee-f673c3fc643c", "nome": "VIVERDE EMPREENDIMENTOS LTDA", "total": 362 }, { "cliente": "2b12a0d9-c57a-42b6-9133-5b3930fc7e3a", "nome": "7º Ofício de Notas da Comarca de Natal", "total": 325 }, { "cliente": "9d166085-6f99-4bd6-a47a-29437c7ed50a", "nome": "CAMINHO DO ATLANTICO EMPREENDIMENTOS LTDA", "total": 294 }, { "cliente": "db341128-ad19-4224-8a79-4eb8f2d0ea68", "nome": "CIDADE VERDE LTDA", "total": 132 }, { "cliente": "082da7c0-61cb-4752-832a-8bf406182749", "nome": "Viverde SPE 1 Empreendimentos Imobiliários Ltda", "total": 100 }, { "cliente": "1f03d2f8-3dbb-4685-bdeb-3fb166b99064", "nome": "LUIS CÉLIO SOARES", "total": 40 }, { "cliente": "457070a4-7d96-437d-bc8a-29ff43ab70a3", "nome": "Viverde SPE 2 Empreendimentos Imobiliários Ltda", "total": 26 }, { "cliente": "8060cd74-7453-468e-9884-acfbe7923cd6", "nome": "Viverde SPE 4 Empreendimentos Imobiliários Ltda", "total": 18 }, { "cliente": "6c810454-aef6-4764-88bf-4667cbac538a", "nome": "Viverde Incorporações Ltda", "total": 9 }, { "cliente": "9aab91c3-8d6e-4f5d-bd93-b77605b51915", "nome": "Daniel Fernandes Matias", "total": 9 }, { "cliente": "3756196d-e8bb-4a76-a4c2-1dfcf3a064d5", "nome": "Capuche Viverde Incorporações Ltda", "total": 8 }, { "cliente": "d60b20f2-65a4-4147-b638-2c6d0ce96764", "nome": "LCS EMPREENDIMENTOS IMOBILIARIOS LTDA", "total": 8 }, { "cliente": "5983f7a0-1012-49c7-bd0f-fc40dd4ae9ba", "nome": "RIOPLANO EMPREENDIMENTOS IMOBILIARIOS LTDA", "total": 8 }, { "cliente": "a7addfd1-1c4c-4ffb-852d-040a0e987752", "nome": "Maria José Brandão Soares", "total": 5 }, { "cliente": "d6f4568b-d312-408f-b669-6205e4c54530", "nome": "LCS EMPREENDIMENTOS IMOBILIARIOS LTDA", "total": 4 }, { "cliente": "d051133e-80b5-46ed-9f26-f4eed84173fe", "nome": "LUIZ CLÁUDIO BRANDÃO SOARES", "total": 2 }, { "cliente": "9d43c1c5-1353-4550-b709-15748dff983b", "nome": "Caroline Brandão Soares Menezes", "total": 1 }, { "cliente": "68974183-4013-4338-9100-8a8acb640db9", "nome": "Thiago Cortez Meira de Medeiros", "total": 1 }],
+        "clienteComMaiorCausa": "7º Ofício de Notas da Comarca de Natal",
+        "rankingMaisAcessos": [{ "id": "df65e5f1-a097-42b9-b762-a28f18d1355d", "nome": "ADRIANO PAULO DO NASCIMENTO", "total": 156 }, { "id": "28b25947-f444-4cc2-975c-9969f9f81285", "nome": "RAISSA DA COSTA PACHECO", "total": 14 }, { "id": "79bcb1dd-cb46-49e3-ada4-970045f7540e", "nome": "ARNALDO JOSE DE FRANÇA JUNIOR", "total": 1 }, { "id": "6413d3b8-55e4-431b-9d5e-afd9027eab75", "nome": "Felipe de Macedo", "total": 1 }]
+      };
+    }
   </script>
 
 </body>

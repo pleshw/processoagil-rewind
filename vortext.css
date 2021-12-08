@@ -64,7 +64,7 @@
 .vortextRibbon::after {
   content: attr(data-text);
   position: absolute;
-  font-size: 15rem;
+  font-size: 12rem;
   color: transparent;
   background: linear-gradient(-45deg, #6f4032, #6f1f3e, #193038, #509988);
   filter: brightness(1.9);
@@ -74,29 +74,34 @@
   line-height: 0.9;
   animation-direction: alternate;
   animation: gradientAnim 8s ease infinite;
+  max-height: 200px;
 }
 
-
-
+.vortextRibbon.spotlight span {
+  opacity: 1;
+}
 
 
 @keyframes gradientAnim {
   0% {
     background-position: 0% 50%;
+    transform: skew(0deg);
   }
 
   50% {
+    transform: skew(12deg);
     background-position: 100% 50%;
   }
 
   100% {
+    transform: skew(0deg);
     background-position: 0% 50%;
   }
 }
 
 
 .transitionEnabled {
-  transition: all cubic-bezier(0.075, 0.82, 0.165, 1.5) 10s;
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1.5) 13s;
 }
 
 .letterWrap {
@@ -125,6 +130,7 @@
 }
 
 .letter>span {
+  opacity: 0;
   display: flex;
   height: 100%;
   width: 100%;

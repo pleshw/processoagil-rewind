@@ -212,11 +212,13 @@ section.scene {
   margin: 0;
   position: absolute;
   font-size: 2em;
-  filter: brightness(5);
+
   font-weight: bold;
 }
 
-
+#listaVipTitulo {
+  filter: brightness(5);
+}
 
 #funcionarioMesDescricao, #listaVipDescricao {
   top: 90px;
@@ -285,21 +287,18 @@ section.scene {
   left: 2%;
   width: 33%;
   height: 0%;
-  background-color: rgb(174, 208, 178);
 }
 
 #divPredioAndamentos {
   z-index: 60;
   left: 33%;
   height: 0%;
-  background-color: rgb(208, 175, 174);
 }
 
 #divPredioExpedientes {
   z-index: 80;
   left: 64%;
   height: 0%;
-  background-color: rgb(208, 177, 136);
 }
 
 
@@ -424,11 +423,30 @@ section.scene {
   min-width: 600px;
 }
 
+#listaVipInfoValor {
+  top: 85px;
+  left: 111px;
+}
+
+#listaVipInfoProcessos {
+  bottom: 85px;
+  right: 90px;
+}
+
+
+#listaVipInfoProcessos, #listaVipInfoValor {
+  position: absolute;
+  font-weight: bold;
+  width: 250px;
+  font-size: 22px;
+}
+
 #introText, #introText1, #introText2 {
   font-size: 3rem;
   bottom: 50px;
   animation: RotateIn 1s;
   opacity: 0;
+  display: none;
   text-align: center;
   perspective: 400px;
   margin: 0;
@@ -632,9 +650,9 @@ h1.spotlight, span.spotlight {
 h1.spotlight:before, .spotlight:before {
   content: attr(data-text);
   position: absolute;
-  background: #509988;
+  background: #193038;
   font-size: 5em;
-  filter: brightness(1.9);
+  filter: brightness(2.9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

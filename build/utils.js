@@ -27,7 +27,6 @@ export function animacaoBarraProgresso(progressDivCssElement, progressDivCssAttr
         clearInterval(intervalosBarraProgresso.get(idAnimacao));
     }
     intervalosBarraProgresso.set(idAnimacao, setInterval(() => {
-        var _a;
         const posicaoAnterior = progressDivCssAttrs.progress;
         if (posicaoAnterior === undefined)
             return;
@@ -40,7 +39,7 @@ export function animacaoBarraProgresso(progressDivCssElement, progressDivCssAttr
         else {
             if (progressDivCssAttrs !== undefined) {
                 clearInterval(intervalosBarraProgresso.get(idAnimacao));
-                progressDivCssAttrs.progress = +(((_a = progressDivCssAttrs.progress) === null || _a === void 0 ? void 0 : _a.toPrecision(3)) || 0);
+                progressDivCssAttrs.progress = +(progressDivCssAttrs.progress?.toPrecision(3) || 0);
             }
             window.requestAnimationFrame(() => CSSEditor.from(progressDivCssElement, progressDivCssAttrs));
         }

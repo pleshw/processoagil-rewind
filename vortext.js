@@ -13,22 +13,19 @@ const getAngle = (adjacentLen, oppositeLen) => {
   const hypotenuse = Math.hypot(adjacentLen, oppositeLen);
   return Math.asin(oppositeLen / hypotenuse) * 180 / Math.PI;
 }
-let angInitEl1 = 0;
-let angInitEl2 = 0;
+
 const setStyles = () => {
   stageEl.style.width = `${ DIAMETER }px`;
   stageEl.style.perspective = `${ (DIAMETER / 1.5) * 1.5 }px`;
   for (let i = 0; i < els.length; i++) {
     if (i === 0) {
-      els[i].querySelector(INNER_SELECTOR).style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 215 + 360 }deg)`;
+      els[i].querySelector(INNER_SELECTOR).style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 180 + 32 }deg)`;
       els[i].querySelector(INNER_SELECTOR).setAttribute(`inicioCostas`, true);
-      angInitEl1 = 215 + 360;
     }
 
     if (i === 1) {
       els[i].querySelector(INNER_SELECTOR).style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 32 }deg)`;
       els[i].querySelector(INNER_SELECTOR).setAttribute(`inicioFrente`, true);
-      angInitEl2 = 32;
     }
   }
 }
@@ -87,7 +84,7 @@ const animate = () => {
     const inner = els[i].querySelector(INNER_SELECTOR);
     inner.classList.add('transitionEnabled');
     const actualAngle = inner.computedStyleMap().get('transform')[1].angle.value;
-    inner.style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 180 + actualAngle }deg)`;
+    inner.style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 160 + actualAngle }deg)`;
     inner.classList.toggle('spotlight');
   }
 }
