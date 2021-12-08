@@ -3,6 +3,7 @@ export class Scene8 extends Scene {
     constructor(scaffold) {
         super(scaffold);
         this.usuarioJaViu = false;
+        this.clientesVipContainer = document.getElementById('clientesVipContainer');
     }
     render() {
         if (!this.usuarioJaViu)
@@ -10,9 +11,6 @@ export class Scene8 extends Scene {
         this.usuarioJaViu = true;
     }
     animateSpotlight() {
-        setTimeout(() => {
-            document.querySelector('.spotlight').style.display = 'flex';
-        }, 1000);
     }
     hide() {
     }

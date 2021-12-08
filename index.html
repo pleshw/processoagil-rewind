@@ -11,6 +11,7 @@
   <title>Processo Ágil</title>
   <link rel="stylesheet" href="index.css">
   <script src="lib/fittext.js"></script>
+  <script src="lib/typed.js"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
         </div>
 
         <div class="absolute-0 w-100 h-100 flex-col flex-center">
-          <div id="introTextContainer" class="flex-center w-100 introTextContainer">
+          <div id="introTextContainer" class="flex-center w-100 h-100 introTextContainer">
             <h1 id="introText1">Muita coisa rolou em 2021</h1>
             <h1 id="introText2">Trouxemos um presente e blablabla</h1>
             <h1 id="introText">Texto aquecendo para ver a retrospectiva</h1>
@@ -76,9 +77,10 @@
     <section class="scene">
       <div class="content justify-between align-center">
         <div id="tempoEconomizado" class="flex-col justify-between">
-          <h3 class="m-3">Esse é o tempo que você economizou esse ano por usar nosso sistema
-          </h3>
-          <div style="height: 23em;" class="text-primary">
+          <h4 class="m-3">Fizemos uma estimativa de quanto tempo você economizou esse ano por usar nosso sistema este
+            ano.
+          </h4>
+          <div style="height: 18em;" id="tempoEconomizadoValores" class="text-muted">
             <h1 id="anosEconomizados"></h1>
             <h1 id="mesesEconomizados"></h1>
             <h1 id="diasEconomizados"></h1>
@@ -162,9 +164,6 @@
 
 
     <section class="scene ">
-      <div class="intro">
-
-      </div>
       <div class="content">
         <div class="w-100 h-100 flex-center flex-row">
           <h1 id="funcionarioMes">Funcionário do Ano</h1>
@@ -200,8 +199,14 @@
     </section>
 
 
+    <section class="scene bg-warning">
+      <div class="content justify-between align-center text-center">
+        <div class="absolute-0 flex-center h-100 w-100">
+          <span id="mensagensFinais"></span>
+        </div>
+      </div>
+    </section>
 
-    <div class="progress" style="border-radius: 0 !important;"></div>
   </main>
 
   <script src="vortext.js"></script>
@@ -222,8 +227,6 @@
   <script type="module" src="build/CSSAttributes.js"></script>
   <script type="module" src="build/CSSEditor.js"></script>
   <script type="module">
-    import { CSSAttributes } from './build/CSSAttributes.js';
-    import { CSSEditor } from './build/CSSEditor.js';
     import { SceneScaffold } from './build/Scene/SceneScaffold.js';
     import { Scene } from './build/Scene/Scene.js';
     import { Scene1 } from './build/Components/Scene1.js';
@@ -232,6 +235,7 @@
     import { Scene8 } from './build/Components/Scene8.js';
     import { Scene9 } from './build/Components/Scene9.js';
     import { Scene10 } from './build/Components/Scene10.js';
+    import { Scene11 } from './build/Components/Scene11.js';
 
     import { SceneView } from './build/Scene/SceneView.js';
     import { throttle, zeroBefore, animacaoBarraProgresso, minutesToMilliseconds } from './build/utils.js';
@@ -280,24 +284,10 @@
 
       SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[4]), scrollMagicIndicatorsController));
 
+      SceneView.addScene(new Scene11(new SceneScaffold(scaffolds[5]), scrollMagicIndicatorsController));
+
       SceneView.updateControllers();
 
-
-      const progressDivCss = new CSSAttributes({
-        width: `100%`,
-        height: `10px`,
-        position: 'fixed',
-        isGradient: true,
-        gradientRotation: '230deg',
-        transition: 'all .3s',
-        x: `0px`,
-        top: `calc(100% - 10px)`,
-        isProgressBar: true,
-        progressRotation: '90deg',
-        progress: 0,
-        progressColor: 'darkblue',
-        progressBackground: 'transparent'
-      });
 
       document.getElementById('prevScene').addEventListener('click', evt => {
         SceneView.prev();
@@ -310,17 +300,6 @@
       document.getElementById('nextScene').addEventListener('click', evt => {
         SceneView.next();
       })
-
-      const progressBar = document.querySelector('.progress');
-
-      CSSEditor.from(progressBar, progressDivCss)
-
-      window.addEventListener('scroll', function (evt) {
-        throttle(() => {
-          const posicaoDestino = (this.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-          animacaoBarraProgresso(progressBar, progressDivCss, posicaoDestino, 'scrollProgress');
-        }, 100, 'scrollProgress')
-      });
 
       let ticking = false;
       window.addEventListener('wheel', function (evt) {
@@ -341,10 +320,6 @@
 
       setStyles();
       render();
-      animate();
-      setInterval(() => {
-        animate();
-      }, 12000);
     })
 
 

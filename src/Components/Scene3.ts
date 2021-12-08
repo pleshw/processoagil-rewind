@@ -3,6 +3,7 @@ import { SceneScaffold } from '../Scene/SceneScaffold.js';
 import { zeroBefore, millisecondsToMinutes, millisecondsToHours, millisecondsToDays } from '../utils.js';
 
 declare const anime: any;
+declare const fitText: any;
 
 export class Scene3 extends Scene {
   usuarioJaViu: boolean = false;
@@ -57,7 +58,7 @@ export class Scene3 extends Scene {
       saved: this.timeSavedInMs,
       round: 1,
       delay: 1500,
-      duration: 10000,
+      duration: 20000,
       easing: 'easeInOutExpo',
       begin: () => {
         document.getElementById( 'tempoEconomizado' )!.style.width = '35em';
@@ -89,7 +90,7 @@ export class Scene3 extends Scene {
         const textoHoras = textoDias || horas > 0 ? `Horas: ${ zeroBefore( horas ) }` : '';
         const textoMinutos = textoHoras || minutos > 0 ? `Minutos: ${ zeroBefore( minutos ) }` : '';
         const textoSegundos = textoMinutos || segundos > 0 ? `Segundos: ${ zeroBefore( segundos ) }` : '';
-
+        fitText( document.getElementById( 'tempoEconomizadoValores' )!, 1 );
 
         if ( textoAnos ) {
           this.anosEconomizados.style.display = 'flex';

@@ -11,17 +11,12 @@ export class Scene9 extends Scene {
         this.usuarioJaViu = true;
     }
     animateRank() {
-        anime({
-            targets: '.cliente-vip',
-            translateX: 240,
-            opacity: {
-                value: 1,
-                duration: 300,
-                easing: 'linear'
-            },
-            easing: 'easeOutExpo',
-            delay: anime.stagger(300, { start: 500, from: 'last' }) // increase delay by 100ms for each elements.
-        });
+        animateVortext();
+        setTimeout(() => {
+            setInterval(() => {
+                animateVortext();
+            }, 10000);
+        }, 10000);
     }
     hide() {
     }

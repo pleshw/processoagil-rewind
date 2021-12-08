@@ -100,7 +100,7 @@ export class Scene1 extends Scene {
             $( this.introTextContainer ).fadeOut( () => {
               this.animateOcorrencias();
             } );
-          }, 100 );
+          }, 2100 );
         }
       }, "+=2000" );
   }
