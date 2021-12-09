@@ -362,11 +362,23 @@
 
       SceneView.scrollToScene(0);
 
+      fetchWorldMap().then(() => {
 
+        console.log(world, land, borders, countries);
+      })
 
       setStyles();
       render();
     })
+
+    let world, land, borders, countries, sphere;
+    async function fetchWorldMap() {
+      world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+      land = topojson.feature(world, world.objects.land);
+      borders = topojson.mesh(world, world.objects.countries, (a, b) => a !== b);
+      countries = topojson.feature(world, world.objects.countries).features;
+      sphere = ({ type: "Sphere" })
+    }
 
 
     function fetchUserData() {
