@@ -27,8 +27,8 @@
         <div class="absolute-0 w-100 h-100 flex-col flex-center">
           <div id="introTextContainer" class="flex-center w-100 h-100 introTextContainer">
             <h1 id="introText1">Muita coisa rolou em 2021</h1>
-            <h1 id="introText2">Trouxemos um presente e blablabla</h1>
-            <h1 id="introText">Texto aquecendo para ver a retrospectiva</h1>
+            <h1 id="introText2">E a Processo Ágil estava com você</h1>
+            <h1 id="introText">Vamos rever o que aconteceu</h1>
           </div>
           <div id="ocorrenciasCounterContainer">
 
@@ -96,7 +96,7 @@
                       </h5>
                     </div>
                   </div>
-                  <div class=" bg-dark carousel-item text-white active">
+                  <div class=" bg-dark carousel-item text-white">
                     <img src="assets/filme.gif" class="d-block w-100" alt="...">
 
                     <div class="carousel-caption d-none d-md-block bg-black">
@@ -106,7 +106,7 @@
                       </h5>
                     </div>
                   </div>
-                  <div class=" bg-dark carousel-item text-white">
+                  <div class=" bg-dark carousel-item text-white active">
                     <img src="assets/musica.gif" class="d-block w-100" alt="...">
 
                     <div class="carousel-caption d-none d-md-block bg-black">
@@ -127,17 +127,6 @@
                     </div>
                   </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#estimativasTempo"
-                  data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-
-                <button class="carousel-control-next" type="button" data-bs-target="#estimativasTempo"
-                  data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
               </div>
             </div>
           </div>
@@ -160,7 +149,7 @@
       <div class="content flex-col flex-center">
         <h1 class="text-light title-down">E sabe quantos processos deram todo esse resultado?</h1>
         <div class="text-light absolute-0 w-100 h-100">
-          <p id="numProcessosMovimentados" class="h-100 w-100 pos-0"></p>
+          <p id="numProcessosMovimentados" class="text-black h-100 w-100 pos-0"></p>
         </div>
       </div>
     </section>
@@ -201,28 +190,31 @@
               <span class="span-colocacao texto-funcionario3">3º lugar</span>
               <img id="fotoFuncionario3" class="foto-funcionario" src="assets/pikachu-3.jfif" alt="">
             </div>
-            <span id="nomeFuncionario3" class="texto-funcionario3">Pikachu Sonolento Cansado</span>
+            <span id="nomeFuncionario3" class="texto-funcionario3"></span>
+            <span id="numAcessosFuncionario3" class="text-light"></span>
           </div>
           <div id="divPredioAndamentos" class="bg-warning">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario1">1º lugar</span>
               <img id="fotoFuncionario1" class="foto-funcionario spotlight" src="assets/pikachu-1.jpg" alt="">
             </div>
-            <span id="nomeFuncionario1" class="texto-funcionario1">Pikachu Inacio Lula da Silva</span>
+            <span id="nomeFuncionario1" class="texto-funcionario1"></span>
+            <span id="numAcessosFuncionario1" class="text-light"></span>
           </div>
           <div id="divPredioExpedientes" class="bg-danger">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario2">2º lugar</span>
               <img id="fotoFuncionario2" class="foto-funcionario" src="assets/pikachu-2.jpg" alt="">
             </div>
-            <span id="nomeFuncionario2" class="texto-funcionario2">Senhor Pikachu Pokemon</span>
+            <span id="nomeFuncionario2" class="texto-funcionario2"></span>
+            <span id="numAcessosFuncionario2" class="text-light"></span>
           </div>
         </div>
       </div>
     </section>
 
 
-    <section class="scene bg-warning">
+    <section class="scene bg-primary bg-gradient">
       <div class="content justify-between align-center text-center">
         <div class="absolute-0 flex-center h-100 w-100">
           <span id="mensagensFinais" class="text-light fw-bold"></span>
@@ -268,6 +260,10 @@
     import { throttle, zeroBefore, animacaoBarraProgresso, minutesToMilliseconds } from './build/utils.js';
 
     window.addEventListener('load', () => {
+      $('#estimativasTempo').carousel({
+        interval: 500,
+        cycle: true
+      });
 
       const scrollMagicIndicatorsController = new ScrollMagic.Controller();
 
@@ -294,19 +290,43 @@
 
       /// Cena 9
       const nomeMaiorCausa = userData.clienteComMaiorCausa;
-      let maiorCausaSplit = nomeMaiorCausa.split(' ').slice(0, 4);
+      let maiorCausaSplit = nomeMaiorCausa
+        .split(' ')
+        .slice(0, 4);
       let maiorCausa3D = maiorCausaSplit.filter(Boolean).join(" ");
 
       document.getElementById('listaVipValor').innerHTML = maiorCausa3D;
 
       const nomeMaisProcessos = userData.clientesComMaisProcessos.sort(c => c.total).reverse()[0].nome;
-      let maisProcessosSplit = nomeMaisProcessos.split(' ').slice(0, 4);
+      let maisProcessosSplit = nomeMaisProcessos
+        .split(' ')
+        .slice(0, 4);
       let maisProcessos3D = maisProcessosSplit.filter(Boolean).join(" ");
 
       document.getElementById('listaVipProcessos').innerHTML = maisProcessos3D;
 
       SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[4])), scrollMagicIndicatorsController);
 
+      /// Cena 10
+      document.getElementById('nomeFuncionario1').innerHTML = userData.rankingMaisAcessos[0].nome
+        .replaceAll(' DE ', ' ').replaceAll(' DA ', ' ').replaceAll(' DO ', ' ').replaceAll(' DOS ', ' ').replaceAll(' DAS ', ' ').replaceAll(' de ', ' ').replaceAll(' da ', ' ').replaceAll(' do ', ' ').replaceAll(' dos ', ' ').replaceAll(' das ', ' ')
+        .split(' ')
+        .slice(0, 2)
+        .join(" ");
+      document.getElementById('nomeFuncionario2').innerHTML = userData.rankingMaisAcessos[1].nome
+        .replaceAll(' DE ', ' ').replaceAll(' DA ', ' ').replaceAll(' DO ', ' ').replaceAll(' DOS ', ' ').replaceAll(' DAS ', ' ').replaceAll(' de ', ' ').replaceAll(' da ', ' ').replaceAll(' do ', ' ').replaceAll(' dos ', ' ').replaceAll(' das ', ' ')
+        .split(' ')
+        .slice(0, 2)
+        .join(" ");
+      document.getElementById('nomeFuncionario3').innerHTML = userData.rankingMaisAcessos[2].nome
+        .replaceAll(' DE ', ' ').replaceAll(' DA ', ' ').replaceAll(' DO ', ' ').replaceAll(' DOS ', ' ').replaceAll(' DAS ', ' ').replaceAll(' de ', ' ').replaceAll(' da ', ' ').replaceAll(' do ', ' ').replaceAll(' dos ', ' ').replaceAll(' das ', ' ')
+        .split(' ')
+        .slice(0, 2)
+        .join(" ");
+
+      document.getElementById('numAcessosFuncionario1').innerHTML = userData.rankingMaisAcessos[0].total + ' Acesso' + ((userData.rankingMaisAcessos[0].total > 1) ? 's' : '');
+      document.getElementById('numAcessosFuncionario2').innerHTML = userData.rankingMaisAcessos[1].total + ' Acesso' + ((userData.rankingMaisAcessos[1].total > 1) ? 's' : '');
+      document.getElementById('numAcessosFuncionario3').innerHTML = userData.rankingMaisAcessos[2].total + ' Acesso' + ((userData.rankingMaisAcessos[2].total > 1) ? 's' : '');
 
       SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[5]), scrollMagicIndicatorsController));
 

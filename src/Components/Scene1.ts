@@ -80,7 +80,7 @@ export class Scene1 extends Scene {
           duration: 300,
           easing: 'linear'
         },
-      }, "+=2500" )
+      }, "+=2100" )
       .add( {
         targets: this.introText,
         opacity: {
@@ -135,7 +135,7 @@ export class Scene1 extends Scene {
         targets: this.numOcorrencias,
         ocorrencias: () => this.totalOcorrencias,
         round: 1,
-        duration: 8000,
+        duration: 5000,
         easing: 'linear',
         update: () => {
           this.movCounterContainer.innerHTML = this.numOcorrencias.ocorrencias.toString();
@@ -151,7 +151,7 @@ export class Scene1 extends Scene {
   animateVerMais() {
     anime( {
       targets: this.verMaisButton,
-      delay: 2500,
+      delay: 1500,
       translateY: {
         value: -250,
         duration: 300,
@@ -185,7 +185,7 @@ export class Scene1 extends Scene {
   animateControls() {
     anime( {
       targets: this.sceneControls,
-      delay: 0,
+      delay: 1500,
       translateX: {
         value: '-7vw',
         duration: 300,

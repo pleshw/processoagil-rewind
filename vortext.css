@@ -61,6 +61,11 @@
   transform-origin: center;
 }
 
+#numAcessosFuncionario1, #numAcessosFuncionario2, #numAcessosFuncionario3 {
+  position: absolute;
+}
+
+
 .vortextRibbon::after {
   content: attr(data-text);
   position: absolute;

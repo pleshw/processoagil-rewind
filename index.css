@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monda&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
 
 #numMovContainer {
   font-family: 'Bebas Neue', cursive !important;
@@ -225,7 +229,7 @@ section.scene {
   margin: 0;
   position: absolute;
   font-size: 2em;
-
+  font-family: 'Poiret One', cursive;
   font-weight: bold;
 }
 
@@ -481,7 +485,9 @@ section.scene {
   opacity: 0;
 }
 
-/* Cena 3 */
+#nomeFuncionario1, #nomeFuncionario2, #nomeFuncionario3 {
+  font-family: 'Bungee', cursive;
+}
 
 #tempoEconomizado {
   width: 100%;
@@ -500,14 +506,13 @@ section.scene {
 }
 
 #containerEstimativas {
-  width: calc(100% - 35em);
+  width: calc(80% - 35em);
 }
 
 .campo-relogio {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Electrolize', sans-serif;
 }
 
 #estimativasTempo {
@@ -539,7 +544,7 @@ section.scene {
   top: -50px;
   perspective-origin: center;
   perspective: 34rem;
-  opacity: 0.3;
+  opacity: 0.1;
   transition: all .3s ease-out;
 }
 
@@ -590,11 +595,15 @@ section.scene {
   align-items: center;
 }
 
+#tempoEconomizadoValores {
+  bottom: 5vh;
+}
+
 #tempoEconomizado h1 {
   display: none;
   justify-content: flex-start;
   text-align: right;
-  font-size: 3rem;
+  font-size: 2rem;
   animation: RotateIn 1.2s;
   opacity: 1;
   margin: 0;
@@ -732,7 +741,18 @@ h1.spotlight, span.spotlight {
   color: #000;
 }
 
-#mensagensFinais {}
+.typed-cursor {
+  font-size: 2em;
+  opacity: 1;
+  -webkit-animation: blink 0.7s infinite;
+  -moz-animation: blink 0.7s infinite;
+  animation: blink 0.7s infinite;
+}
+
+#mensagensFinais {
+  font-size: 2em;
+  font-weight: lighter;
+}
 
 h1.spotlight:before, .spotlight:before {
   content: attr(data-text);

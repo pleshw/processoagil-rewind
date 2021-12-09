@@ -14,7 +14,7 @@ export class Scene4 extends Scene {
                 document.getElementById('numProcessosMovimentados').style.left = '0';
                 document.getElementById('numProcessosMovimentados').style.opacity = '1';
                 fitText(document.getElementById('numProcessosMovimentados'), 0.3);
-            }, 3000);
+            }, 2300);
         }
         this.usuarioJaViu = true;
     }
