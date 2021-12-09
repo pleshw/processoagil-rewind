@@ -24,8 +24,8 @@ export class Scene9 extends Scene {
     setTimeout( () => {
       setInterval( () => {
         animateVortext();
-      }, 10000 );
-    }, 10000 );
+      }, 9500 );
+    }, 9500 );
   }
 
 

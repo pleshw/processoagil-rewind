@@ -45,6 +45,6 @@ export class Scene11 extends Scene {
             "E falando em 2022...",
             "Já pensou o que te espera no próximo ano?",
             "Vou te dar um spoiler",
-            "Mas não conta pra ninguém"];
+            "Mas não conta pra ninguém..."];
     }
 }

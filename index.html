@@ -297,7 +297,8 @@
 
       document.getElementById('listaVipValor').innerHTML = maiorCausa3D;
 
-      const nomeMaisProcessos = userData.clientesComMaisProcessos.sort(c => c.total).reverse()[0].nome;
+      const nomeMaisProcessos = userData.clientesComMaisProcessos.sort((a, b) => a - b)[0].nome;
+
       let maisProcessosSplit = nomeMaisProcessos
         .split(' ')
         .slice(0, 4);
@@ -308,17 +309,19 @@
       SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[4])), scrollMagicIndicatorsController);
 
       /// Cena 10
-      document.getElementById('nomeFuncionario1').innerHTML = userData.rankingMaisAcessos[0].nome
+      let rankingAcessos = userData.rankingMaisAcessos.sort((a, b) => a - b);
+
+      document.getElementById('nomeFuncionario1').innerHTML = rankingAcessos[0].nome
         .replaceAll(' DE ', ' ').replaceAll(' DA ', ' ').replaceAll(' DO ', ' ').replaceAll(' DOS ', ' ').replaceAll(' DAS ', ' ').replaceAll(' de ', ' ').replaceAll(' da ', ' ').replaceAll(' do ', ' ').replaceAll(' dos ', ' ').replaceAll(' das ', ' ')
         .split(' ')
         .slice(0, 2)
         .join(" ");
-      document.getElementById('nomeFuncionario2').innerHTML = userData.rankingMaisAcessos[1].nome
+      document.getElementById('nomeFuncionario2').innerHTML = rankingAcessos[1].nome
         .replaceAll(' DE ', ' ').replaceAll(' DA ', ' ').replaceAll(' DO ', ' ').replaceAll(' DOS ', ' ').replaceAll(' DAS ', ' ').replaceAll(' de ', ' ').replaceAll(' da ', ' ').replaceAll(' do ', ' ').replaceAll(' dos ', ' ').replaceAll(' das ', ' ')
         .split(' ')
         .slice(0, 2)
         .join(" ");
-      document.getElementById('nomeFuncionario3').innerHTML = userData.rankingMaisAcessos[2].nome
+      document.getElementById('nomeFuncionario3').innerHTML = rankingAcessos[2].nome
         .replaceAll(' DE ', ' ').replaceAll(' DA ', ' ').replaceAll(' DO ', ' ').replaceAll(' DOS ', ' ').replaceAll(' DAS ', ' ').replaceAll(' de ', ' ').replaceAll(' da ', ' ').replaceAll(' do ', ' ').replaceAll(' dos ', ' ').replaceAll(' das ', ' ')
         .split(' ')
         .slice(0, 2)
@@ -357,7 +360,7 @@
               SceneView.prev();
             }
           })
-        }, 200, 'wheelNextScene')
+        }, 6000, 'wheelNextScene')
       });
 
       SceneView.scrollToScene(0);
