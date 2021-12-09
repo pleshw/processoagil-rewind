@@ -1,6 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monda&display=swap');
+
+#numMovContainer {
+  font-family: 'Bebas Neue', cursive !important;
+  font-weight: 400;
+}
+
+#tituloCenaPubAndExp {
+  font-family: 'Bebas Neue', cursive !important;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px black;
+}
+
 * {
   position: relative;
-  font-family: "Segoe UI";
   user-select: none;
   -webkit-user-drag: none;
   box-sizing: border-box;
@@ -490,20 +503,51 @@ section.scene {
   width: calc(100% - 35em);
 }
 
+.campo-relogio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Electrolize', sans-serif;
+}
+
 #estimativasTempo {
   height: 70%;
   padding: 0 10%;
+  overflow: hidden;
 }
 
 #estimativasTempo>.card {
-  height: 90%;
-  width: 90%;
+
   position: absolute;
   display: flex;
   justify-content: center;
   text-align: center;
 }
 
+.title-down {
+  position: absolute;
+  bottom: 10vh;
+}
+
+#numProcessosMovimentados {
+  font-size: 34rem;
+  line-height: 34rem;
+  left: 39rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  top: -50px;
+  perspective-origin: center;
+  perspective: 34rem;
+  opacity: 0.3;
+  transition: all .3s ease-out;
+}
+
+#descricaoProcessosMovimentados {
+  text-align: center;
+  top: -6rem;
+  right: 0;
+}
 
 #estimativasTempo .card-title {}
 
@@ -550,8 +594,7 @@ section.scene {
   display: none;
   justify-content: flex-start;
   text-align: right;
-  width: 100%;
-  font-size: 4rem;
+  font-size: 3rem;
   animation: RotateIn 1.2s;
   opacity: 1;
   margin: 0;
@@ -586,6 +629,11 @@ section.scene {
   opacity: 0;
 }
 
+.pos-0 {
+  left: 0;
+  top: 0;
+}
+
 #logoScene1 {
   opacity: 0;
   top: 75px;
@@ -606,8 +654,26 @@ section.scene {
   top: 0;
 }
 
-/* 
-.scene:nth-of-type(5) h1:before {
+.spotlight2 {
+  font-family: 'Teko', sans-serif;
+  text-transform: uppercase;
+  font-size: 10rem;
+  text-align: center;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  margin: 0;
+  min-height: calc(100vh - 16px);
+  background: transparent;
+  position: relative;
+  background: transparent;
+  color: #000;
+}
+
+.spotlight2:before {
   content: attr(data-text);
   position: absolute;
   background: linear-gradient(#f70000, #f89200, #f8f501, #038f00, #0168f8, #a200f7);
@@ -616,10 +682,31 @@ section.scene {
   color: transparent;
   background-size: 100% 90%;
   line-height: 0.9;
+  filter: brightness(2) contrast(120%);
   clip-path: ellipse(120px 120px at -2.54% -9.25%);
-  animation: swingBeta 8s infinite;
+  animation: swing2 8s infinite;
   animation-direction: alternate;
-} */
+}
+
+@keyframes swing2 {
+  0% {
+    -webkit-clip-path: ellipse(120px 120px at -2.54% -9.25%);
+    clip-path: ellipse(120px 120px at -2.54% -9.25%);
+  }
+
+  50% {
+    -webkit-clip-path: ellipse(120px 120px at 49.66% 64.36%);
+    clip-path: ellipse(120px 120px at 49.66% 64.36%);
+
+  }
+
+  100% {
+    -webkit-clip-path: ellipse(120px 120px at 102.62% -1.61%);
+    clip-path: ellipse(120px 120px at 102.62% -1.61%);
+  }
+}
+
+
 
 h1.spotlight, span.spotlight {
   font-family: 'Teko', sans-serif;
@@ -645,13 +732,13 @@ h1.spotlight, span.spotlight {
   color: #000;
 }
 
-
+#mensagensFinais {}
 
 h1.spotlight:before, .spotlight:before {
   content: attr(data-text);
   position: absolute;
   background: #193038;
-  font-size: 5em;
+  font-size: 3em;
   filter: brightness(2.9);
   -webkit-background-clip: text;
   background-clip: text;
@@ -671,6 +758,114 @@ h1.spotlight:before, .spotlight:before {
 }
 
 
+.button2 {
+  position: relative;
+  display: inline-block;
+  padding: 30px 61px;
+  border-radius: 4px;
+  color: #03e9f4;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  margin: 25px;
+  font-family: "Roboto", sans-serif;
+  filter: hue-rotate(0deg);
+  border: 2px solid #d2bdff;
+  transition: all 0.1s linear;
+}
+
+.button2:hover {
+  border: 1px solid transparent;
+}
+
+.button2:hover span {
+  position: absolute;
+  display: block;
+}
+
+.button2:hover span:nth-child(1) {
+  filter: hue-rotate(0deg);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #3a86ff);
+  animation: animate1 1s linear infinite;
+}
+
+@keyframes animate1 {
+  0% {
+    left: -100%;
+  }
+
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+.button2:hover span:nth-child(2) {
+  filter: hue-rotate(60deg);
+  top: -100%;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #3a86ff);
+  animation: animateMeteorButton 1s linear infinite;
+  animation-delay: 0.25s;
+}
+
+@keyframes animateMeteorButton {
+  0% {
+    top: -100%;
+  }
+
+  50%, 100% {
+    top: 100%;
+  }
+}
+
+.button2:hover span:nth-child(3) {
+  filter: hue-rotate(120deg);
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: linear-gradient(270deg, transparent, #3a86ff);
+  animation: animate3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes animate3 {
+  0% {
+    right: -100%;
+    height: 3px;
+  }
+
+  50%, 100% {
+    height: 2px;
+    right: 100%;
+  }
+}
+
+.button2:hover span:nth-child(4) {
+  filter: hue-rotate(300deg);
+  bottom: -100%;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #3a86ff);
+  animation: animate4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes animate4 {
+  0% {
+    bottom: -100%;
+  }
+
+  50%, 100% {
+    bottom: 100%;
+  }
+}
 
 @keyframes RotateIn {
   0% {

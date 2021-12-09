@@ -12,9 +12,10 @@ export class Scene11 extends Scene {
     animateMessages() {
         this.typed = new Typed('#mensagensFinais', {
             strings: this.messages(),
-            typeSpeed: 90,
-            backSpeed: 90,
-            cursorChar: '_',
+            typeSpeed: 50,
+            backSpeed: 60,
+            startDelay: 1500,
+            backDelay: 2300,
             smartBackspace: true,
             loop: false
         });
@@ -23,7 +24,7 @@ export class Scene11 extends Scene {
     }
     messages() {
         return ["Estamos chegando ao fim…",
-            "Agradecemos pela parceria nestes X meses",
+            "Agradecemos pela parceria nestes 47 meses",
             "Esperamos crescer juntos e ainda mais em 2022",
             "E falando em 2022…..",
             "Já pensou o que te espera no próximo ano?",

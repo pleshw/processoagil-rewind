@@ -50,89 +50,117 @@
     </section>
 
 
-    <section class="scene bg-warning">
-      <h1 id="tituloCenaPubAndExp" class="text-dark">E dessas movimentações:</h1>
+    <section class="scene bg-warning bg-gradient">
+      <h1 id="tituloCenaPubAndExp" class="text-light">E dessas movimentações:</h1>
       <div class="content justify-between align-center text-center">
         <div id="qtdPublicacoes" class="card bg-primary mb-3 divPubAndExp">
           <div class="card-header">Publicações</div>
           <div class="card-body p-0 flex-center">
-            <h5 class="card-title"><span id="spanTotalPublicacoes"></span></h5>
+            <h5><span id="spanTotalPublicacoes"></span></h5>
           </div>
         </div>
         <div id="qtdAndamentos" class="card mb-3 divPubAndExp">
           <div class="card-header">Andamentos</div>
           <div class="card-body p-0 flex-center">
-            <h5 class="card-title"><span id="spanTotalAndamentos"></span></h5>
+            <h5><span id="spanTotalAndamentos"></span></h5>
           </div>
         </div>
         <div id="qtdExpedientes" class="card bg-danger mb-3 divPubAndExp">
           <div class="card-header">Expedientes</div>
           <div class="card-body p-0 flex-center">
-            <h5 class="card-title"><span id="spanTotalExpedientes"></span></h5>
+            <h5><span id="spanTotalExpedientes"></span></h5>
           </div>
         </div>
       </div>
     </section>
 
     <section class="scene">
-      <div class="content justify-between align-center">
-        <div id="tempoEconomizado" class="flex-col justify-between">
-          <h4 class="m-3">Fizemos uma estimativa de quanto tempo você economizou esse ano por usar nosso sistema este
-            ano.
-          </h4>
-          <div style="height: 18em;" id="tempoEconomizadoValores" class="text-muted">
-            <h1 id="anosEconomizados"></h1>
-            <h1 id="mesesEconomizados"></h1>
-            <h1 id="diasEconomizados"></h1>
-            <h1 id="horasEconomizados"></h1>
-            <h1 id="minutosEconomizados"></h1>
-            <h1 id="segundosEconomizados"></h1>
-          </div>
-        </div>
+      <div id="tempoEconomizado" class="flex-col align-center justify-between w-100">
+        <h4 class="m-3">Fizemos uma estimativa de quanto tempo você economizou esse ano por usar nosso sistema este
+          ano.
+        </h4>
+
         <div id="containerEstimativas" class="h-100 flex-center">
           <div class="w-100 flex-center flex-col h-100">
             <div id="introTextContainerScene3" class="flex-center flex-col justify-around w-100 h-100">
-              <h2 id="introTextScene3d">Nesse tempo...</h2>
-              <div id="estimativasTempo" class="flex-row w-100 justify-around">
-                <div class="card bg-dark text-white">
-                  <img src="assets/trabalho.gif" class="card-img" alt="...">
-                  <div class="card-img-overlay">
-                    <h5 class="card-title">Você conseguiria aprender
-                      <span id="tempoParaDiasTrabalho"></span>
-                      novo(s) idioma(s)
-                    </h5>
+              <div id="estimativasTempo" class="flex-row w-100 flex-center h-100 carousel slide"
+                data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class=" bg-dark text-white carousel-item ">
+                    <img src="assets/trabalho.gif" class="d-block w-100" alt="...">
+
+                    <div class="carousel-caption d-none d-md-block bg-black">
+                      <h5>Você conseguiria aprender
+                        <span id="tempoParaDiasTrabalho"></span>
+                        novo(s) idioma(s)
+                      </h5>
+                    </div>
+                  </div>
+                  <div class=" bg-dark carousel-item text-white active">
+                    <img src="assets/filme.gif" class="d-block w-100" alt="...">
+
+                    <div class="carousel-caption d-none d-md-block bg-black">
+                      <h5>Dá pra assistir
+                        <span id="tempoParaFilme"></span>
+                        filmes bem demorados
+                      </h5>
+                    </div>
+                  </div>
+                  <div class=" bg-dark carousel-item text-white">
+                    <img src="assets/musica.gif" class="d-block w-100" alt="...">
+
+                    <div class="carousel-caption d-none d-md-block bg-black">
+                      <h5>Que tal ouvir
+                        <span id="tempoParaMusica"></span>
+                        musicas?
+                      </h5>
+                    </div>
+                  </div>
+                  <div class=" bg-dark carousel-item text-white">
+                    <img src="assets/futebol.gif" class="d-block w-100" alt="...">
+
+                    <div class="carousel-caption d-none d-md-block bg-black">
+                      <h5>Dava para jogar
+                        <span id="tempoParaFutebol"></span>
+                        partidas de futebol
+                      </h5>
+                    </div>
                   </div>
                 </div>
-                <div class="card bg-dark text-white">
-                  <img src="assets/filme.gif" class="card-img" alt="...">
-                  <div class="card-img-overlay">
-                    <h5 class="card-title">Dá pra assistir
-                      <span id="tempoParaFilme"></span>
-                      filmes bem demorados
-                    </h5>
-                  </div>
-                </div>
-                <div class="card bg-dark text-white">
-                  <img src="assets/musica.gif" class="card-img" alt="...">
-                  <div class="card-img-overlay">
-                    <h5 class="card-title">Que tal ouvir
-                      <span id="tempoParaMusica"></span>
-                      musicas
-                    </h5>
-                  </div>
-                </div>
-                <div class="card bg-dark text-white">
-                  <img src="assets/futebol.gif" class="card-img" alt="...">
-                  <div class="card-img-overlay">
-                    <h5 class="card-title">Dava para jogar
-                      <span id="tempoParaFutebol"></span>
-                      partidas de futebol
-                    </h5>
-                  </div>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#estimativasTempo"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#estimativasTempo"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               </div>
             </div>
           </div>
+        </div>
+        <div id="tempoEconomizadoValores" class="text-muted flex-row justify-around w-100">
+          <h1 id="anosEconomizados"></h1>
+          <h1 id="mesesEconomizados"></h1>
+          <h1 id="diasEconomizados"></h1>
+          <h1 id="horasEconomizados"></h1>
+          <h1 id="minutosEconomizados"></h1>
+          <h1 id="segundosEconomizados"></h1>
+        </div>
+      </div>
+      <div class="content justify-between align-center">
+
+      </div>
+    </section>
+
+    <section class="scene bg-black bg-gradient">
+      <div class="content flex-col flex-center">
+        <h1 class="text-light title-down">E sabe quantos processos deram todo esse resultado?</h1>
+        <div class="text-light absolute-0 w-100 h-100">
+          <p id="numProcessosMovimentados" class="h-100 w-100 pos-0"></p>
         </div>
       </div>
     </section>
@@ -140,21 +168,16 @@
     <section class="scene bg-black bg-gradient">
       <div class="content flex-col flex-center">
         <h1 id="listaVipTitulo" class="text-light">Clientes VIP</h1>
-        <div id="listaVipInfoValor" class="text-white"><span id="listaVipNomeValor"></span> é o seu clientecom maior
-          valor da causa de processos.
-        </div>
-        <div id="listaVipInfoProcessos" class="text-white"><span id="listaVipNomeProcessos"></span> é o seu cliente com
-          maior numero de processos
-          distribuidos.</div>
 
         <div id="clientesVipContainer" class="flex-col justify-around align-center grid">
           <div class="pen">
             <div class="stage">
               <div class="vortext">
-                <div data-text="" id="listaVipValor" class="vortextRibbon down"></div>
+                <div data-text="Maior valor de causas" id="listaVipValor" class="vortextRibbon down"></div>
               </div>
               <div class="vortext">
-                <div data-text="" id="listaVipProcessos" class="vortextRibbon spotlight up"></div>
+                <div data-text="Maior número de processos distribuídos" id="listaVipProcessos"
+                  class="vortextRibbon spotlight up"></div>
               </div>
             </div>
           </div>
@@ -202,7 +225,7 @@
     <section class="scene bg-warning">
       <div class="content justify-between align-center text-center">
         <div class="absolute-0 flex-center h-100 w-100">
-          <span id="mensagensFinais"></span>
+          <span id="mensagensFinais" class="text-light fw-bold"></span>
         </div>
       </div>
     </section>
@@ -214,6 +237,9 @@
   <!-- JavaScript Bundle with Popper -->
   <script defer src="lib/anime.min.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
   <script src="https://unpkg.com/topojson@3"></script>
   <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script defer src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
@@ -232,6 +258,7 @@
     import { Scene1 } from './build/Components/Scene1.js';
     import { Scene2 } from './build/Components/Scene2.js';
     import { Scene3 } from './build/Components/Scene3.js';
+    import { Scene4 } from './build/Components/Scene4.js';
     import { Scene8 } from './build/Components/Scene8.js';
     import { Scene9 } from './build/Components/Scene9.js';
     import { Scene10 } from './build/Components/Scene10.js';
@@ -247,7 +274,6 @@
       const scaffolds = document.querySelectorAll('.scene');
 
       const userData = fetchUserData();
-      console.log(userData)
 
       SceneView.createControllers();
 
@@ -259,32 +285,32 @@
       document.getElementById('spanTotalExpedientes').innerHTML = userData.totalExp;
       SceneView.addScene(new Scene2(new SceneScaffold(scaffolds[1])), scrollMagicIndicatorsController);
 
-      SceneView.addScene(new Scene3(new SceneScaffold(scaffolds[2]), minutesToMilliseconds(userData.tempoEconomizado)), scrollMagicIndicatorsController);
+      SceneView.addScene(new Scene3(new SceneScaffold(scaffolds[2]), userData.tempoEconomizado * 1000), scrollMagicIndicatorsController);
 
+
+      /// Cena 4 
+      document.getElementById('numProcessosMovimentados').innerHTML = userData.totalProcessosGeral;
+      SceneView.addScene(new Scene4(new SceneScaffold(scaffolds[3]), userData.totalOc), scrollMagicIndicatorsController);
 
       /// Cena 9
       const nomeMaiorCausa = userData.clienteComMaiorCausa;
-      let maiorCausaSplit = nomeMaiorCausa.split(' ').slice(0, 2);
+      let maiorCausaSplit = nomeMaiorCausa.split(' ').slice(0, 4);
       let maiorCausa3D = maiorCausaSplit.filter(Boolean).join(" ");
 
       document.getElementById('listaVipValor').innerHTML = maiorCausa3D;
-      document.getElementById('listaVipValor').setAttribute('data-text', nomeMaiorCausa);
-      document.getElementById('listaVipNomeValor').innerHTML = nomeMaiorCausa;
 
       const nomeMaisProcessos = userData.clientesComMaisProcessos.sort(c => c.total).reverse()[0].nome;
-      let maisProcessosSplit = nomeMaisProcessos.split(' ').slice(0, 2);;
+      let maisProcessosSplit = nomeMaisProcessos.split(' ').slice(0, 4);
       let maisProcessos3D = maisProcessosSplit.filter(Boolean).join(" ");
 
       document.getElementById('listaVipProcessos').innerHTML = maisProcessos3D;
-      document.getElementById('listaVipProcessos').setAttribute('data-text', nomeMaisProcessos);
-      document.getElementById('listaVipNomeProcessos').innerHTML = nomeMaisProcessos;
 
-      SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[3])), scrollMagicIndicatorsController);
+      SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[4])), scrollMagicIndicatorsController);
 
 
-      SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[4]), scrollMagicIndicatorsController));
+      SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[5]), scrollMagicIndicatorsController));
 
-      SceneView.addScene(new Scene11(new SceneScaffold(scaffolds[5]), scrollMagicIndicatorsController));
+      SceneView.addScene(new Scene11(new SceneScaffold(scaffolds[6]), scrollMagicIndicatorsController));
 
       SceneView.updateControllers();
 
@@ -311,7 +337,7 @@
               SceneView.prev();
             }
           })
-        }, 1500, 'wheelNextScene')
+        }, 200, 'wheelNextScene')
       });
 
       SceneView.scrollToScene(0);

@@ -52,8 +52,8 @@ const render = () => {
     delta = bounds.width - contentWidth;
 
     for (let ii = 0; ii < el.children.length; ii++) {
-      const correction = 1.1;
-      const paddingMultiplier = 0.01;
+      const correction = 3.1;
+      const paddingMultiplier = 0.21;
 
 
       const childEl = el.children[ii].children[0];
@@ -84,7 +84,7 @@ const animateVortext = () => {
     const inner = els[i].querySelector(INNER_SELECTOR);
     inner.classList.add('transitionEnabled');
     const actualAngle = inner.computedStyleMap().get('transform')[1].angle.value;
-    inner.style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 170 + actualAngle }deg)`;
+    inner.style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 178 + actualAngle }deg)`;
     inner.classList.toggle('spotlight');
   }
 }
