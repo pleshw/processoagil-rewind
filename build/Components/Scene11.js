@@ -1,8 +1,9 @@
 import { Scene } from '../Scene/Scene.js';
 export class Scene11 extends Scene {
-    constructor(scaffold) {
+    constructor(scaffold, meses) {
         super(scaffold);
         this.usuarioJaViu = false;
+        this.meses = meses;
     }
     render() {
         if (!this.usuarioJaViu)
@@ -11,22 +12,37 @@ export class Scene11 extends Scene {
     }
     animateMessages() {
         this.typed = new Typed('#mensagensFinais', {
-            strings: this.messages(),
-            typeSpeed: 50,
-            backSpeed: 60,
-            startDelay: 1500,
+            strings: this.messages().slice(0, 4),
+            typeSpeed: 30,
+            backSpeed: 45,
+            startDelay: 2200,
             backDelay: 2300,
             smartBackspace: true,
-            loop: false
+            loop: false,
+            onComplete: () => {
+                setTimeout(() => {
+                    this.typed.destroy();
+                    this.typed = new Typed('#mensagensFinais', {
+                        strings: this.messages().slice(4, 8),
+                        typeSpeed: 30,
+                        backSpeed: 20,
+                        startDelay: 2200,
+                        backDelay: 2300,
+                        smartBackspace: true,
+                        loop: false
+                    });
+                }, 2300);
+            }
         });
     }
     hide() {
     }
     messages() {
         return ["Estamos chegando ao fim…",
-            "Agradecemos pela parceria nestes 47 meses",
-            "Esperamos crescer juntos e ainda mais em 2022",
-            "E falando em 2022…..",
+            "Agradecemos pela parceria nestes $ meses".replace('$', this.meses.toString()),
+            "2021 foi uma ano e tanto",
+            "Esperamos crescer juntos ainda mais em 2022!",
+            "E falando em 2022...",
             "Já pensou o que te espera no próximo ano?",
             "Vou te dar um spoiler",
             "Mas não conta pra ninguém"];

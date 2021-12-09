@@ -328,9 +328,9 @@
       document.getElementById('numAcessosFuncionario2').innerHTML = userData.rankingMaisAcessos[1].total + ' Acesso' + ((userData.rankingMaisAcessos[1].total > 1) ? 's' : '');
       document.getElementById('numAcessosFuncionario3').innerHTML = userData.rankingMaisAcessos[2].total + ' Acesso' + ((userData.rankingMaisAcessos[2].total > 1) ? 's' : '');
 
-      SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[5]), scrollMagicIndicatorsController));
+      SceneView.addScene(new Scene10(new SceneScaffold(scaffolds[5])), scrollMagicIndicatorsController);
 
-      SceneView.addScene(new Scene11(new SceneScaffold(scaffolds[6]), scrollMagicIndicatorsController));
+      SceneView.addScene(new Scene11(new SceneScaffold(scaffolds[6]), userData.lifeTime), scrollMagicIndicatorsController);
 
       SceneView.updateControllers();
 

@@ -125,6 +125,7 @@ export class Scene2 extends Scene {
                 this.divQtdExpedientes.style.color = 'white';
             }
         });
+        anime.suspendWhenDocumentHidden = true;
     }
     windowDimensions() {
         return {
