@@ -692,26 +692,26 @@ section.scene {
   background-size: 100% 90%;
   line-height: 0.9;
   filter: brightness(2) contrast(120%);
-  clip-path: ellipse(120px 120px at -2.54% -9.25%);
+  clip-path: ellipse(180px 180px at -2.54% -9.25%);
   animation: swing2 8s infinite;
   animation-direction: alternate;
 }
 
 @keyframes swing2 {
   0% {
-    -webkit-clip-path: ellipse(120px 120px at -2.54% -9.25%);
-    clip-path: ellipse(120px 120px at -2.54% -9.25%);
+    -webkit-clip-path: ellipse(180px 180px at -2.54% -9.25%);
+    clip-path: ellipse(180px 180px at -2.54% -9.25%);
   }
 
   50% {
-    -webkit-clip-path: ellipse(120px 120px at 49.66% 64.36%);
-    clip-path: ellipse(120px 120px at 49.66% 64.36%);
+    -webkit-clip-path: ellipse(180px 180px at 49.66% 64.36%);
+    clip-path: ellipse(180px 180px at 49.66% 64.36%);
 
   }
 
   100% {
-    -webkit-clip-path: ellipse(120px 120px at 102.62% -1.61%);
-    clip-path: ellipse(120px 120px at 102.62% -1.61%);
+    -webkit-clip-path: ellipse(180px 180px at 102.62% -1.61%);
+    clip-path: ellipse(180px 180px at 102.62% -1.61%);
   }
 }
 
