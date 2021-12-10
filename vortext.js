@@ -76,15 +76,15 @@ const render = () => {
 
 }
 
-let iteration = 0;
+let iteration = 1;
 
 const animateVortext = () => {
-  iteration++
   for (let i = 0; i < els.length; i++) {
     const inner = els[i].querySelector(INNER_SELECTOR);
     inner.classList.add('transitionEnabled');
     const actualAngle = inner.computedStyleMap().get('transform')[1].angle.value;
-    inner.style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 178 + actualAngle }deg)`;
+    inner.style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ (180 * iteration) + actualAngle }deg)`;
     inner.classList.toggle('spotlight');
+    iteration = -iteration;
   }
 }

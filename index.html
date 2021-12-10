@@ -365,6 +365,11 @@
 
       SceneView.scrollToScene(0);
 
+      setTimeout(() => {
+        SceneView.scrollToScene(3);
+      }, 500);
+
+
       fetchWorldMap().then(() => {
 
         console.log(world, land, borders, countries);

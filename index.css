@@ -545,7 +545,7 @@ section.scene {
   perspective-origin: center;
   perspective: 34rem;
   opacity: 0.1;
-  transition: all .3s ease-out;
+  transition: all 1s ease-out;
 }
 
 #descricaoProcessosMovimentados {
@@ -695,6 +695,20 @@ section.scene {
   clip-path: ellipse(120px 120px at -2.54% -9.25%);
   animation: swing2 8s infinite;
   animation-direction: alternate;
+}
+
+@keyframes gradientAnim2 {
+  0% {
+    background-position: 0% -50%;
+  }
+
+  50% {
+    background-position: -100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes swing2 {

@@ -18,8 +18,9 @@ export class Scene4 extends Scene {
       setTimeout( () => {
         document.getElementById( 'numProcessosMovimentados' )!.classList.add( 'spotlight2' );
         document.getElementById( 'numProcessosMovimentados' )!.setAttribute( 'data-text', this.numMovimentados.toString() );
-        document.getElementById( 'numProcessosMovimentados' )!.style.left = '0';
+        document.getElementById( 'numProcessosMovimentados' )!.style.left = '5vw';
         document.getElementById( 'numProcessosMovimentados' )!.style.opacity = '1';
+        document.getElementById( 'numProcessosMovimentados' )!.style.transform = 'scale(1.1)';
         fitText( document.getElementById( 'numProcessosMovimentados' )!, 0.3 );
       }, 2300 );
     }
