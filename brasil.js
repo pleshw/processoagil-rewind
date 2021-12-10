@@ -1,8 +1,8 @@
 // Define map size on screen
-var width = 596, height = 660,
+var width = 596, height = window.innerHeight,
   svg, g, path;
 
-function ready(shp) {
+function renderizarEstados(shp, processosPorEstado) {
 
   // Extracting polygons and contours
   var states = topojson.feature(shp, shp.objects.estados);
@@ -15,7 +15,19 @@ function ready(shp) {
     .append("path")
     .attr("class", "state")
     .attr("id", function (d, i) { return 'state' + i; })
+    .attr("state-data", function (d) {
+      const estado = processosPorEstado.find(c => c.estado === d.properties.nome && c.estado !== undefined);
+
+      if (estado)
+        return JSON.stringify(estado);
+      else
+        return JSON.stringify({
+          estado: d.properties.nome,
+          total: 0
+        });
+    })
     .attr("d", path);
+
 
   g.append("path")
     .datum(states_contour)
@@ -23,11 +35,22 @@ function ready(shp) {
     .attr("class", "state_contour");
 
 
+
   document.querySelectorAll('.state').forEach(element => {
+    const dadosEstado = JSON.parse(element.getAttribute('state-data'));
+    if (dadosEstado.total > 0) {
+      element.classList.add('tem-processo');
+    }
+
     element.addEventListener('click', () => {
       document.querySelectorAll('use').forEach(el => {
         el.remove();
       });
+
+      if (element.classList.contains('focus')) {
+        element.classList.remove('focus');
+        return;
+      }
 
       document.querySelectorAll('.state.focus').forEach(el => {
         el.classList.remove('focus');
@@ -43,7 +66,7 @@ function ready(shp) {
   });
 }
 
-function loadBrasil() {
+function loadBrasil(processosPorEstado) {
   svg = d3.select("#mapaBrasil")
     .attr("width", width)
     .attr("height", height);
@@ -69,7 +92,9 @@ function loadBrasil() {
 
   path = d3.geoPath().projection(projection);
 
-  d3.json("./br-states.json").then(ready);
+  d3.json("./br-states.json").then((shp) => {
+    renderizarEstados(shp, processosPorEstado)
+  });
 
   d3.select(self.frameElement).style("height", height + "px");
   g.attr("id", "brMap1");

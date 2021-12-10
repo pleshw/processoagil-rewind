@@ -8,7 +8,7 @@ export class Scene6 extends Scene {
     }
     render() {
         if (!this.usuarioJaViu) {
-            loadBrasil();
+            loadBrasil(this.processosPorEstado);
         }
         this.usuarioJaViu = true;
     }

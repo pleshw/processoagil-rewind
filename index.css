@@ -546,6 +546,8 @@ section.scene {
   opacity: 0.1;
   transition: all .3s ease-out;
   transform: scale(0.9);
+  transform: scale(1.9) skew(10deg,
+      18deg);
 }
 
 .title-up {
@@ -553,22 +555,31 @@ section.scene {
   top: 2vh;
 }
 
-h5.title-left {
-  position: absolute;
-  top: 29vh;
-  width: 58vw;
-  left: 6vw;
-  font-size: 1.3em;
-
-}
 
 h1.title-left {
   position: absolute;
   top: 15vh;
   width: 51vw;
-  left: 6vw;
+  left: 3vw;
   font-size: 1.9em;
 }
+
+h5.title-left {
+  position: absolute;
+  top: 29vh;
+  width: 58vw;
+  left: 3vw;
+  font-size: 1.3em;
+}
+
+h6.title-left {
+  position: absolute;
+  top: 34vh;
+  width: 58vw;
+  left: 3vw;
+  font-size: .8em;
+}
+
 
 #descricaoProcessosMovimentados {
   text-align: center;
@@ -716,6 +727,7 @@ h1.title-left {
   filter: brightness(2) contrast(120%);
   clip-path: ellipse(180px 180px at -2.54% -9.25%);
   animation: swing2 8s infinite;
+  animation-delay: 1s;
   animation-direction: alternate;
 }
 
@@ -785,16 +797,20 @@ h1.spotlight, span.spotlight {
 
 #brMap1 .state {
   fill: rgba(250, 250, 250, .9);
-  fill-opacity: 0.6;
+  fill-opacity: 0.3;
   cursor: pointer;
-  transition: all .6s ease-out;
+  transition: box-shadow .6s ease-out;
 }
 
-#brMap1 .state.focus {
+#brMap1 .state.tem-processo {
+  fill: yellow;
   fill-opacity: 1;
-  fill: darkblue;
+}
+
+#brMap1 .state.tem-processo.focus {
   padding: 0;
   margin: 0;
+  filter: drop-shadow(1px 2px 0px #3214dc);
 }
 
 
@@ -807,10 +823,12 @@ h1.spotlight, span.spotlight {
 
 #mapaBrasil {
   position: absolute;
+  top: 0;
   right: 0;
   perspective-origin: center;
   perspective: 900px;
   overflow: visible;
+  transform: skew(-12deg, -7deg);
 }
 
 #brMap1 rect.map_canvas {
@@ -818,6 +836,7 @@ h1.spotlight, span.spotlight {
   stroke-width: 4;
   /* 0.25 to 5 */
   opacity: 0.6;
+
   /*  0 to 0.5 */
 }
 

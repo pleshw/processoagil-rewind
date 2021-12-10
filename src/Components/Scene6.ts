@@ -13,7 +13,7 @@ export class Scene6 extends Scene {
 
   render(): void {
     if ( !this.usuarioJaViu ) {
-      loadBrasil();
+      loadBrasil( this.processosPorEstado );
     }
     this.usuarioJaViu = true;
   }
