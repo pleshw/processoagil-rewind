@@ -19,12 +19,12 @@ const setStyles = () => {
   stageEl.style.perspective = `${ (DIAMETER / 1.5) * 1.5 }px`;
   for (let i = 0; i < els.length; i++) {
     if (i === 0) {
-      els[i].querySelector(INNER_SELECTOR).style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 180 + 32 }deg)`;
+      els[i].querySelector(INNER_SELECTOR).style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 180 }deg)`;
       els[i].querySelector(INNER_SELECTOR).setAttribute(`inicioCostas`, true);
     }
 
     if (i === 1) {
-      els[i].querySelector(INNER_SELECTOR).style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 32 }deg)`;
+      els[i].querySelector(INNER_SELECTOR).style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ 0 }deg)`;
       els[i].querySelector(INNER_SELECTOR).setAttribute(`inicioFrente`, true);
     }
   }
@@ -52,8 +52,8 @@ const render = () => {
     delta = bounds.width - contentWidth;
 
     for (let ii = 0; ii < el.children.length; ii++) {
-      const correction = 3.1;
-      const paddingMultiplier = 0.21;
+      const correction = 0.1;
+      const paddingMultiplier = 0.05;
 
 
       const childEl = el.children[ii].children[0];
@@ -83,8 +83,7 @@ const animateVortext = () => {
     const inner = els[i].querySelector(INNER_SELECTOR);
     inner.classList.add('transitionEnabled');
     const actualAngle = inner.computedStyleMap().get('transform')[1].angle.value;
-    inner.style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ (180 * iteration) + actualAngle }deg)`;
+    inner.style.transform = `translateZ(-${ PROJECTION }px) rotateY(${ -180 + actualAngle }deg)`;
     inner.classList.toggle('spotlight');
-    iteration = -iteration;
   }
 }

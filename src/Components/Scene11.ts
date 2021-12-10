@@ -22,7 +22,7 @@ export class Scene11 extends Scene {
 
   animateMessages() {
     this.typed = new Typed( '#mensagensFinais', {
-      strings: this.messages().slice( 0, 4 ),
+      strings: this.messages().slice( 0, 5 ),
       typeSpeed: 30,
       backSpeed: 45,
       startDelay: 2200,
@@ -33,7 +33,7 @@ export class Scene11 extends Scene {
         setTimeout( () => {
           this.typed.destroy();
           this.typed = new Typed( '#mensagensFinais', {
-            strings: this.messages().slice( 4, 8 ),
+            strings: this.messages().slice( 5, 9 ),
             typeSpeed: 30,
             backSpeed: 20,
             startDelay: 2200,
@@ -56,6 +56,7 @@ export class Scene11 extends Scene {
       "Agradecemos pela parceria nestes $ meses".replace( '$', this.meses.toString() ),
       "2021 foi uma ano e tanto",
       "Esperamos crescer juntos ainda mais em 2022!",
+      "",
       "E falando em 2022...",
       "Já pensou o que te espera no próximo ano?",
       "Vou te dar um spoiler",
