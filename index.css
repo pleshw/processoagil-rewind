@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap');
 
 #numMovContainer {
   font-family: 'Bebas Neue', cursive !important;
@@ -229,7 +229,7 @@ section.scene {
   margin: 0;
   position: absolute;
   font-size: 2em;
-  font-family: 'Poiret One', cursive;
+  font-family: 'Bakbak One', cursive;
   font-weight: bold;
 }
 
@@ -499,6 +499,16 @@ section.scene {
 #nomeFuncionario1, #nomeFuncionario2, #nomeFuncionario3 {
   font-family: 'Bungee', cursive;
 }
+
+
+#numAcessosFuncionario1, #numAcessosFuncionario2, #numAcessosFuncionario3 {
+  position: absolute;
+  font-family: 'Bakbak One', cursive;
+  text-shadow: 1px 1px 1px black;
+  font-size: 1.4em;
+}
+
+
 
 #tempoEconomizado {
   width: 100%;

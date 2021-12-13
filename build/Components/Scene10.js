@@ -41,16 +41,16 @@ export class Scene10 extends Scene {
         timeline
             .add({
             targets: this.divPredioPublicacoes,
-            delay: 1400,
+            delay: 1000,
             easing: 'easeInOutSine',
-            duration: 1500,
+            duration: 500,
             translateX: this.shakeAnimation(),
         })
             .add({
             targets: this.divPredioPublicacoes,
             height: {
                 value: '19%',
-                duration: 1500,
+                duration: 500,
             }
         })
             .add({
@@ -84,16 +84,16 @@ export class Scene10 extends Scene {
             .add({
             targets: this.divPredioExpedientes,
             easing: 'easeInOutSine',
-            duration: 2000,
+            duration: 1000,
             translateX: this.shakeAnimation(),
         })
             .add({
             targets: this.divPredioExpedientes,
             height: {
                 value: '27%',
-                duration: 2000,
+                duration: 1000,
             }
-        }, "+=250")
+        })
             .add({
             targets: this.fotoFuncionario2,
             opacity: {
@@ -125,7 +125,7 @@ export class Scene10 extends Scene {
             .add({
             targets: this.divPredioAndamentos,
             easing: 'easeInOutSine',
-            duration: 2500,
+            duration: 2000,
             translateX: this.shakeAnimation(),
         })
             .add({
