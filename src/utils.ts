@@ -107,3 +107,18 @@ export function millisecondsToHours( ms: number ) {
 export function millisecondsToDays( ms: number ) {
   return ms / 8.64e+7;
 }
+
+export function drawPolygon( svgElementId: string, polygon: [[number, number]] ) {
+  const svg: HTMLElement | HTMLElement = document.getElementById( svgElementId )!;
+  const drawing = document.createElementNS( "http://www.w3.org/2000/svg", "polygon" );
+  svg.appendChild( drawing );
+
+  for ( const value of polygon ) {
+    var point = svg.getBoundingClientRect();
+    point.x = value[0];
+    point.y = value[1];
+    drawing.points.appendItem( DOMPoint.fromPoint( {
+      x: point.x, y: point.y
+    } ) );
+  }
+}

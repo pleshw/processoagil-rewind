@@ -57,14 +57,14 @@ export class Scene10 extends Scene {
         targets: this.divPredioPublicacoes,
         delay: 1400,
         easing: 'easeInOutSine',
-        duration: 3000,
+        duration: 1500,
         translateX: this.shakeAnimation(),
       } )
       .add( {
         targets: this.divPredioPublicacoes,
         height: {
           value: '19%',
-          duration: 1900,
+          duration: 1500,
         }
       } )
       .add( {
@@ -98,16 +98,16 @@ export class Scene10 extends Scene {
       .add( {
         targets: this.divPredioExpedientes,
         easing: 'easeInOutSine',
-        duration: 3000,
+        duration: 2000,
         translateX: this.shakeAnimation(),
       } )
       .add( {
         targets: this.divPredioExpedientes,
         height: {
           value: '27%',
-          duration: 2200,
+          duration: 2000,
         }
-      }, "+=500" )
+      }, "+=250" )
       .add( {
         targets: this.fotoFuncionario2,
         opacity: {
@@ -139,22 +139,21 @@ export class Scene10 extends Scene {
       .add( {
         targets: this.divPredioAndamentos,
         easing: 'easeInOutSine',
-        duration: 4000,
+        duration: 2500,
         translateX: this.shakeAnimation(),
       } )
       .add( {
         targets: this.divPredioAndamentos,
-        delay: 500,
         height: {
           value: '34%',
-          duration: 2200,
+          duration: 2000,
         }
-      }, "+=900" )
+      } )
       .add( {
         targets: this.fotoFuncionario1,
         opacity: {
           value: 1,
-          duration: 300,
+          duration: 150,
           easing: 'linear'
         },
         translateY: {
