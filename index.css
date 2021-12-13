@@ -268,14 +268,122 @@ section.scene {
   width: 100%;
 }
 
+.bg-teal {
+  background-color: #20c997;
+}
+
+.pitch {
+  background-color: #238729;
+  width: 590px;
+  height: 380px;
+  position: relative;
+}
+
+.pitch:after {
+  content: "";
+  border-left: 1px solid white;
+  position: absolute;
+  top: 20px;
+  left: 295px;
+  display: block;
+  height: 340px;
+}
+
+.pitch:before {
+  content: "";
+  border: 1px solid white;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: block;
+  width: 550px;
+  height: 340px;
+}
+
+.center-circle {
+  position: absolute;
+  top: 145px;
+  left: 250px;
+  width: 90px;
+  height: 90px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.center-circle:after {
+  position: absolute;
+  top: 43px;
+  left: 43px;
+  width: 1px;
+  height: 1px;
+  background-color: white;
+  content: "";
+  border: 1px solid white;
+}
+
+.penalty-area {
+  position: absolute;
+  height: 140px;
+  width: 80px;
+  top: 120px;
+  border: 1px solid white;
+}
+
+.left .penalty-area {
+  left: 20px;
+  border-left: 0;
+}
+
+.right .penalty-area {
+  right: 19px;
+  border-right: 0;
+}
+
+.penalty-area:before {
+  position: absolute;
+  height: 70px;
+  width: 35px;
+  top: 35px;
+  border: 1px solid white;
+  content: "";
+}
+
+.left .penalty-area:before {
+  left: 0px;
+  border-left: 0;
+}
+
+.right .penalty-area:before {
+  right: 0px;
+  border-right: 0;
+}
+
+.penalty-area:after {
+  position: absolute;
+  height: 2px;
+  width: 2px;
+  top: 70px;
+  background-color: white;
+  content: "";
+}
+
+.left .penalty-area:after {
+  right: 15px;
+}
+
+.right .penalty-area:after {
+  left: 15px;
+}
+
+
 #prediosContainerScene2 {
   position: absolute;
   height: 100vh;
   width: 73vw;
-  bottom: 30px;
+  bottom: 0px;
   justify-self: center;
   overflow: hidden;
-  left: 15vw;
+  left: 0vw;
   border-bottom: 2px solid black;
 }
 
@@ -314,7 +422,7 @@ section.scene {
 
 #divPredioExpedientes {
   z-index: 80;
-  left: 64%;
+  left: 66%;
   height: 0%;
 }
 
@@ -579,7 +687,7 @@ section.scene {
 
 h1.title-left {
   position: absolute;
-  top: 11vh;
+  top: 30vh;
   width: 51vw;
   left: 3vw;
   font-size: 1.9em;
@@ -587,7 +695,7 @@ h1.title-left {
 
 h5.title-left {
   position: absolute;
-  top: 25vh;
+  top: 43vh;
   width: 58vw;
   left: 3vw;
   font-size: 1.1em;
@@ -595,7 +703,7 @@ h5.title-left {
 
 h6.title-left {
   position: absolute;
-  top: 31vh;
+  top: 48vh;
   width: 58vw;
   left: 3vw;
   font-size: .8em;
@@ -679,9 +787,15 @@ h6.title-left {
   position: absolute;
 }
 
+.tempo-economizado-valores {
+  top: 40vh;
+  left: 0vw;
+  position: absolute;
+}
+
 #containerAberturaTempoEconomizado {
   top: 54vh;
-  left: 30vw;
+  left: 34vw;
   position: absolute;
   text-align: left;
 }
@@ -701,6 +815,8 @@ h6.title-left {
   opacity: 1;
   margin: 0;
   font-weight: lighter;
+  -ms-user-select: none;
+  -webkit-user-select: none;
   user-select: none;
 }
 
@@ -890,6 +1006,7 @@ h1.spotlight, span.spotlight {
   perspective-origin: center;
   perspective: 900px;
   overflow: visible;
+  right: 3vw;
   /* transform: skew(-12deg, -7deg); */
 }
 

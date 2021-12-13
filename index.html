@@ -54,7 +54,6 @@
       <h1 id="tituloCenaPubAndExp" class="text-light">E dessas movimentações:</h1>
       <div class="content justify-between align-center text-center">
         <div id="qtdPublicacoes" class="card bg-primary mb-3 divPubAndExp">
-          <!-- <div class="card-header"></div> -->
           <div class="card-body p-0 d-flex flex-column justify-content-center align-items-center">
             <h1 class="display-3 fw-bold"><span id="spanTotalPublicacoes"></span></h1>
             <span class="fw-normal">Publicações</span>
@@ -74,12 +73,11 @@
         </div>
       </div>
     </section>
+
     <section class="scene w-100">
       <div id="tempoEconomizado" class="flex-col align-center justify-between w-100 p-0">
-
-
         <div id="scene3Part1" class="bg-dark bg-gradient text-white w-100 h-100  min-vh-100 min-vw-100">
-          <div id="tempoEconomizadoValores" class="text-muted flex-row justify-evenly w-100">
+          <div id="tempoEconomizadoValores" class="text-light flex-row justify-evenly w-100 tempo-economizado-valores">
             <h1 id="anosEconomizados"></h1>
             <h1 id="mesesEconomizados"></h1>
             <h1 id="diasEconomizados"></h1>
@@ -95,7 +93,13 @@
               ano.
             </h2>
           </div>
+
+          <div class="absolute-0 flex-center w-100 h-100">
+            <button class="btn btn-lg btn-outline-light rounded-0 pulse" style="top: 32%; left: -44%;">?</button>
+          </div>
         </div>
+
+
       </div>
 
 
@@ -223,8 +227,8 @@
             esse ano.
           </h2>
         </div>
-        <div id="prediosContainerScene2" class="flex-row flex-center">
-          <div id="divPredioPublicacoes" class="bg-success">
+        <div id="prediosContainerScene2" class="flex-row flex-center w-100">
+          <div id="divPredioPublicacoes" class="bg-teal">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario3">3º lugar</span>
               <img id="fotoFuncionario3" class="foto-funcionario" src="assets/pikachu-3.jfif" alt="">
@@ -232,7 +236,7 @@
             <span id="nomeFuncionario3" class="texto-funcionario3"></span>
             <span id="numAcessosFuncionario3" class="text-light"></span>
           </div>
-          <div id="divPredioAndamentos" class="bg-warning">
+          <div id="divPredioAndamentos" class="bg-primary">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario1">1º lugar</span>
               <img id="fotoFuncionario1" class="foto-funcionario" src="assets/pikachu-1.jpg" alt="">
