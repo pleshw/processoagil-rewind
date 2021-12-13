@@ -50,95 +50,109 @@
     </section>
 
 
-    <section class="scene bg-warning bg-gradient">
+    <section class="scene bg-gradient" style="background: #1D232E;">
       <h1 id="tituloCenaPubAndExp" class="text-light">E dessas movimentações:</h1>
       <div class="content justify-between align-center text-center">
         <div id="qtdPublicacoes" class="card bg-primary mb-3 divPubAndExp">
-          <div class="card-header">Publicações</div>
-          <div class="card-body p-0 flex-center">
-            <h5><span id="spanTotalPublicacoes"></span></h5>
+          <!-- <div class="card-header"></div> -->
+          <div class="card-body p-0 d-flex flex-column justify-content-center align-items-center">
+            <h1 class="display-3 fw-bold"><span id="spanTotalPublicacoes"></span></h1>
+            <span class="fw-normal">Publicações</span>
           </div>
         </div>
         <div id="qtdAndamentos" class="card mb-3 divPubAndExp">
-          <div class="card-header">Andamentos</div>
-          <div class="card-body p-0 flex-center">
-            <h5><span id="spanTotalAndamentos"></span></h5>
+          <div class="card-body p-0 d-flex flex-column justify-content-center align-items-center">
+            <h1 class="display-3 fw-bold"><span id="spanTotalAndamentos"></span></h1>
+            <span class="fw-normal">Publicações</span>
           </div>
         </div>
         <div id="qtdExpedientes" class="card bg-danger mb-3 divPubAndExp">
-          <div class="card-header">Expedientes</div>
-          <div class="card-body p-0 flex-center">
-            <h5><span id="spanTotalExpedientes"></span></h5>
+          <div class="card-body p-0 d-flex flex-column justify-content-center align-items-center">
+            <h1 class="display-3 fw-bold"><span id="spanTotalExpedientes"></span></h1>
+            <span class="fw-normal">Publicações</span>
           </div>
         </div>
       </div>
     </section>
+    <section class="scene w-100">
+      <div id="tempoEconomizado" class="flex-col align-center justify-between w-100 p-0">
 
-    <section class="scene">
-      <div id="tempoEconomizado" class="flex-col align-center justify-between w-100">
-        <h4 class="m-3">Fizemos uma estimativa de quanto tempo você economizou esse ano por usar nosso sistema este
-          ano.
-        </h4>
 
-        <div id="containerEstimativas" class="h-100 flex-center">
-          <div class="w-100 flex-center flex-col h-100">
-            <div id="introTextContainerScene3" class="flex-center flex-col justify-around w-100 h-100">
-              <div id="estimativasTempo" class="flex-row w-100 flex-center h-100 carousel slide"
-                data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class=" bg-dark text-white carousel-item ">
-                    <img src="assets/trabalho.gif" class="d-block w-100" alt="...">
+        <div id="scene3Part1" class="bg-dark bg-gradient text-white w-100 h-100  min-vh-100 min-vw-100">
+          <div id="tempoEconomizadoValores" class="text-muted flex-row justify-evenly w-100">
+            <h1 id="anosEconomizados"></h1>
+            <h1 id="mesesEconomizados"></h1>
+            <h1 id="diasEconomizados"></h1>
+            <h1 id="horasEconomizados"></h1>
+            <h1 id="minutosEconomizados"></h1>
+            <h1 id="segundosEconomizados"></h1>
+          </div>
+          <div id="containerAberturaTempoEconomizado" class=" w-100 min-vh-100">
+            <h2 id="tituloAberturaTempoEconomizado" class="fw-lighter">Fizemos uma estimativa de quanto tempo você
+              economizou esse ano por usar
+              nosso
+              sistema este
+              ano.
+            </h2>
+          </div>
+        </div>
+      </div>
 
-                    <div class="carousel-caption d-none d-md-block bg-black">
-                      <h5>Você conseguiria aprender
-                        <span id="tempoParaDiasTrabalho"></span>
-                        novo(s) idioma(s)
-                      </h5>
-                    </div>
+
+      <div id="containerEstimativas" class="w-100 h-100 flex-center container-fluid p-0 d-none">
+        <div class="w-100 flex-center flex-col h-100">
+          <div id="introTextContainerScene3" class="flex-center flex-col justify-around w-100 h-100">
+            <div id="estimativasTempo" class="flex-row w-100 flex-center h-100 carousel slide p-0
+              " data-bs-ride="carousel" role="listbox">
+              <div class="carousel-inner">
+
+                <div class=" bg-dark text-white carousel-item ">
+                  <img src="assets/trabalho.gif" class="d-block w-100" alt="...">
+
+                  <div class="carousel-caption d-none d-md-block bg-black">
+                    <h5>Você conseguiria aprender
+                      <span id="tempoParaDiasTrabalho"></span>
+                      novo(s) idioma(s)
+                    </h5>
                   </div>
-                  <div class=" bg-dark carousel-item text-white">
-                    <img src="assets/filme.gif" class="d-block w-100" alt="...">
+                </div>
+                <div class=" bg-dark carousel-item text-white">
+                  <img src="assets/filme.gif" class="d-block w-100" alt="...">
 
-                    <div class="carousel-caption d-none d-md-block bg-black">
-                      <h5>Dá pra assistir
-                        <span id="tempoParaFilme"></span>
-                        filmes bem demorados
-                      </h5>
-                    </div>
+                  <div class="carousel-caption d-none d-md-block bg-black">
+                    <h5>Dá pra assistir
+                      <span id="tempoParaFilme"></span>
+                      filmes bem demorados
+                    </h5>
                   </div>
-                  <div class=" bg-dark carousel-item text-white active">
-                    <img src="assets/musica.gif" class="d-block w-100" alt="...">
+                </div>
+                <div class=" bg-dark carousel-item text-white">
+                  <img src="assets/musica.gif" class="d-block w-100" alt="...">
 
-                    <div class="carousel-caption d-none d-md-block bg-black">
-                      <h5>Que tal ouvir
-                        <span id="tempoParaMusica"></span>
-                        musicas?
-                      </h5>
-                    </div>
+                  <div class="carousel-caption d-none d-md-block bg-black">
+                    <h5>Que tal ouvir
+                      <span id="tempoParaMusica"></span>
+                      musicas?
+                    </h5>
                   </div>
-                  <div class=" bg-dark carousel-item text-white">
-                    <img src="assets/futebol.gif" class="d-block w-100" alt="...">
+                </div>
+                <div class=" bg-dark carousel-item text-white">
+                  <img src="assets/futebol.gif" class="d-block w-100" alt="...">
 
-                    <div class="carousel-caption d-none d-md-block bg-black">
-                      <h5>Dava para jogar
-                        <span id="tempoParaFutebol"></span>
-                        partidas de futebol
-                      </h5>
-                    </div>
+                  <div class="carousel-caption d-none d-md-block bg-black">
+                    <h5>Dava para jogar
+                      <span id="tempoParaFutebol"></span>
+                      partidas de futebol
+                    </h5>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div id="tempoEconomizadoValores" class="text-muted flex-row justify-around w-100">
-          <h1 id="anosEconomizados"></h1>
-          <h1 id="mesesEconomizados"></h1>
-          <h1 id="diasEconomizados"></h1>
-          <h1 id="horasEconomizados"></h1>
-          <h1 id="minutosEconomizados"></h1>
-          <h1 id="segundosEconomizados"></h1>
-        </div>
+      </div>
+
+
       </div>
       <div class="content justify-between align-center">
 
@@ -164,11 +178,12 @@
           escritório
           este ano.
         </h5>
-        <h6 class="title-left text-light fw-lighter">Clique no estado para ver mais informações.</h6>
+        <h6 class="title-left text-light fw-lighter">Passe o mouse sobre o estado para ver mais informações, ou clique
+          para fixar as informações na tela.</h6>
         <div class="text-light absolute-0 w-100 h-100">
 
           <svg id="mapaBrasil"></svg>
-
+          <svg id="estadoSelecionado"></svg>
         </div>
       </div>
     </section>
@@ -185,10 +200,11 @@
           <div class="pen">
             <div class="stage">
               <div class="vortext">
-                <div data-text="Maior valor de causas" id="listaVipValor" class="vortextRibbon down"></div>
+                <div data-text="Maior número de processos distribuídos" id="listaVipValor" class="vortextRibbon down">
+                </div>
               </div>
               <div class="vortext">
-                <div data-text="Maior número de processos distribuídos" id="listaVipProcessos"
+                <div data-text="Segundo maior número de processos" id="listaVipProcessos"
                   class="vortextRibbon spotlight up"></div>
               </div>
             </div>
@@ -219,7 +235,7 @@
           <div id="divPredioAndamentos" class="bg-warning">
             <div class="foto-colocacao flex-center flex-col">
               <span class="span-colocacao texto-funcionario1">1º lugar</span>
-              <img id="fotoFuncionario1" class="foto-funcionario spotlight" src="assets/pikachu-1.jpg" alt="">
+              <img id="fotoFuncionario1" class="foto-funcionario" src="assets/pikachu-1.jpg" alt="">
             </div>
             <span id="nomeFuncionario1" class="texto-funcionario1"></span>
             <span id="numAcessosFuncionario1" class="text-light"></span>
@@ -253,8 +269,8 @@
   <script defer src="lib/anime.min.js"></script>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="brasil.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/topojson@3"></script>
   <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -282,7 +298,7 @@
     import { Scene11 } from './build/Components/Scene11.js';
 
     import { SceneView } from './build/Scene/SceneView.js';
-    import { throttle, zeroBefore, animacaoBarraProgresso, minutesToMilliseconds } from './build/utils.js';
+    import { throttle, zeroBefore, animacaoBarraProgresso, minutesToMilliseconds, drawPolygon } from './build/utils.js';
 
     window.addEventListener('load', () => {
       $('#estimativasTempo').carousel({
@@ -320,22 +336,26 @@
       SceneView.addScene(new Scene6(new SceneScaffold(scaffolds[4]), userData.processosPorEstado), scrollMagicIndicatorsController);
 
       /// Cena 9
-      const nomeMaiorCausa = userData.clienteComMaiorCausa;
-      let maiorCausaSplit = nomeMaiorCausa
-        .split(' ')
-        .slice(0, 4);
-      let maiorCausa3D = maiorCausaSplit.filter(Boolean).join(" ");
+      const rankingClientes = userData.clientesComMaisProcessos.sort((a, b) => a - b);
 
-      document.getElementById('listaVipValor').innerHTML = maiorCausa3D;
 
-      const nomeMaisProcessos = userData.clientesComMaisProcessos.sort((a, b) => a - b)[0].nome;
+
+      const nomeMaisProcessos = rankingClientes[0].nome;
+      const nomeSegundoLugar = rankingClientes[1].nome;
 
       let maisProcessosSplit = nomeMaisProcessos
         .split(' ')
-        .slice(0, 4);
-      let maisProcessos3D = maisProcessosSplit.filter(Boolean).join(" ");
+        .slice(0, 2);
 
-      document.getElementById('listaVipProcessos').innerHTML = maisProcessos3D;
+      let segundoLugarSplit = nomeSegundoLugar
+        .split(' ')
+        .slice(0, 2);
+
+      let maisProcessos3D = maisProcessosSplit.filter(Boolean).join(" ");
+      let segundoLugar3D = segundoLugarSplit.filter(Boolean).join(" ");
+
+      document.getElementById('listaVipProcessos').innerHTML = segundoLugar3D;
+      document.getElementById('listaVipValor').innerHTML = maisProcessos3D;
 
       SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[5])), scrollMagicIndicatorsController);
 
@@ -393,15 +413,14 @@
               SceneView.prev();
             }
           })
-        }, 1000, 'wheelNextScene')
+        }, 100, 'wheelNextScene')
       });
 
       SceneView.scrollToScene(0);
 
-      setTimeout(() => {
-        SceneView.scrollToScene(4);
-      }, 500);
-
+      // setTimeout(() => {
+      //   SceneView.scrollToScene(4);
+      // }, 500);
 
 
       setStyles();

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap');
 
 #numMovContainer {
   font-family: 'Bebas Neue', cursive !important;
@@ -229,7 +229,7 @@ section.scene {
   margin: 0;
   position: absolute;
   font-size: 2em;
-  font-family: 'Poiret One', cursive;
+  font-family: 'Bakbak One', cursive;
   font-weight: bold;
 }
 
@@ -376,7 +376,7 @@ section.scene {
 
 #numMovimentacoesScene1Text {
   opacity: 0;
-  top: 40px;
+  top: 0;
   width: 100% !important;
   left: 0;
 }
@@ -393,6 +393,10 @@ section.scene {
   cursor: pointer;
 }
 
+#scene3Part1 div {
+  transform: rotate(0deg);
+}
+
 #sceneControllersCounters {
   display: flex;
   justify-content: center;
@@ -400,6 +404,7 @@ section.scene {
   font-weight: bolder;
   font-family: monospace;
   align-items: center;
+  filter: brightness(4.5);
 }
 
 .paused {
@@ -433,6 +438,12 @@ section.scene {
 
 .justify-between {
   justify-content: space-between;
+}
+
+#estadoSelecionado {
+  position: absolute;
+  bottom: 0;
+  left: 10vw;
 }
 
 #introTextContainer {
@@ -489,6 +500,16 @@ section.scene {
   font-family: 'Bungee', cursive;
 }
 
+
+#numAcessosFuncionario1, #numAcessosFuncionario2, #numAcessosFuncionario3 {
+  position: absolute;
+  font-family: 'Bakbak One', cursive;
+  text-shadow: 1px 1px 1px black;
+  font-size: 1.4em;
+}
+
+
+
 #tempoEconomizado {
   width: 100%;
   transition: all 0.3s;
@@ -544,7 +565,7 @@ section.scene {
   perspective-origin: center;
   perspective: 34rem;
   opacity: 0.1;
-  transition: all .3s ease-out;
+  transition: all .2s ease-in-out;
   transform: scale(0.9);
   transform: scale(1.9) skew(10deg,
       18deg);
@@ -558,7 +579,7 @@ section.scene {
 
 h1.title-left {
   position: absolute;
-  top: 15vh;
+  top: 11vh;
   width: 51vw;
   left: 3vw;
   font-size: 1.9em;
@@ -566,15 +587,15 @@ h1.title-left {
 
 h5.title-left {
   position: absolute;
-  top: 29vh;
+  top: 25vh;
   width: 58vw;
   left: 3vw;
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 
 h6.title-left {
   position: absolute;
-  top: 34vh;
+  top: 31vh;
   width: 58vw;
   left: 3vw;
   font-size: .8em;
@@ -586,8 +607,6 @@ h6.title-left {
   top: -6rem;
   right: 0;
 }
-
-#estimativasTempo .card-title {}
 
 .card-title span {
   font-size: 2rem !important;
@@ -623,21 +642,62 @@ h6.title-left {
   justify-content: center;
 }
 
+.justify-evenly {
+  justify-content: space-evenly;
+}
 
 .align-center {
   align-items: center;
 }
 
+.scene3-titulo-principal {
+  top: 40vh;
+  left: 0vw;
+  position: absolute;
+}
+
+.scene3-titulo-secundario {
+  top: 54vh;
+  left: 30vw;
+  position: absolute;
+  text-align: left;
+
+
+}
+
+.scene3-titulo-secundario h2 {
+  font-size: 1.3em;
+}
+
+.bg-futebol {
+  background-image: url(assets/grass2.png);
+}
+
 #tempoEconomizadoValores {
-  bottom: 5vh;
+  top: 40vh;
+  left: 0vw;
+  position: absolute;
+}
+
+#containerAberturaTempoEconomizado {
+  top: 54vh;
+  left: 30vw;
+  position: absolute;
+  text-align: left;
+}
+
+#tituloAberturaTempoEconomizado {
+  font-size: 1.3em;
+  left: -20vw;
+  opacity: 0;
 }
 
 #tempoEconomizado h1 {
   display: none;
   justify-content: flex-start;
   text-align: right;
-  font-size: 2rem;
-  animation: RotateIn 1.2s;
+  font-size: 4rem;
+  animation: RotateIn .2s;
   opacity: 1;
   margin: 0;
   font-weight: lighter;
@@ -788,7 +848,7 @@ h1.spotlight, span.spotlight {
   min-height: calc(100vh - 16px);
   background: white;
   position: relative;
-  animation: TranslateIn 1s ease-in-out;
+  animation: TranslateIn .3s ease-in;
   transform: rotate(27deg) skew(35deg,
       5deg);
   background: #171717;
@@ -799,6 +859,8 @@ h1.spotlight, span.spotlight {
   fill: white;
   fill-opacity: 0.3;
   cursor: pointer;
+  transition: transform .1s ease-out;
+  outline: none !important;
 }
 
 #brMap1 .state.tem-processo {
@@ -810,8 +872,8 @@ h1.spotlight, span.spotlight {
 #brMap1 .state.tem-processo.focus {
   padding: 0;
   margin: 0;
-  transform: translate(-5px, -3px);
-  filter: drop-shadow(-1px 0px 0px #444) drop-shadow(7px 2px 0px #3214dc);
+  transform: translate(-1px, -1px);
+  filter: drop-shadow(-1px 0px 0px #3214dc) drop-shadow(5px 1px 0px #3214dc);
 }
 
 
@@ -828,7 +890,7 @@ h1.spotlight, span.spotlight {
   perspective-origin: center;
   perspective: 900px;
   overflow: visible;
-  right: 2vw;
+  /* transform: skew(-12deg, -7deg); */
 }
 
 #brMap1 rect.map_canvas {
@@ -999,12 +1061,12 @@ h1.spotlight:before, .spotlight:before {
 
 @keyframes RotateIn {
   0% {
-    transform: rotate3d(-1, 0, -0.05, 15deg);
+    transform: translateX(-20px);
     opacity: 0;
   }
 
   100% {
-    transform: rotate3d(0);
+    transform: translateX(0);
     opacity: 1;
   }
 }

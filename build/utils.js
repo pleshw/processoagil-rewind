@@ -91,3 +91,16 @@ export function millisecondsToHours(ms) {
 export function millisecondsToDays(ms) {
     return ms / 8.64e+7;
 }
+export function drawPolygon(svgElementId, polygon) {
+    const svg = document.getElementById(svgElementId);
+    const drawing = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    svg.appendChild(drawing);
+    for (const value of polygon) {
+        var point = svg.getBoundingClientRect();
+        point.x = value[0];
+        point.y = value[1];
+        drawing.points.appendItem(DOMPoint.fromPoint({
+            x: point.x, y: point.y
+        }));
+    }
+}

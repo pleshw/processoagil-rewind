@@ -5,6 +5,8 @@ export class Scene3 extends Scene {
         super(scaffold);
         this.usuarioJaViu = false;
         this.imgComoAproveitar = document.querySelectorAll('#estimativasTempo > .card');
+        this.sceneTitle = document.getElementById('tituloAberturaTempoEconomizado');
+        this.timeContainer = document.getElementById('tempoEconomizadoValores');
         this.anosEconomizados = document.getElementById('anosEconomizados');
         this.mesesEconomizados = document.getElementById('mesesEconomizados');
         this.diasEconomizados = document.getElementById('diasEconomizados');
@@ -21,6 +23,16 @@ export class Scene3 extends Scene {
             minutes: 0,
             seconds: 0
         };
+        this.themes = [
+            {
+                name: 'main',
+                background: ['bg-dark', 'bg-gradient']
+            },
+            {
+                name: 'futebol',
+                background: ['bg-futebol']
+            },
+        ];
         this.timeSavedInMs = timeSaved;
     }
     render() {
@@ -33,13 +45,23 @@ export class Scene3 extends Scene {
     }
     animateTime() {
         anime({
+            targets: this.sceneTitle,
+            translateX: '20vw',
+            opacity: {
+                value: 1,
+                duration: 5000
+            },
+            duration: 2000,
+            easing: 'easeOutExpo',
+        });
+        anime({
             targets: this.customerTime,
             saved: this.timeSavedInMs,
             round: 1,
-            delay: 1500,
-            duration: 20000,
+            delay: 500,
+            duration: 10000,
             easing: 'easeInOutExpo',
-            begin: () => {
+            complete: () => {
             },
             update: () => {
                 const strDateSplitted = new Date(this.customerTime.saved)
@@ -66,13 +88,12 @@ export class Scene3 extends Scene {
                 const horas = +strDateSplitted[3];
                 const minutos = +strDateSplitted[4];
                 const segundos = +strDateSplitted[5];
-                const textoAnos = anos > 0 ? `<div class='campo-relogio'><span>${zeroBefore(anos)}</span> <span class="medida-tempo">Anos</span></div>` : '';
-                const textoMeses = textoAnos || meses > 0 ? `<div class='campo-relogio'><span>${zeroBefore(meses)}</span> <span class="medida-tempo">Meses</span></div>` : '';
-                const textoDias = textoMeses || dias > 0 ? `<div class='campo-relogio'><span>${zeroBefore(dias)}</span> <span class="medida-tempo">Dias</span></div>` : '';
-                const textoHoras = textoDias || horas > 0 ? `<div class='campo-relogio'><span>${zeroBefore(horas)}</span> <span class="medida-tempo">Horas</span></div>` : '';
-                const textoMinutos = textoHoras || minutos > 0 ? `<div class='campo-relogio'><span>${zeroBefore(minutos)}</span> <span class="medida-tempo">Minutos</span></div>` : '';
-                const textoSegundos = textoMinutos || segundos > 0 ? `<div class='campo-relogio'><span>${zeroBefore(segundos)}</span> <span class="medida-tempo">Segundos</span></div>` : '';
-                fitText(document.getElementById('tempoEconomizadoValores'), 1);
+                const textoAnos = anos > 0 ? `<div class='campo-relogio'><span>${zeroBefore(anos)} Ano${(anos > 1) ? 's' : ''}</span></div>` : '';
+                const textoMeses = textoAnos || meses > 0 ? `<div class='campo-relogio'><span>${zeroBefore(meses)} Mes${(meses > 1) ? 'es' : ''}</span></div>` : '';
+                const textoDias = textoMeses || dias > 0 ? `<div class='campo-relogio'><span>${zeroBefore(dias)} Dia${(dias > 1) ? 's' : ''}</span></div>` : '';
+                const textoHoras = textoDias || horas > 0 ? `<div class='campo-relogio'><span>${zeroBefore(horas)}h</span></div>` : '';
+                const textoMinutos = textoHoras || minutos > 0 ? `<div class='campo-relogio'><span>${zeroBefore(minutos)}m</span></div>` : '';
+                const textoSegundos = textoMinutos || segundos > 0 ? `<div class='campo-relogio'><span>${zeroBefore(segundos)}s</span></div>` : '';
                 if (textoAnos) {
                     this.anosEconomizados.style.display = 'flex';
                     this.anosEconomizados.innerHTML = `${textoAnos}`;
@@ -116,6 +137,9 @@ export class Scene3 extends Scene {
             }
         });
     }
+    // removeBackgrounds() {
+    //   document.getElementById( 'scene3Part1' )!.classList.remove( ...this.backgrounds );
+    // }
     dropImage() {
         anime({
             targets: this.comoAproveitarTempo,

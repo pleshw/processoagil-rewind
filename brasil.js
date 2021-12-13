@@ -1,48 +1,113 @@
 // Define map size on screen
-var width = 596, height = window.innerHeight,
-  svg, g, path;
+let width = 596, height = window.innerHeight,
+  fullMapSvg, fullMapGPath, fullMapPath, selectedStateSvg, selectedStateGPath, selectedStatePath;
+
+
+function renderizarMinimapa(shp) {
+  selectedStateSvg = d3.select("#estadoSelecionado")
+    .attr("width", 400)
+    .attr("height", 400);
+
+
+  const zoom = d3.zoom()
+    .scaleExtent([1, 1])
+    .translateExtent([[0, 0], [400, 400]])
+    .on('zoom', e => {
+      console.log(e)
+      d3.select('svg g')
+        .attr('transform', e.transform);
+    })
+
+  d3.select("#estadoSelecionado").call(zoom);
+
+  selectedStateGPath = selectedStateSvg.append("g")
+
+  // Align center of Brazil to center of map
+  const projection = d3.geoMercator()
+    .scale(480)
+    .center([-42, -26])
+    .translate([width / 2, height / 2]);
+
+  selectedStatePath = d3.geoPath().projection(projection);
+
+  renderizarEstadoSelecionado(shp);
+
+  d3.select(self.frameElement).style("height", 400 + "px");
+  selectedStateGPath.attr("id", "selectedStateElement");
+}
+
+function renderizarEstadoSelecionado(shp, idEstadoSelecionado) {
+  const states = topojson.feature(shp, shp.objects.estados).features.filter(s => s.id == idEstadoSelecionado);
+
+  if (states.length)
+    selectedStateGPath
+      .selectAll(".estado")
+      .data(states)
+      .enter()
+      .append("path")
+      .attr("class", "state")
+      .attr("id", function (d, i) { return 'selectedState' + i; })
+      .attr("d", selectedStatePath);
+}
 
 function renderizarEstados(shp, processosPorEstado) {
-
-  // Extracting polygons and contours
-  var states = topojson.feature(shp, shp.objects.estados);
-  var states_contour = topojson.mesh(shp, shp.objects.estados);
+  // Extraindo polygons e contours
+  const states = topojson.feature(shp, shp.objects.estados);
+  const states_contour = topojson.mesh(shp, shp.objects.estados);
 
   // Desenhando estados
-  g.selectAll(".estado")
+  fullMapGPath
+    .selectAll(".estado")
     .data(states.features)
     .enter()
     .append("path")
+    .attr("data-bs-toggle", "tooltip")
     .attr("class", "state")
+    .attr("data-bs-html", "true")
+    .attr("data-bs-placement", "top")
+    .attr("title", function (d) {
+      const estado = processosPorEstado.find(c => c.estado === d.properties.nome && c.estado !== undefined);
+
+      if (estado)
+        return `<u>${ d.properties.nome }</u> </br> <em>Encontramos</em> <b>${ estado.total }</b> processos`
+      else
+        return ``
+    })
     .attr("id", function (d, i) { return 'state' + i; })
     .attr("state-data", function (d) {
       const estado = processosPorEstado.find(c => c.estado === d.properties.nome && c.estado !== undefined);
 
       if (estado)
-        return JSON.stringify(estado);
+        return JSON.stringify({
+          ...estado,
+          id: d.id
+        });
       else
         return JSON.stringify({
+          id: d.id,
           estado: d.properties.nome,
           total: 0
         });
     })
-    .attr("d", path);
+    .attr("d", fullMapPath);
 
 
-  g.append("path")
+  fullMapGPath
+    .append("path")
     .datum(states_contour)
-    .attr("d", path)
+    .attr("d", fullMapPath)
     .attr("class", "state_contour");
-
-
 
   document.querySelectorAll('.state').forEach(element => {
     const dadosEstado = JSON.parse(element.getAttribute('state-data'));
+
     if (dadosEstado.total > 0) {
       element.classList.add('tem-processo');
     }
 
     element.addEventListener('click', () => {
+      ///renderizarEstadoSelecionado(shp, dadosEstado.id)
+
       document.querySelectorAll('use').forEach(el => {
         el.remove();
       });
@@ -58,7 +123,6 @@ function renderizarEstados(shp, processosPorEstado) {
 
       element.classList.add('focus');
 
-
       document.getElementById('mapaBrasil').insertAdjacentHTML('beforeend',
         `<use xlink:href="#${ element.id }"/>`
       )
@@ -67,11 +131,11 @@ function renderizarEstados(shp, processosPorEstado) {
 }
 
 function loadBrasil(processosPorEstado) {
-  svg = d3.select("#mapaBrasil")
+  fullMapSvg = d3.select("#mapaBrasil")
     .attr("width", width)
     .attr("height", height);
 
-  var zoom = d3.zoom()
+  const zoom = d3.zoom()
     .scaleExtent([1, 1])
     .translateExtent([[0, 0], [width, height]])
     .on('zoom', e => {
@@ -82,21 +146,26 @@ function loadBrasil(processosPorEstado) {
 
   d3.select("#mapaBrasil").call(zoom);
 
-  g = svg.append("g")
+  fullMapGPath = fullMapSvg.append("g")
 
   // Align center of Brazil to center of map
-  var projection = d3.geoMercator()
-    .scale(715)
+  const projection = d3.geoMercator()
+    .scale(815)
     .center([-52, -15])
-    .translate([width / 2 + 18, height / 2 + 20]);
+    .translate([width / 2 + 18, height / 2]);
 
-  path = d3.geoPath().projection(projection);
+  fullMapPath = d3.geoPath().projection(projection);
 
   d3.json("./br-states.json").then((shp) => {
     renderizarEstados(shp, processosPorEstado)
+    // renderizarMinimapa(shp);
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
   });
 
   d3.select(self.frameElement).style("height", height + "px");
-  g.attr("id", "brMap1");
+  fullMapGPath.attr("id", "brMap1");
 }
 

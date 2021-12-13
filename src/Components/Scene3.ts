@@ -3,12 +3,19 @@ import { SceneScaffold } from '../Scene/SceneScaffold.js';
 import { zeroBefore, millisecondsToMinutes, millisecondsToHours, millisecondsToDays } from '../utils.js';
 
 declare const anime: any;
-declare const fitText: any;
+
+type t_theme = {
+  name: string;
+  background: string[];
+};
 
 export class Scene3 extends Scene {
   usuarioJaViu: boolean = false;
 
   imgComoAproveitar: NodeListOf<HTMLElement> = document.querySelectorAll( '#estimativasTempo > .card' )!;
+
+  sceneTitle: HTMLElement = document.getElementById( 'tituloAberturaTempoEconomizado' )!;
+  timeContainer: HTMLElement = document.getElementById( 'tempoEconomizadoValores' )!;
 
   anosEconomizados: HTMLElement = document.getElementById( 'anosEconomizados' )!;
   mesesEconomizados: HTMLElement = document.getElementById( 'mesesEconomizados' )!;
@@ -32,6 +39,17 @@ export class Scene3 extends Scene {
     seconds: 0
   };
 
+  themes: t_theme[] = [
+    {
+      name: 'main',
+      background: ['bg-dark', 'bg-gradient']
+    },
+    {
+      name: 'futebol',
+      background: ['bg-futebol']
+    },
+  ];
+
   constructor( scaffold: SceneScaffold, timeSaved: number ) {
     super( scaffold );
     this.timeSavedInMs = timeSaved;
@@ -50,14 +68,28 @@ export class Scene3 extends Scene {
 
 
   animateTime(): void {
+
+
+    anime( {
+      targets: this.sceneTitle,
+      translateX: '20vw',
+      opacity: {
+        value: 1,
+        duration: 5000
+      },
+      duration: 2000,
+      easing: 'easeOutExpo',
+    } )
+
+
     anime( {
       targets: this.customerTime,
       saved: this.timeSavedInMs,
       round: 1,
-      delay: 1500,
-      duration: 20000,
+      delay: 500,
+      duration: 10000,
       easing: 'easeInOutExpo',
-      begin: () => {
+      complete: () => {
 
       },
       update: () => {
@@ -90,13 +122,12 @@ export class Scene3 extends Scene {
         const minutos = +strDateSplitted[4];
         const segundos = +strDateSplitted[5];
 
-        const textoAnos = anos > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( anos ) }</span> <span class="medida-tempo">Anos</span></div>` : '';
-        const textoMeses = textoAnos || meses > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( meses ) }</span> <span class="medida-tempo">Meses</span></div>` : '';
-        const textoDias = textoMeses || dias > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( dias ) }</span> <span class="medida-tempo">Dias</span></div>` : '';
-        const textoHoras = textoDias || horas > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( horas ) }</span> <span class="medida-tempo">Horas</span></div>` : '';
-        const textoMinutos = textoHoras || minutos > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( minutos ) }</span> <span class="medida-tempo">Minutos</span></div>` : '';
-        const textoSegundos = textoMinutos || segundos > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( segundos ) }</span> <span class="medida-tempo">Segundos</span></div>` : '';
-        fitText( document.getElementById( 'tempoEconomizadoValores' )!, 1 );
+        const textoAnos = anos > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( anos ) } Ano${ ( anos > 1 ) ? 's' : '' }</span></div>` : '';
+        const textoMeses = textoAnos || meses > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( meses ) } Mes${ ( meses > 1 ) ? 'es' : '' }</span></div>` : '';
+        const textoDias = textoMeses || dias > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( dias ) } Dia${ ( dias > 1 ) ? 's' : '' }</span></div>` : '';
+        const textoHoras = textoDias || horas > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( horas ) }h</span></div>` : '';
+        const textoMinutos = textoHoras || minutos > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( minutos ) }m</span></div>` : '';
+        const textoSegundos = textoMinutos || segundos > 0 ? `<div class='campo-relogio'><span>${ zeroBefore( segundos ) }s</span></div>` : '';
 
         if ( textoAnos ) {
           this.anosEconomizados.style.display = 'flex';
@@ -148,6 +179,10 @@ export class Scene3 extends Scene {
       }
     } );
   }
+
+  // removeBackgrounds() {
+  //   document.getElementById( 'scene3Part1' )!.classList.remove( ...this.backgrounds );
+  // }
 
   dropImage() {
     anime( {
