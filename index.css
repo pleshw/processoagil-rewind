@@ -555,7 +555,7 @@ section.scene {
   perspective-origin: center;
   perspective: 34rem;
   opacity: 0.1;
-  transition: all .3s ease-out;
+  transition: all .2s ease-in-out;
   transform: scale(0.9);
   transform: scale(1.9) skew(10deg,
       18deg);
