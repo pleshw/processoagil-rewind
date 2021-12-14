@@ -502,7 +502,7 @@ section.scene {
 }
 
 #scene3Part1 div {
-  transform: rotate(0deg);
+  z-index: 999;
 }
 
 #sceneControllersCounters {
@@ -788,14 +788,80 @@ h6.title-left {
 }
 
 .tempo-economizado-valores {
-  top: 40vh;
-  left: 0vw;
+  min-height: 77px;
+  left: 0;
+  z-index: 9999;
   position: absolute;
+}
+
+.bg-filme {
+  background-image: url(assets/matrix.jpg);
+}
+
+#tempoEconomizadoValores {
+  opacity: 1;
+}
+
+#tempoEconomizadoValores h1 {
+  font-size: 4rem;
+}
+
+#tempoEconomizadoFutebol {
+  opacity: 0;
+  top: 23vh;
+}
+
+#tempoEconomizadoFutebol h1 {
+  font-size: 10rem;
+}
+
+#tempoEconomizadoMusica {
+  opacity: 0;
+  top: 48vh;
+  left: 5vw;
+}
+
+#tempoEconomizadoMusica h1 {
+  font-size: 15rem;
+}
+
+#tempoEconomizadoFilme {
+  opacity: 0;
+}
+
+#tempoEconomizadoFilme h1 {
+  font-size: 20rem;
+}
+
+#tempoEconomizadoLivro {
+  opacity: 0;
+}
+
+#tempoEconomizadoLivro h1 {
+  font-size: 4rem;
+}
+
+#tempoEconomizadoPudim {
+  opacity: 0;
+  top: 5vh;
+  left: 15vw;
+}
+
+#tempoEconomizadoPudim h1 {
+  font-size: 17rem;
+}
+
+
+
+
+#mudarTemaTempo:hover {
+  transform: rotateZ(5deg);
 }
 
 #containerAberturaTempoEconomizado {
   top: 54vh;
   left: 34vw;
+  max-width: 897px;
   position: absolute;
   text-align: left;
 }
@@ -810,7 +876,6 @@ h6.title-left {
   display: none;
   justify-content: flex-start;
   text-align: right;
-  font-size: 4rem;
   animation: RotateIn .2s;
   opacity: 1;
   margin: 0;

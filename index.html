@@ -76,7 +76,10 @@
 
     <section class="scene w-100">
       <div id="tempoEconomizado" class="flex-col align-center justify-between w-100 p-0">
-        <div id="scene3Part1" class="bg-dark bg-gradient text-white w-100 h-100  min-vh-100 min-vw-100">
+        <div id="bgScene3" class="bg-dark text-white w-100 h-100  min-vh-100 min-vw-100 absolute-0">
+        </div>
+        <div id="scene3Part1" class="bg-transparent bg-gradient text-white w-100 h-100  min-vh-100 min-vw-100 ">
+
           <div id="tempoEconomizadoValores" class="text-light flex-row justify-evenly w-100 tempo-economizado-valores">
             <h1 id="anosEconomizados"></h1>
             <h1 id="mesesEconomizados"></h1>
@@ -85,17 +88,32 @@
             <h1 id="minutosEconomizados"></h1>
             <h1 id="segundosEconomizados"></h1>
           </div>
+
+          <div id="tempoEconomizadoFutebol" class="text-light flex-row justify-evenly w-100 tempo-economizado-valores">
+            <h1 id="tempoParaFutebol"></h1>
+          </div>
+
+          <div id="tempoEconomizadoMusica" class="text-light flex-row justify-evenly w-100 tempo-economizado-valores">
+            <h1 id="tempoParaMusica"></h1>
+          </div>
+
+          <div id="tempoEconomizadoFilme" class="text-light flex-row justify-evenly w-100 tempo-economizado-valores">
+            <h1 id="tempoParaFilme"></h1>
+          </div>
+
+          <div id="tempoEconomizadoPudim" class="text-light flex-row justify-evenly w-100 tempo-economizado-valores">
+            <h1 id="tempoParaPudim"></h1>
+          </div>
+
           <div id="containerAberturaTempoEconomizado" class=" w-100 min-vh-100">
-            <h2 id="tituloAberturaTempoEconomizado" class="fw-lighter">Fizemos uma estimativa de quanto tempo você
-              economizou esse ano por usar
-              nosso
-              sistema este
-              ano.
+            <h2 id="tituloAberturaTempoEconomizado" class="fw-lighter">Fizemos uma estimativa de <span
+                id="fraseTempoEconomizado"></span>
             </h2>
           </div>
 
           <div class="absolute-0 flex-center w-100 h-100">
-            <button class="btn btn-lg btn-outline-light rounded-0 pulse" style="top: 32%; left: -44%;">?</button>
+            <button id="mudarTemaTempo" class="btn btn-lg btn-outline-light rounded-0"
+              style="top: 32%; left: -44%;">?</button>
           </div>
         </div>
 

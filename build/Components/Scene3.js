@@ -7,6 +7,8 @@ export class Scene3 extends Scene {
         this.imgComoAproveitar = document.querySelectorAll('#estimativasTempo > .card');
         this.sceneTitle = document.getElementById('tituloAberturaTempoEconomizado');
         this.timeContainer = document.getElementById('tempoEconomizadoValores');
+        this.buttonTheme = document.getElementById('mudarTemaTempo');
+        this.fraseTempoEconomizado = document.getElementById('fraseTempoEconomizado');
         this.anosEconomizados = document.getElementById('anosEconomizados');
         this.mesesEconomizados = document.getElementById('mesesEconomizados');
         this.diasEconomizados = document.getElementById('diasEconomizados');
@@ -23,17 +25,42 @@ export class Scene3 extends Scene {
             minutes: 0,
             seconds: 0
         };
+        this.themeIndex = 0;
         this.themes = [
             {
+                id: 'tempoEconomizadoValores',
                 name: 'main',
-                background: ['bg-dark', 'bg-gradient']
+                background: 'bg-dark',
+                phrase: 'quanto tempo você economizou por usar nosso sistema este ano.'
             },
             {
+                id: 'tempoEconomizadoFutebol',
                 name: 'futebol',
-                background: ['bg-futebol']
+                background: 'bg-futebol',
+                phrase: 'quantas partidas de futebol você conseguiria jogar nesse tempo.'
+            },
+            {
+                id: 'tempoEconomizadoMusica',
+                name: 'musicas',
+                background: 'bg-musica',
+                phrase: 'quantas musicas você poderia ouvir com o tempo que foi economizado.'
+            },
+            {
+                id: 'tempoEconomizadoPudim',
+                name: 'pudim',
+                background: 'bg-pudim',
+                phrase: 'quantos pudins você pôde cozinhar ao invés de procurar processos.'
+            },
+            {
+                id: 'tempoEconomizadoFilme',
+                name: 'filme',
+                background: 'bg-filme',
+                phrase: 'quantas vezes você conseguiria assistir Matrix nesse tempo.'
             },
         ];
         this.timeSavedInMs = timeSaved;
+        this.fraseTempoEconomizado.innerHTML = this.themes[0].phrase;
+        this.buttonTheme.addEventListener('click', () => { this.changeToNextTheme(); });
     }
     render() {
         if (!this.usuarioJaViu)
@@ -78,10 +105,10 @@ export class Scene3 extends Scene {
                 };
                 document.getElementById('tempoEconomizado').style.width = '35em';
                 document.getElementById('introTextContainerScene3').style.left = '0';
-                document.getElementById('tempoParaDiasTrabalho').innerHTML = Math.round(this.timeSaved.hours / 500).toString();
-                document.getElementById('tempoParaFilme').innerHTML = Math.round(this.timeSaved.hours / 2).toString();
+                document.getElementById('tempoParaFilme').innerHTML = Math.round(this.timeSaved.minutes / 150).toString();
                 document.getElementById('tempoParaMusica').innerHTML = Math.round(this.timeSaved.minutes / 3).toString();
                 document.getElementById('tempoParaFutebol').innerHTML = Math.round(this.timeSaved.minutes / 90).toString();
+                document.getElementById('tempoParaPudim').innerHTML = Math.round(this.timeSaved.minutes / 30).toString();
                 const anos = +strDateSplitted[0] - 1970;
                 const meses = +strDateSplitted[1] - 1;
                 const dias = +strDateSplitted[2] - 1;
@@ -121,40 +148,28 @@ export class Scene3 extends Scene {
             }
         });
     }
-    animateJanelaEstimativas() {
-        anime({
-            targets: this.comoAproveitarTempo,
-            delay: 1500,
-            translateY: {
-                value: -50,
-                duration: 300,
-                easing: 'linear'
-            },
-            opacity: {
-                value: 1,
-                duration: 500,
-                easing: 'linear'
-            }
+    hideEstimativas() {
+        ['tempoEconomizadoValores', 'tempoEconomizadoFutebol', 'tempoEconomizadoMusica', 'tempoEconomizadoFilme', 'tempoEconomizadoPudim']
+            .forEach(i => {
+            const el = document.getElementById(i);
+            el.style.opacity = '0';
+            el.querySelector('h1').style.display = 'none';
         });
     }
-    // removeBackgrounds() {
-    //   document.getElementById( 'scene3Part1' )!.classList.remove( ...this.backgrounds );
-    // }
-    dropImage() {
-        anime({
-            targets: this.comoAproveitarTempo,
-            delay: 1500,
-            translateY: {
-                value: -50,
-                duration: 300,
-                easing: 'linear'
-            },
-            opacity: {
-                value: 1,
-                duration: 500,
-                easing: 'linear'
-            }
-        });
+    changeToTheme(index) {
+        if (index > this.themes.length - 1)
+            return this.changeToTheme(0);
+        if (index < 0)
+            return this.changeToTheme(0);
+        this.hideEstimativas();
+        this.themeIndex = index;
+        this.fraseTempoEconomizado.innerHTML = this.themes[this.themeIndex].phrase;
+        const elTexto = document.getElementById(this.themes[this.themeIndex].id);
+        elTexto.style.opacity = '1';
+        elTexto.querySelector('h1').style.display = 'flex';
+    }
+    changeToNextTheme() {
+        this.changeToTheme(++this.themeIndex);
     }
     hide() {
     }
