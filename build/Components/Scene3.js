@@ -9,6 +9,7 @@ export class Scene3 extends Scene {
         this.timeContainer = document.getElementById('tempoEconomizadoValores');
         this.buttonTheme = document.getElementById('mudarTemaTempo');
         this.fraseTempoEconomizado = document.getElementById('fraseTempoEconomizado');
+        this.backgroundScene = document.getElementById('bgScene3');
         this.anosEconomizados = document.getElementById('anosEconomizados');
         this.mesesEconomizados = document.getElementById('mesesEconomizados');
         this.diasEconomizados = document.getElementById('diasEconomizados');
@@ -104,7 +105,6 @@ export class Scene3 extends Scene {
                     seconds: this.customerTime.saved / 1000
                 };
                 document.getElementById('tempoEconomizado').style.width = '35em';
-                document.getElementById('introTextContainerScene3').style.left = '0';
                 document.getElementById('tempoParaFilme').innerHTML = Math.round(this.timeSaved.minutes / 150).toString();
                 document.getElementById('tempoParaMusica').innerHTML = Math.round(this.timeSaved.minutes / 3).toString();
                 document.getElementById('tempoParaFutebol').innerHTML = Math.round(this.timeSaved.minutes / 90).toString();
@@ -148,6 +148,10 @@ export class Scene3 extends Scene {
             }
         });
     }
+    removeBackgrounds() {
+        this.buttonTheme.classList.remove(...['bg-dark', 'bg-futebol', 'bg-musica', 'bg-pudim', 'bg-filme']);
+        this.backgroundScene.classList.remove(...['bg-dark', 'bg-futebol', 'bg-musica', 'bg-pudim', 'bg-filme']);
+    }
     hideEstimativas() {
         ['tempoEconomizadoValores', 'tempoEconomizadoFutebol', 'tempoEconomizadoMusica', 'tempoEconomizadoFilme', 'tempoEconomizadoPudim']
             .forEach(i => {
@@ -167,8 +171,10 @@ export class Scene3 extends Scene {
         const elTexto = document.getElementById(this.themes[this.themeIndex].id);
         elTexto.style.opacity = '1';
         elTexto.querySelector('h1').style.display = 'flex';
+        this.backgroundScene.classList.add(this.themes[this.themeIndex].background);
     }
     changeToNextTheme() {
+        this.removeBackgrounds();
         this.changeToTheme(++this.themeIndex);
     }
     hide() {
