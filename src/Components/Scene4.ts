@@ -25,8 +25,9 @@ export class Scene4 extends Scene {
       }, 2300 );
     }
     this.usuarioJaViu = true;
-
   }
+
+
 
 
   hide(): void {

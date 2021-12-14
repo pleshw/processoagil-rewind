@@ -93,16 +93,12 @@
             <h1 id="tempoParaFutebol"></h1>
           </div>
 
-          <div id="tempoEconomizadoMusica" class="text-light flex-row justify-evenly w-100 tempo-economizado-valores">
+          <div id="tempoEconomizadoMusica" class="text-dark flex-row justify-evenly w-100 tempo-economizado-valores">
             <h1 id="tempoParaMusica"></h1>
           </div>
 
-          <div id="tempoEconomizadoFilme" class="text-light flex-row justify-evenly w-100 tempo-economizado-valores">
+          <div id="tempoEconomizadoFilme" class="text-success flex-row justify-evenly w-100 tempo-economizado-valores">
             <h1 id="tempoParaFilme"></h1>
-          </div>
-
-          <div id="tempoEconomizadoPudim" class="text-light flex-row justify-evenly w-100 tempo-economizado-valores">
-            <h1 id="tempoParaPudim"></h1>
           </div>
 
           <div id="containerAberturaTempoEconomizado" class=" w-100 min-vh-100">
@@ -156,7 +152,7 @@
         <h1 id="listaVipTitulo" class="text-light">Clientes VIP</h1>
 
         <div id="clientesVipContainer" class="flex-col justify-around align-center grid">
-          <div class="pen">
+          <div class="pen" id="pen">
             <div class="stage">
               <div class="vortext">
                 <div data-text="Maior número de processos distribuídos" id="listaVipValor" class="vortextRibbon down">
@@ -169,6 +165,16 @@
             </div>
           </div>
         </div>
+
+        <div id="rankingClientesVip" class="absolute-0 h-75 w-100 flex-col justify-around align-center">
+          <div class="el-ranking"></div>
+          <div class="el-ranking"></div>
+          <div class="el-ranking"></div>
+          <div class="el-ranking"></div>
+          <div class="el-ranking"></div>
+        </div>
+
+        <button class="btn btn-lg btn-outline-light" id="verRanking" style="top: 40%;">Ver ranking</button>
       </div>
     </section>
 
@@ -297,26 +303,28 @@
       /// Cena 9
       const rankingClientes = userData.clientesComMaisProcessos.sort((a, b) => a - b);
 
-
-
       const nomeMaisProcessos = rankingClientes[0].nome;
-      const nomeSegundoLugar = rankingClientes[1].nome;
 
       let maisProcessosSplit = nomeMaisProcessos
         .split(' ')
         .slice(0, 2);
 
-      let segundoLugarSplit = nomeSegundoLugar
-        .split(' ')
-        .slice(0, 2);
-
       let maisProcessos3D = maisProcessosSplit.filter(Boolean).join(" ");
-      let segundoLugar3D = segundoLugarSplit.filter(Boolean).join(" ");
 
-      document.getElementById('listaVipProcessos').innerHTML = segundoLugar3D;
       document.getElementById('listaVipValor').innerHTML = maisProcessos3D;
 
-      SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[5])), scrollMagicIndicatorsController);
+      if (rankingClientes.length > 1) {
+        const nomeSegundoLugar = rankingClientes[1].nome;
+        let segundoLugarSplit = nomeSegundoLugar
+          .split(' ')
+          .slice(0, 2);
+
+        let segundoLugar3D = segundoLugarSplit.filter(Boolean).join(" ");
+
+        document.getElementById('listaVipProcessos').innerHTML = segundoLugar3D;
+      }
+
+      SceneView.addScene(new Scene9(new SceneScaffold(scaffolds[5]), rankingClientes), scrollMagicIndicatorsController);
 
       /// Cena 10
       let rankingAcessos = userData.rankingMaisAcessos.sort((a, b) => a - b);
@@ -377,9 +385,9 @@
 
       SceneView.scrollToScene(0);
 
-      // setTimeout(() => {
-      //   SceneView.scrollToScene(4);
-      // }, 500);
+      setTimeout(() => {
+        SceneView.scrollToScene(5);
+      }, 500);
 
 
       setStyles();

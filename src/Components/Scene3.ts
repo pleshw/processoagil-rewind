@@ -21,6 +21,7 @@ export class Scene3 extends Scene {
   sceneTitle: HTMLElement = document.getElementById( 'tituloAberturaTempoEconomizado' )!;
   timeContainer: HTMLElement = document.getElementById( 'tempoEconomizadoValores' )!;
 
+  titleContainer: HTMLElement = document.getElementById( 'containerAberturaTempoEconomizado' )!;
   buttonTheme: HTMLElement = document.getElementById( 'mudarTemaTempo' )!;
   fraseTempoEconomizado: HTMLElement = document.getElementById( 'fraseTempoEconomizado' )!;
 
@@ -63,7 +64,7 @@ export class Scene3 extends Scene {
       id: 'tempoEconomizadoFutebol',
       name: 'futebol',
       background: 'bg-futebol',
-      phrase: 'quantas partidas de futebol você conseguiria jogar nesse tempo.',
+      phrase: 'quantas partidas de futebol você conseguiria jogar no tempo que economizou com a Processo Ágil.',
       button: 'btn-outline-light',
       textColor: 'text-light'
     },
@@ -71,25 +72,17 @@ export class Scene3 extends Scene {
       id: 'tempoEconomizadoMusica',
       name: 'musicas',
       background: 'bg-musica',
-      phrase: 'quantas musicas você poderia ouvir com o tempo que foi economizado.',
+      phrase: 'quantas musicas você poderia ouvir com o tempo que foi economizado na nossa plataforma.',
       button: 'btn-outline-dark',
-      textColor: ''
-    },
-    {
-      id: 'tempoEconomizadoPudim',
-      name: 'pudim',
-      background: 'bg-pudim',
-      phrase: 'quantos pudins você pôde cozinhar ao invés de procurar processos.',
-      button: '',
-      textColor: ''
+      textColor: 'text-dark'
     },
     {
       id: 'tempoEconomizadoFilme',
       name: 'filme',
       background: 'bg-filme',
-      phrase: 'quantas vezes você conseguiria assistir Matrix nesse tempo.',
-      button: '',
-      textColor: ''
+      phrase: 'quantas vezes você conseguiria assistir Matrix no tempo que economizou com a gente.',
+      button: 'btn-outline-success',
+      textColor: 'text-success'
     },
   ];
 
@@ -156,7 +149,6 @@ export class Scene3 extends Scene {
         document.getElementById( 'tempoParaFilme' )!.innerHTML = Math.round( this.timeSaved.minutes / 150 ).toString();
         document.getElementById( 'tempoParaMusica' )!.innerHTML = Math.round( this.timeSaved.minutes / 3 ).toString();
         document.getElementById( 'tempoParaFutebol' )!.innerHTML = Math.round( this.timeSaved.minutes / 90 ).toString();
-        document.getElementById( 'tempoParaPudim' )!.innerHTML = Math.round( this.timeSaved.minutes / 30 ).toString();
 
         const anos = +strDateSplitted[0] - 1970;
         const meses = +strDateSplitted[1] - 1;
@@ -206,11 +198,21 @@ export class Scene3 extends Scene {
   }
 
   removeBackgrounds() {
-    this.buttonTheme.classList.remove( ...['bg-dark', 'bg-futebol', 'bg-musica', 'bg-pudim', 'bg-filme'] );
-    this.backgroundScene.classList.remove( ...['bg-dark', 'bg-futebol', 'bg-musica', 'bg-pudim', 'bg-filme'] );
+    this.buttonTheme.classList.remove( ...['btn-outline-dark', 'btn-outline-light', 'btn-outline-success'] );
+    this.backgroundScene.classList.remove( ...['bg-dark', 'bg-futebol', 'bg-musica', 'bg-filme'] );
+    this.titleContainer.classList.remove( ...['text-light', 'text-dark', 'text-light', 'text-success'] );
   }
 
   hideEstimativas() {
+    ['tempoEconomizadoValores', 'tempoEconomizadoFutebol', 'tempoEconomizadoMusica', 'tempoEconomizadoFilme']
+      .forEach( i => {
+        const el = document.getElementById( i )!;
+        el.style.opacity = '0';
+        el.querySelector( 'h1' )!.style.display = 'none';
+      } )
+  }
+
+  mudarEstilos() {
     ['tempoEconomizadoValores', 'tempoEconomizadoFutebol', 'tempoEconomizadoMusica', 'tempoEconomizadoFilme', 'tempoEconomizadoPudim']
       .forEach( i => {
         const el = document.getElementById( i )!;
@@ -218,6 +220,7 @@ export class Scene3 extends Scene {
         el.querySelector( 'h1' )!.style.display = 'none';
       } )
   }
+
 
 
   changeToTheme( index: number ): void {
@@ -232,6 +235,8 @@ export class Scene3 extends Scene {
     elTexto.style.opacity = '1';
     elTexto.querySelector( 'h1' )!.style.display = 'flex';
     this.backgroundScene.classList.add( this.themes[this.themeIndex].background );
+    this.titleContainer.classList.add( this.themes[this.themeIndex].textColor );
+    this.buttonTheme.classList.add( this.themes[this.themeIndex].button );
   }
 
   changeToNextTheme() {
