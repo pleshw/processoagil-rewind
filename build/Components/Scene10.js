@@ -74,7 +74,7 @@ export class Scene10 extends Scene {
                         easing: 'linear'
                     },
                     translateY: {
-                        value: -50,
+                        value: -85,
                         duration: 50,
                         easing: 'linear'
                     }
@@ -115,7 +115,7 @@ export class Scene10 extends Scene {
                         easing: 'linear'
                     },
                     translateY: {
-                        value: -50,
+                        value: -85,
                         duration: 50,
                         easing: 'linear'
                     }
@@ -156,7 +156,7 @@ export class Scene10 extends Scene {
                         easing: 'linear'
                     },
                     translateY: {
-                        value: -50,
+                        value: -85,
                         duration: 50,
                         easing: 'linear'
                     }
