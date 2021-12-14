@@ -823,6 +823,7 @@ h6.title-left {
 .el-ranking h2 {
   font-size: 1.5rem;
   opacity: 0;
+  filter: brightness(3.5);
 }
 
 .bg-musica {
